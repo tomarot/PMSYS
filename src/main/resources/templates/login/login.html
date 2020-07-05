@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+<form id="dataform">
+    用户名：<input name="username" type="text">
+    密码：<input name="password" type="password">
+    <br/>
+    <button id="submitBtn" type="button">登录</button>
+    <br/>
+   <!-- <button id="qqLoginBtn" type="button">qq登录</button>
+    <button id="sinaLoginBtn" type="button">微博登录</button>-->
+</form>
+<script type="text/javascript" src="/PMSYS/library/jquery/jquery-3.1.1.min.js"></script>
+<script>
+    $(function(){
+        $("#submitBtn").click(function(){
+            var data = $("#dataform").serialize();
+            $.ajax({
+                url:"/PMSYS/login/doLogin",
+                data:data,
+                dataType:"json",
+                type:"post",
+                success:function (result) {
+                    if(result.result_code==200){
+                        alert("登录成功");
+                        window.location.href='http://localhost:8081/PMSYS/index/toIndex';
+                    }else{
+                        alert(result.result_msg);
+                    }
+                },
+                error:function(result){
+
+                }
+            });
+        });
+    })
+</script>
+</body>
+</html>

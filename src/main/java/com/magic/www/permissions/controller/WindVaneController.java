@@ -26,4 +26,5 @@ public class WindVaneController {
     public String toWindVaneShowPage(){
         return "/windVane/windVaneShowPage";
     }
+
 }

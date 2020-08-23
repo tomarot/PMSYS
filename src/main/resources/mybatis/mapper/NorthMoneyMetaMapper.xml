@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.magic.www.permissions.mapper.NorthMoneyMapper" >
+  <resultMap id="BaseResultMap" type="com.magic.www.permissions.domain.NorthMoneyMeta" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="HYCode" property="HYCode" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="ORIGINALCODE" property="ORIGINALCODE" jdbcType="VARCHAR" />
+    <result column="ShareHold_JC_Min" property="ShareHold_JC_Min" jdbcType="VARCHAR" />
+    <result column="ShareHold_ZC_Max" property="ShareHold_ZC_Max" jdbcType="VARCHAR" />
+    <result column="ShareSZ_JC_Min" property="ShareSZ_JC_Min" jdbcType="VARCHAR" />
+    <result column="ShareSZ_ZC_Max" property="ShareSZ_ZC_Max" jdbcType="VARCHAR" />
+    <result column="SCode_Min_ZB" property="SCode_Min_ZB" jdbcType="VARCHAR" />
+    <result column="SCode_Max_ZB" property="SCode_Max_ZB" jdbcType="VARCHAR" />
+    <result column="ShareSZ_BK" property="ShareSZ_BK" jdbcType="VARCHAR" />
+    <result column="ShareSZ_Min" property="ShareSZ_Min" jdbcType="VARCHAR" />
+    <result column="ShareSZ_Max" property="ShareSZ_Max" jdbcType="VARCHAR" />
+    <result column="DateType" property="DateType" jdbcType="VARCHAR" />
+    <result column="HdDate" property="HdDate" jdbcType="TIMESTAMP" />
+    <result column="HYName" property="HYName" jdbcType="VARCHAR" />
+    <result column="Zdf" property="Zdf" jdbcType="VARCHAR" />
+    <result column="Count" property="Count" jdbcType="INTEGER" />
+    <result column="ShareSZ_GZ" property="ShareSZ_GZ" jdbcType="VARCHAR" />
+    <result column="ShareHold_Chg_BK" property="ShareHold_Chg_BK" jdbcType="VARCHAR" />
+    <result column="ShareHold_Chg_GZ" property="ShareHold_Chg_GZ" jdbcType="VARCHAR" />
+    <result column="ZC_Count" property="ZC_Count" jdbcType="VARCHAR" />
+    <result column="ShareSZ_ZC" property="ShareSZ_ZC" jdbcType="VARCHAR" />
+    <result column="ShareHold_ZC_Chg" property="ShareHold_ZC_Chg" jdbcType="VARCHAR" />
+    <result column="ShareHold_ZC_Chg_BK" property="ShareHold_ZC_Chg_BK" jdbcType="VARCHAR" />
+    <result column="ShareHold_ZC_Chg_GZ" property="ShareHold_ZC_Chg_GZ" jdbcType="VARCHAR" />
+    <result column="Max_SZ_Code" property="Max_SZ_Code" jdbcType="VARCHAR" />
+    <result column="Max_SZ_Name" property="Max_SZ_Name" jdbcType="VARCHAR" />
+    <result column="Max_ZB_Code" property="Max_ZB_Code" jdbcType="VARCHAR" />
+    <result column="Max_ZB_Name" property="Max_ZB_Name" jdbcType="VARCHAR" />
+    <result column="Min_SZ_Code" property="Min_SZ_Code" jdbcType="VARCHAR" />
+    <result column="Min_SZ_Name" property="Min_SZ_Name" jdbcType="VARCHAR" />
+    <result column="Min_ZB_Code" property="Min_ZB_Code" jdbcType="VARCHAR" />
+    <result column="Min_ZB_Name" property="Min_ZB_Name" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, HYCode,type, ORIGINALCODE, ShareHold_JC_Min, ShareHold_ZC_Max, ShareSZ_JC_Min, ShareSZ_ZC_Max,
+    SCode_Min_ZB, SCode_Max_ZB, ShareSZ_BK, ShareSZ_Min, ShareSZ_Max, DateType, HdDate, 
+    HYName, Zdf, Count, ShareSZ_GZ, ShareHold_Chg_BK, ShareHold_Chg_GZ, ZC_Count, ShareSZ_ZC, 
+    ShareHold_ZC_Chg, ShareHold_ZC_Chg_BK, ShareHold_ZC_Chg_GZ, Max_SZ_Code, Max_SZ_Name, 
+    Max_ZB_Code, Max_ZB_Name, Min_SZ_Code, Min_SZ_Name, Min_ZB_Code, Min_ZB_Name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from collect_north_money
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from collect_north_money
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.magic.www.permissions.domain.NorthMoneyMeta" >
+    insert into collect_north_money (id, HYCode,type, ORIGINALCODE,
+      ShareHold_JC_Min, ShareHold_ZC_Max, ShareSZ_JC_Min, 
+      ShareSZ_ZC_Max, SCode_Min_ZB, SCode_Max_ZB, 
+      ShareSZ_BK, ShareSZ_Min, ShareSZ_Max, 
+      DateType, HdDate, HYName, 
+      Zdf, Count, ShareSZ_GZ, 
+      ShareHold_Chg_BK, ShareHold_Chg_GZ, ZC_Count, 
+      ShareSZ_ZC, ShareHold_ZC_Chg, ShareHold_ZC_Chg_BK, 
+      ShareHold_ZC_Chg_GZ, Max_SZ_Code, Max_SZ_Name, 
+      Max_ZB_Code, Max_ZB_Name, Min_SZ_Code, 
+      Min_SZ_Name, Min_ZB_Code, Min_ZB_Name
+      )
+    values (#{id,jdbcType=INTEGER}, #{HYCode,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR}, #{ORIGINALCODE,jdbcType=VARCHAR},
+      #{ShareHold_JC_Min,jdbcType=VARCHAR}, #{ShareHold_ZC_Max,jdbcType=VARCHAR}, #{ShareSZ_JC_Min,jdbcType=VARCHAR}, 
+      #{ShareSZ_ZC_Max,jdbcType=VARCHAR}, #{SCode_Min_ZB,jdbcType=VARCHAR}, #{SCode_Max_ZB,jdbcType=VARCHAR}, 
+      #{ShareSZ_BK,jdbcType=VARCHAR}, #{ShareSZ_Min,jdbcType=VARCHAR}, #{ShareSZ_Max,jdbcType=VARCHAR}, 
+      #{DateType,jdbcType=VARCHAR}, #{HdDate,jdbcType=TIMESTAMP}, #{HYName,jdbcType=VARCHAR},
+      #{Zdf,jdbcType=VARCHAR}, #{Count,jdbcType=INTEGER}, #{ShareSZ_GZ,jdbcType=VARCHAR}, 
+      #{ShareHold_Chg_BK,jdbcType=VARCHAR}, #{ShareHold_Chg_GZ,jdbcType=VARCHAR}, #{ZC_Count,jdbcType=VARCHAR}, 
+      #{ShareSZ_ZC,jdbcType=VARCHAR}, #{ShareHold_ZC_Chg,jdbcType=VARCHAR}, #{ShareHold_ZC_Chg_BK,jdbcType=VARCHAR}, 
+      #{ShareHold_ZC_Chg_GZ,jdbcType=VARCHAR}, #{Max_SZ_Code,jdbcType=VARCHAR}, #{Max_SZ_Name,jdbcType=VARCHAR}, 
+      #{Max_ZB_Code,jdbcType=VARCHAR}, #{Max_ZB_Name,jdbcType=VARCHAR}, #{Min_SZ_Code,jdbcType=VARCHAR}, 
+      #{Min_SZ_Name,jdbcType=VARCHAR}, #{Min_ZB_Code,jdbcType=VARCHAR}, #{Min_ZB_Name,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.magic.www.permissions.domain.NorthMoneyMeta" >
+    insert into collect_north_money
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="HYCode != null" >
+        HYCode,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="ORIGINALCODE != null" >
+        ORIGINALCODE,
+      </if>
+      <if test="ShareHold_JC_Min != null" >
+        ShareHold_JC_Min,
+      </if>
+      <if test="ShareHold_ZC_Max != null" >
+        ShareHold_ZC_Max,
+      </if>
+      <if test="ShareSZ_JC_Min != null" >
+        ShareSZ_JC_Min,
+      </if>
+      <if test="ShareSZ_ZC_Max != null" >
+        ShareSZ_ZC_Max,
+      </if>
+      <if test="SCode_Min_ZB != null" >
+        SCode_Min_ZB,
+      </if>
+      <if test="SCode_Max_ZB != null" >
+        SCode_Max_ZB,
+      </if>
+      <if test="ShareSZ_BK != null" >
+        ShareSZ_BK,
+      </if>
+      <if test="ShareSZ_Min != null" >
+        ShareSZ_Min,
+      </if>
+      <if test="ShareSZ_Max != null" >
+        ShareSZ_Max,
+      </if>
+      <if test="DateType != null" >
+        DateType,
+      </if>
+      <if test="HdDate != null" >
+        HdDate,
+      </if>
+      <if test="HYName != null" >
+        HYName,
+      </if>
+      <if test="Zdf != null" >
+        Zdf,
+      </if>
+      <if test="Count != null" >
+        Count,
+      </if>
+      <if test="ShareSZ_GZ != null" >
+        ShareSZ_GZ,
+      </if>
+      <if test="ShareHold_Chg_BK != null" >
+        ShareHold_Chg_BK,
+      </if>
+      <if test="ShareHold_Chg_GZ != null" >
+        ShareHold_Chg_GZ,
+      </if>
+      <if test="ZC_Count != null" >
+        ZC_Count,
+      </if>
+      <if test="ShareSZ_ZC != null" >
+        ShareSZ_ZC,
+      </if>
+      <if test="ShareHold_ZC_Chg != null" >
+        ShareHold_ZC_Chg,
+      </if>
+      <if test="ShareHold_ZC_Chg_BK != null" >
+        ShareHold_ZC_Chg_BK,
+      </if>
+      <if test="ShareHold_ZC_Chg_GZ != null" >
+        ShareHold_ZC_Chg_GZ,
+      </if>
+      <if test="Max_SZ_Code != null" >
+        Max_SZ_Code,
+      </if>
+      <if test="Max_SZ_Name != null" >
+        Max_SZ_Name,
+      </if>
+      <if test="Max_ZB_Code != null" >
+        Max_ZB_Code,
+      </if>
+      <if test="Max_ZB_Name != null" >
+        Max_ZB_Name,
+      </if>
+      <if test="Min_SZ_Code != null" >
+        Min_SZ_Code,
+      </if>
+      <if test="Min_SZ_Name != null" >
+        Min_SZ_Name,
+      </if>
+      <if test="Min_ZB_Code != null" >
+        Min_ZB_Code,
+      </if>
+      <if test="Min_ZB_Name != null" >
+        Min_ZB_Name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="HYCode != null" >
+        #{HYCode,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="ORIGINALCODE != null" >
+        #{ORIGINALCODE,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareHold_JC_Min != null" >
+        #{ShareHold_JC_Min,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareHold_ZC_Max != null" >
+        #{ShareHold_ZC_Max,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareSZ_JC_Min != null" >
+        #{ShareSZ_JC_Min,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareSZ_ZC_Max != null" >
+        #{ShareSZ_ZC_Max,jdbcType=VARCHAR},
+      </if>
+      <if test="SCode_Min_ZB != null" >
+        #{SCode_Min_ZB,jdbcType=VARCHAR},
+      </if>
+      <if test="SCode_Max_ZB != null" >
+        #{SCode_Max_ZB,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareSZ_BK != null" >
+        #{ShareSZ_BK,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareSZ_Min != null" >
+        #{ShareSZ_Min,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareSZ_Max != null" >
+        #{ShareSZ_Max,jdbcType=VARCHAR},
+      </if>
+      <if test="DateType != null" >
+        #{DateType,jdbcType=VARCHAR},
+      </if>
+      <if test="HdDate != null" >
+        #{HdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="HYName != null" >
+        #{HYName,jdbcType=VARCHAR},
+      </if>
+      <if test="Zdf != null" >
+        #{Zdf,jdbcType=VARCHAR},
+      </if>
+      <if test="Count != null" >
+        #{Count,jdbcType=INTEGER},
+      </if>
+      <if test="ShareSZ_GZ != null" >
+        #{ShareSZ_GZ,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareHold_Chg_BK != null" >
+        #{ShareHold_Chg_BK,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareHold_Chg_GZ != null" >
+        #{ShareHold_Chg_GZ,jdbcType=VARCHAR},
+      </if>
+      <if test="ZC_Count != null" >
+        #{ZC_Count,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareSZ_ZC != null" >
+        #{ShareSZ_ZC,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareHold_ZC_Chg != null" >
+        #{ShareHold_ZC_Chg,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareHold_ZC_Chg_BK != null" >
+        #{ShareHold_ZC_Chg_BK,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareHold_ZC_Chg_GZ != null" >
+        #{ShareHold_ZC_Chg_GZ,jdbcType=VARCHAR},
+      </if>
+      <if test="Max_SZ_Code != null" >
+        #{Max_SZ_Code,jdbcType=VARCHAR},
+      </if>
+      <if test="Max_SZ_Name != null" >
+        #{Max_SZ_Name,jdbcType=VARCHAR},
+      </if>
+      <if test="Max_ZB_Code != null" >
+        #{Max_ZB_Code,jdbcType=VARCHAR},
+      </if>
+      <if test="Max_ZB_Name != null" >
+        #{Max_ZB_Name,jdbcType=VARCHAR},
+      </if>
+      <if test="Min_SZ_Code != null" >
+        #{Min_SZ_Code,jdbcType=VARCHAR},
+      </if>
+      <if test="Min_SZ_Name != null" >
+        #{Min_SZ_Name,jdbcType=VARCHAR},
+      </if>
+      <if test="Min_ZB_Code != null" >
+        #{Min_ZB_Code,jdbcType=VARCHAR},
+      </if>
+      <if test="Min_ZB_Name != null" >
+        #{Min_ZB_Name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.magic.www.permissions.domain.NorthMoneyMeta" >
+    update collect_north_money
+    <set >
+      <if test="HYCode != null" >
+        HYCode = #{HYCode,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="ORIGINALCODE != null" >
+        ORIGINALCODE = #{ORIGINALCODE,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareHold_JC_Min != null" >
+        ShareHold_JC_Min = #{ShareHold_JC_Min,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareHold_ZC_Max != null" >
+        ShareHold_ZC_Max = #{ShareHold_ZC_Max,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareSZ_JC_Min != null" >
+        ShareSZ_JC_Min = #{ShareSZ_JC_Min,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareSZ_ZC_Max != null" >
+        ShareSZ_ZC_Max = #{ShareSZ_ZC_Max,jdbcType=VARCHAR},
+      </if>
+      <if test="SCode_Min_ZB != null" >
+        SCode_Min_ZB = #{SCode_Min_ZB,jdbcType=VARCHAR},
+      </if>
+      <if test="SCode_Max_ZB != null" >
+        SCode_Max_ZB = #{SCode_Max_ZB,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareSZ_BK != null" >
+        ShareSZ_BK = #{ShareSZ_BK,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareSZ_Min != null" >
+        ShareSZ_Min = #{ShareSZ_Min,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareSZ_Max != null" >
+        ShareSZ_Max = #{ShareSZ_Max,jdbcType=VARCHAR},
+      </if>
+      <if test="DateType != null" >
+        DateType = #{DateType,jdbcType=VARCHAR},
+      </if>
+      <if test="HdDate != null" >
+        HdDate = #{HdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="HYName != null" >
+        HYName = #{HYName,jdbcType=VARCHAR},
+      </if>
+      <if test="Zdf != null" >
+        Zdf = #{Zdf,jdbcType=VARCHAR},
+      </if>
+      <if test="Count != null" >
+        Count = #{Count,jdbcType=INTEGER},
+      </if>
+      <if test="ShareSZ_GZ != null" >
+        ShareSZ_GZ = #{ShareSZ_GZ,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareHold_Chg_BK != null" >
+        ShareHold_Chg_BK = #{ShareHold_Chg_BK,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareHold_Chg_GZ != null" >
+        ShareHold_Chg_GZ = #{ShareHold_Chg_GZ,jdbcType=VARCHAR},
+      </if>
+      <if test="ZC_Count != null" >
+        ZC_Count = #{ZC_Count,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareSZ_ZC != null" >
+        ShareSZ_ZC = #{ShareSZ_ZC,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareHold_ZC_Chg != null" >
+        ShareHold_ZC_Chg = #{ShareHold_ZC_Chg,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareHold_ZC_Chg_BK != null" >
+        ShareHold_ZC_Chg_BK = #{ShareHold_ZC_Chg_BK,jdbcType=VARCHAR},
+      </if>
+      <if test="ShareHold_ZC_Chg_GZ != null" >
+        ShareHold_ZC_Chg_GZ = #{ShareHold_ZC_Chg_GZ,jdbcType=VARCHAR},
+      </if>
+      <if test="Max_SZ_Code != null" >
+        Max_SZ_Code = #{Max_SZ_Code,jdbcType=VARCHAR},
+      </if>
+      <if test="Max_SZ_Name != null" >
+        Max_SZ_Name = #{Max_SZ_Name,jdbcType=VARCHAR},
+      </if>
+      <if test="Max_ZB_Code != null" >
+        Max_ZB_Code = #{Max_ZB_Code,jdbcType=VARCHAR},
+      </if>
+      <if test="Max_ZB_Name != null" >
+        Max_ZB_Name = #{Max_ZB_Name,jdbcType=VARCHAR},
+      </if>
+      <if test="Min_SZ_Code != null" >
+        Min_SZ_Code = #{Min_SZ_Code,jdbcType=VARCHAR},
+      </if>
+      <if test="Min_SZ_Name != null" >
+        Min_SZ_Name = #{Min_SZ_Name,jdbcType=VARCHAR},
+      </if>
+      <if test="Min_ZB_Code != null" >
+        Min_ZB_Code = #{Min_ZB_Code,jdbcType=VARCHAR},
+      </if>
+      <if test="Min_ZB_Name != null" >
+        Min_ZB_Name = #{Min_ZB_Name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.magic.www.permissions.domain.NorthMoneyMeta" >
+    update collect_north_money
+    set HYCode = #{HYCode,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      ORIGINALCODE = #{ORIGINALCODE,jdbcType=VARCHAR},
+      ShareHold_JC_Min = #{ShareHold_JC_Min,jdbcType=VARCHAR},
+      ShareHold_ZC_Max = #{ShareHold_ZC_Max,jdbcType=VARCHAR},
+      ShareSZ_JC_Min = #{ShareSZ_JC_Min,jdbcType=VARCHAR},
+      ShareSZ_ZC_Max = #{ShareSZ_ZC_Max,jdbcType=VARCHAR},
+      SCode_Min_ZB = #{SCode_Min_ZB,jdbcType=VARCHAR},
+      SCode_Max_ZB = #{SCode_Max_ZB,jdbcType=VARCHAR},
+      ShareSZ_BK = #{ShareSZ_BK,jdbcType=VARCHAR},
+      ShareSZ_Min = #{ShareSZ_Min,jdbcType=VARCHAR},
+      ShareSZ_Max = #{ShareSZ_Max,jdbcType=VARCHAR},
+      DateType = #{DateType,jdbcType=VARCHAR},
+      HdDate = #{HdDate,jdbcType=TIMESTAMP},
+      HYName = #{HYName,jdbcType=VARCHAR},
+      Zdf = #{Zdf,jdbcType=VARCHAR},
+      Count = #{Count,jdbcType=INTEGER},
+      ShareSZ_GZ = #{ShareSZ_GZ,jdbcType=VARCHAR},
+      ShareHold_Chg_BK = #{ShareHold_Chg_BK,jdbcType=VARCHAR},
+      ShareHold_Chg_GZ = #{ShareHold_Chg_GZ,jdbcType=VARCHAR},
+      ZC_Count = #{ZC_Count,jdbcType=VARCHAR},
+      ShareSZ_ZC = #{ShareSZ_ZC,jdbcType=VARCHAR},
+      ShareHold_ZC_Chg = #{ShareHold_ZC_Chg,jdbcType=VARCHAR},
+      ShareHold_ZC_Chg_BK = #{ShareHold_ZC_Chg_BK,jdbcType=VARCHAR},
+      ShareHold_ZC_Chg_GZ = #{ShareHold_ZC_Chg_GZ,jdbcType=VARCHAR},
+      Max_SZ_Code = #{Max_SZ_Code,jdbcType=VARCHAR},
+      Max_SZ_Name = #{Max_SZ_Name,jdbcType=VARCHAR},
+      Max_ZB_Code = #{Max_ZB_Code,jdbcType=VARCHAR},
+      Max_ZB_Name = #{Max_ZB_Name,jdbcType=VARCHAR},
+      Min_SZ_Code = #{Min_SZ_Code,jdbcType=VARCHAR},
+      Min_SZ_Name = #{Min_SZ_Name,jdbcType=VARCHAR},
+      Min_ZB_Code = #{Min_ZB_Code,jdbcType=VARCHAR},
+      Min_ZB_Name = #{Min_ZB_Name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="querySelective" parameterType="com.magic.www.permissions.domain.NorthMoneyMeta" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from collect_north_money
+    where 1 = 1
+    <if test="HYCode != null" >
+      and HYCode = #{HYCode,jdbcType=VARCHAR}
+    </if>
+    <if test="type != null" >
+      and type = #{type,jdbcType=VARCHAR}
+    </if>
+    <if test="ORIGINALCODE != null" >
+      and ORIGINALCODE = #{ORIGINALCODE,jdbcType=VARCHAR}
+    </if>
+    <if test="ShareHold_JC_Min != null" >
+      and ShareHold_JC_Min = #{ShareHold_JC_Min,jdbcType=VARCHAR}
+    </if>
+    <if test="ShareHold_ZC_Max != null" >
+      and ShareHold_ZC_Max = #{ShareHold_ZC_Max,jdbcType=VARCHAR}
+    </if>
+    <if test="ShareSZ_JC_Min != null" >
+      and ShareSZ_JC_Min = #{ShareSZ_JC_Min,jdbcType=VARCHAR}
+    </if>
+    <if test="ShareSZ_ZC_Max != null" >
+      and ShareSZ_ZC_Max = #{ShareSZ_ZC_Max,jdbcType=VARCHAR}
+    </if>
+    <if test="SCode_Min_ZB != null" >
+      and SCode_Min_ZB = #{SCode_Min_ZB,jdbcType=VARCHAR}
+    </if>
+    <if test="SCode_Max_ZB != null" >
+      and SCode_Max_ZB = #{SCode_Max_ZB,jdbcType=VARCHAR}
+    </if>
+    <if test="ShareSZ_BK != null" >
+      and ShareSZ_BK = #{ShareSZ_BK,jdbcType=VARCHAR}
+    </if>
+    <if test="ShareSZ_Min != null" >
+      and ShareSZ_Min = #{ShareSZ_Min,jdbcType=VARCHAR}
+    </if>
+    <if test="ShareSZ_Max != null" >
+      and ShareSZ_Max = #{ShareSZ_Max,jdbcType=VARCHAR}
+    </if>
+    <if test="DateType != null" >
+      and DateType = #{DateType,jdbcType=VARCHAR}
+    </if>
+    <if test="HdDate != null" >
+      and HdDate = #{HdDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="HYName != null" >
+      and HYName = #{HYName,jdbcType=VARCHAR}
+    </if>
+    <if test="Zdf != null" >
+      and Zdf = #{Zdf,jdbcType=VARCHAR}
+    </if>
+    <if test="Count != null" >
+      and Count = #{Count,jdbcType=INTEGER}
+    </if>
+    <if test="ShareSZ_GZ != null" >
+      and ShareSZ_GZ = #{ShareSZ_GZ,jdbcType=VARCHAR}
+    </if>
+    <if test="ShareHold_Chg_BK != null" >
+      and ShareHold_Chg_BK = #{ShareHold_Chg_BK,jdbcType=VARCHAR}
+    </if>
+    <if test="ShareHold_Chg_GZ != null" >
+      and ShareHold_Chg_GZ = #{ShareHold_Chg_GZ,jdbcType=VARCHAR}
+    </if>
+    <if test="ZC_Count != null" >
+      and ZC_Count = #{ZC_Count,jdbcType=VARCHAR}
+    </if>
+    <if test="ShareSZ_ZC != null" >
+      and ShareSZ_ZC = #{ShareSZ_ZC,jdbcType=VARCHAR}
+    </if>
+    <if test="ShareHold_ZC_Chg != null" >
+      and ShareHold_ZC_Chg = #{ShareHold_ZC_Chg,jdbcType=VARCHAR}
+    </if>
+    <if test="ShareHold_ZC_Chg_BK != null" >
+      and ShareHold_ZC_Chg_BK = #{ShareHold_ZC_Chg_BK,jdbcType=VARCHAR}
+    </if>
+    <if test="ShareHold_ZC_Chg_GZ != null" >
+      and ShareHold_ZC_Chg_GZ = #{ShareHold_ZC_Chg_GZ,jdbcType=VARCHAR}
+    </if>
+    <if test="Max_SZ_Code != null" >
+      and Max_SZ_Code = #{Max_SZ_Code,jdbcType=VARCHAR}
+    </if>
+    <if test="Max_SZ_Name != null" >
+      and Max_SZ_Name = #{Max_SZ_Name,jdbcType=VARCHAR}
+    </if>
+    <if test="Max_ZB_Code != null" >
+      and Max_ZB_Code = #{Max_ZB_Code,jdbcType=VARCHAR}
+    </if>
+    <if test="Max_ZB_Name != null" >
+      and Max_ZB_Name = #{Max_ZB_Name,jdbcType=VARCHAR}
+    </if>
+    <if test="Min_SZ_Code != null" >
+      and Min_SZ_Code = #{Min_SZ_Code,jdbcType=VARCHAR}
+    </if>
+    <if test="Min_SZ_Name != null" >
+      and Min_SZ_Name = #{Min_SZ_Name,jdbcType=VARCHAR}
+    </if>
+    <if test="Min_ZB_Code != null" >
+      and Min_ZB_Code = #{Min_ZB_Code,jdbcType=VARCHAR}
+    </if>
+    <if test="Min_ZB_Name != null" >
+      and Min_ZB_Name = #{Min_ZB_Name,jdbcType=VARCHAR}
+    </if>
+    <if test="startDate != null" >
+      and HdDate <![CDATA[>=]]> #{startDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="endDate != null" >
+      and HdDate <![CDATA[<=]]> #{endDate,jdbcType=TIMESTAMP}
+    </if>
+    order by HdDate DESC
+    <if test="pageState != 0">
+      LIMIT #{offset,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};
+    </if>
+  </select>
+  <select id="queryInflowsTop" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from collect_north_money
+    where 1 = 1
+    and type = #{type,jdbcType=VARCHAR}
+    and DateType = #{DateType,jdbcType=VARCHAR}
+    and HdDate = #{date,jdbcType=TIMESTAMP}
+    order by (ShareSZ_ZC+0) DESC
+    LIMIT 0,#{topNum,jdbcType=INTEGER}
+  </select>
+  <select id="queryOutOfTop" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from collect_north_money
+    where 1 = 1
+    and type = #{type,jdbcType=VARCHAR}
+    and DateType = #{DateType,jdbcType=VARCHAR}
+    and HdDate = #{date,jdbcType=TIMESTAMP}
+    order by (ShareSZ_ZC+0) ASC
+    LIMIT 0,#{topNum,jdbcType=INTEGER}
+  </select>
+</mapper>

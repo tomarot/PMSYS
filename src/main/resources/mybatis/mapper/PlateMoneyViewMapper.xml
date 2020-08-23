@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.magic.www.permissions.mapper.PlateMoneyViewMapper" >
+  <resultMap id="BaseResultMap" type="com.magic.www.permissions.domain.PlateMoneyView" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="VARCHAR" />
+    <result column="gains" property="gains" jdbcType="VARCHAR" />
+    <result column="main_net_inflow" property="mainNetInflow" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id,type,code,name,price,gains,main_net_inflow,create_time
+  </sql>
+  <!--获取板块资金流入榜数据-->
+  <select id="queryPlateMoneyInflowsTop" resultMap="BaseResultMap" >
+    select
+      <include refid="Base_Column_List" />
+    from view_plate_money_data t
+    where t.create_time = #{date} and type = #{type} and t.main_net_inflow <![CDATA[>]]> 0 order by t.main_net_inflow+0 desc  LIMIT 0,#{num};
+  </select>
+  <!--获取板块资金流出榜数据-->
+  <select id="queryPlateMoneyOutOfTop" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from view_plate_money_data t
+    where t.create_time = #{date} and type = #{type} and t.main_net_inflow <![CDATA[<]]> 0 order by t.main_net_inflow+0 asc  LIMIT 0,#{num};
+  </select>
+</mapper>

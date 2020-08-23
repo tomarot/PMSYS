@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>板块关联关系</title>
+    <link rel="stylesheet" href="/PMSYS/library/layui/css/layui.css">
+    <style type="text/css">
+        .div_content>div{
+            /*float: left;*/
+            margin: 5px;
+        }
+        .clearFloat{
+            clear:both;
+        }
+        .div_plate .plate_name{
+            -webkit-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            user-select:none;
+        }
+        .div_content .div_plate{
+            width: 80px;
+            height: 50px;
+            background-color: #c2c2c2;
+            float: left;
+            margin: 1px 2px;
+        }
+        .div_content .div_plate[ischeck='1']{
+            background-color: #FF5722;
+        }
+        .div_content .div_plate .plate_name{
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="div_header">
+    <button id="updateBtn" class="layui-btn" style="margin-left: 25px;margin-top: 20px;">修改关联</button>
+</div>
+<div class="div_content">
+    <div class="div_hy" style="width:1626px;">
+        <div class="div_card">
+            <div class="layui-card">
+                <div class="layui-card-header" style="font-size: 20px;">行业</div>
+                <div id="hy" class="layui-card-body" style="min-height: 100px;">
+                    <br class="clearFloat"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="div_gn" style="width:1626px;">
+        <div class="div_card">
+            <div class="layui-card">
+                <div class="layui-card-header" style="font-size: 20px;">概念</div>
+                <div id="gn" class="layui-card-body" style="min-height: 100px;">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <br class="clearFloat">
+</div>
+
+
+<script type="text/javascript" src="/PMSYS/base/config.js"></script>
+<script type="text/javascript" src="/PMSYS/library/jquery/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="/PMSYS/library/layui/layui.js"></script>
+<script>
+    // layui.use('', function(){
+        // var element = layui.element;
+        initData();
+
+        //当前选中的板块
+        var currentCheckPlate = "";
+        //当前板块的关联板块
+        var relationPlates = [];
+
+        //初始化页面元素
+        function initData(){
+            $.ajax({
+                type : "POST",
+                dataType:"json",
+                url : baseUrl + "/plate/getPlateRelationData",
+                data : {},
+                success : function(result) {
+                    if(result.result_code == 200){
+                        buildDom($("#hy"),result.resultData.hyPlateList);
+                        buildDom($("#gn"),result.resultData.gnPlateList);
+                    }
+                },
+                error : function(e){
+                }
+            });
+        }
+        //构建板块数据
+        function buildDom(target,data){
+            for(var i=0;i<data.length;i++){
+                var relationStr = "";
+                for(var j=0;j<data[i].relationPlateList.length;j++){
+                    relationStr += data[i].relationPlateList[j].relationCode+",";
+                }
+                relationStr = relationStr.length>0?relationStr.substring(0,relationStr.length-1):"";
+                var divStr = "<div class='div_plate' ischeck='0'><div class='plate_name' code='"+data[i].code+"' relation='"+relationStr+"'>"+data[i].name+"</div></div>";
+                target.prepend($(divStr));
+            }
+        }
+
+        //选中行业板块
+        $("body").on("click",".div_content .div_hy .div_plate",function(){
+            checkPlate(this,0);
+        });
+        //选中概念板块
+        $("body").on("click",".div_content .div_gn .div_plate",function(){
+            checkPlate(this,1);
+        });
+        /*————————选中板块————————*/
+        //$plate :选中的元素 type:类型 0：行业 1：概念
+        function checkPlate($plate,type){
+            var state = $($plate).attr("ischeck");
+            //已选中
+            if(state=="1"||state==undefined){
+                $($plate).attr("ischeck","0");
+                clearRelationPlate();
+            }
+            //未选中
+            else{
+                clearRelationPlate();
+                $($plate).attr("ischeck","1");
+                showRelationPlate($plate);
+            }
+        }
+        //展示关联板块
+        function showRelationPlate($plate){
+            var code = $($plate).find("div[code]").attr("code");
+            currentCheckPlate = code;
+            $("div[code][relation]").each(function(){
+                var this_relationStr = $(this).attr("relation");
+                if(this_relationStr.indexOf(code) >= 0){
+                    var this_code = $(this).attr("code");
+                    relationPlates.push(this_code);
+                }
+            });
+            // console.log(relationPlates);
+            for(p in relationPlates){
+                var plate = $(".plate_name[code='"+relationPlates[p]+"']").parent();
+                plate.attr("ischeck","1");
+            }
+        }
+        //重置展示关联板块
+        function clearRelationPlate(){
+            $(".div_plate[ischeck='1']").attr("ischeck","0");
+            currentCheckPlate = "";
+            relationPlates = [];
+        }
+        //跳转修改页面
+        $("#updateBtn").click(function(){
+            window.location.href = "http://localhost:8082/PMSYS/plate/toUpdatePlateRelationPage";
+        });
+
+
+    // });
+</script>
+</body>
+</html>

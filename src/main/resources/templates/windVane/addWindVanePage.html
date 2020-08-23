@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加风向标</title>
+    <link rel="stylesheet" href="/PMSYS/library/layui/css/layui.css"  media="all">
+    <style type="text/css">
+        .clearFloat{
+            clear:both;
+        }
+        .content{
+            margin-top: 10px;
+        }
+        .footer{
+            height: 100px;
+        }
+        .option_item{
+            float: left;
+            margin-top: 10px;
+        }
+        .option_item > div{
+            float: left;
+        }
+        .option_item > div > input.layui-input{
+            height: auto;
+        }
+        .item_name{
+            width: 100px;
+            text-align: center;
+        }
+        .option_btn{
+            text-align: center;
+            margin-top: 50px;
+        }
+        .plate_item{
+            margin-top: 10px;
+        }
+        .plate_item > div .icon{
+            float: left;
+            width:26px;
+            height: 26px;
+            text-align: center;
+            border: 1px solid #b3aaaa;
+            border-radius: 13px;
+            line-height: 25px;
+            margin:0 1px;
+        }
+        .plate_item > div .plate_name{
+            width:150px;
+            text-align: center;
+            margin-top: 2px;
+        }
+        .plate > div{
+            float: left;
+            margin: 5px;
+            width: 150px;
+            height: 49px;
+            padding: 5px;
+            border: 1px solid #a29c9c;
+        }
+        div[increases_list]{
+            cursor:pointer;
+        }
+        div[drop_list]{
+            cursor:pointer;
+        }
+        div[money_inflows]{
+            cursor:pointer;
+        }
+        div[money_out]{
+            cursor:pointer;
+        }
+        div[have_harden]{
+            cursor:pointer;
+        }
+        div[wind_vane]{
+            cursor:pointer;
+        }
+        .plate_item > div .icon[increases_list][check='1'],.plate_item > div .icon[money_inflows][check='1'],.plate_item > div .icon[have_harden][check='1']{
+            background-color: #f44336;
+            font-size: 17px;
+        }
+        .plate_item > div .icon[drop_list][check='1'],.plate_item > div .icon[money_out][check='1']{
+            background-color: #4caf50;
+            font-size: 17px;
+        }
+        .plate_item > div .plate_name[check='1']{
+            background-color: red;
+            font-size: 17px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="container">
+        <div>
+            <div class="option_item">
+                <div class="item_name">周期:</div>
+                <div>
+                    <select id="type">
+                        <option value="1">日</option>
+                        <option value="2">周</option>
+                        <option value="3">月</option>
+                    </select>
+                </div>
+                <br class="clearFloat"/>
+            </div>
+            <div class="option_item">
+                <div class="item_name">日期:</div>
+                <div>
+                    <input id="datetime" type="text" class="layui-input" placeholder="yyyy-MM-dd">
+                </div>
+                <br class="clearFloat"/>
+            </div>
+            <br class="clearFloat"/>
+        </div>
+        <div class="plate_item">
+            <div>
+                <div class="plate">
+                    <div class="" data-code="BK0735" data-name="安防设备" data-increases_list="0" data-drop_list="0"
+                               data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                               data-first_letter="A">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">A——安防设备</div>
+                    </div>
+                    <div class="" data-code="BK0546" data-name="玻璃陶瓷" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="B">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">B——玻璃陶瓷</div>
+                    </div>
+                    <div class="" data-code="BK0474" data-name="保险" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="B">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">B——保险</div>
+                    </div>
+                    <div class="" data-code="BK0733" data-name="包装材料" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="B">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">B——包装材料</div>
+                    </div>
+                    <div class="" data-code="BK0729" data-name="船舶制造" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="C">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">C——船舶制造</div>
+                    </div>
+                    <div class="" data-code="BK0537" data-name="材料行业" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="C">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">C——材料行业</div>
+                    </div>
+                    <div class="" data-code="BK0428" data-name="电力行业" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="D">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">D——电力行业</div>
+                    </div>
+                    <div class="" data-code="BK0736" data-name="电信运营" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="D">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">D——电信运营</div>
+                    </div>
+                    <div class="" data-code="BK0738" data-name="多元金融" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="D">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">D——多元金融</div>
+                    </div>
+                    <div class="" data-code="BK0447" data-name="电子信息" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="D">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">D——电子信息</div>
+                    </div>
+                    <div class="" data-code="BK0459" data-name="电子元件" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="D">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">D——电子元件</div>
+                    </div>
+                    <div class="" data-code="BK0451" data-name="房地产" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="F">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">F——房地产</div>
+                    </div>
+                    <div class="" data-code="BK0436" data-name="纺织服装" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="F">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">F——纺织服装</div>
+                    </div>
+                    <div class="" data-code="BK0425" data-name="工程建设" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="G">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">G——工程建设</div>
+                    </div>
+                    <div class="" data-code="BK0484" data-name="国际贸易" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="G">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">G——国际贸易</div>
+                    </div>
+                    <div class="" data-code="BK0732" data-name="贵金属" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="G">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">G——贵金属</div>
+                    </div>
+                    <div class="" data-code="BK0450" data-name="港口水运" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="G">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">G——港口水运</div>
+                    </div>
+                    <div class="" data-code="BK0421" data-name="高速公路" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="G">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">G——高速公路</div>
+                    </div>
+                    <div class="" data-code="BK0479" data-name="钢铁行业" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="G">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">G——钢铁行业</div>
+                    </div>
+                    <div class="" data-code="BK0440" data-name="工艺商品" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="G">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">G——工艺商品</div>
+                    </div>
+                    <div class="" data-code="BK0427" data-name="公用事业" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="G">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">G——公用事业</div>
+                    </div>
+                    <div class="" data-code="BK0728" data-name="环保工程" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="H">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">H——环保工程</div>
+                    </div>
+                    <div class="" data-code="BK0731" data-name="化肥行业" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="H">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">H——化肥行业</div>
+                    </div>
+                    <div class="" data-code="BK0538" data-name="化工行业" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="H">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">H——化工行业</div>
+                    </div>
+                    <div class="" data-code="BK0480" data-name="航天航空" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="H">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">H——航天航空</div>
+                    </div>
+                    <div class="" data-code="BK0471" data-name="化纤行业" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="H">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">H——化纤行业</div>
+                    </div>
+                    <div class="" data-code="BK0456" data-name="家电行业" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="J">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">J——家电行业</div>
+                    </div>
+                    <div class="" data-code="BK0739" data-name="金属制品" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="J">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">J——金属制品</div>
+                    </div>
+                    <div class="" data-code="BK0545" data-name="机械行业" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="J">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">J——机械行业</div>
+                    </div>
+                    <div class="" data-code="BK0429" data-name="交运设备" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="J">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">J——交运设备</div>
+                    </div>
+                    <div class="" data-code="BK0422" data-name="交运物流" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="J">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">J——交运物流</div>
+                    </div>
+                    <div class="" data-code="BK0485" data-name="旅游酒店" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="L">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">L——旅游酒店</div>
+                    </div>
+                    <div class="" data-code="BK0420" data-name="民航机场" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="M">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">M——民航机场</div>
+                    </div>
+                    <div class="" data-code="BK0437" data-name="煤炭采选" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="M">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">M——煤炭采选</div>
+                    </div>
+                    <div class="" data-code="BK0476" data-name="木业家具" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="M">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">M——木业家具</div>
+                    </div>
+                    <div class="" data-code="BK0477" data-name="酿酒行业" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="N">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">N——酿酒行业</div>
+                    </div>
+                    <div class="" data-code="BK0433" data-name="农牧饲渔" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="N">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">N——农牧饲渔</div>
+                    </div>
+                    <div class="" data-code="BK0730" data-name="农药兽药" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="N">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">N——农药兽药</div>
+                    </div>
+                    <div class="" data-code="BK0481" data-name="汽车行业" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="Q">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">Q——汽车行业</div>
+                    </div>
+                    <div class="" data-code="BK0473" data-name="券商信托" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="Q">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">Q——券商信托</div>
+                    </div>
+                    <div class="" data-code="BK0737" data-name="软件服务" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="R">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">R——软件服务</div>
+                    </div>
+                    <div class="" data-code="BK0454" data-name="塑胶制品" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="S">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">S——塑胶制品</div>
+                    </div>
+                    <div class="" data-code="BK0424" data-name="水泥建材" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="S">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">S——水泥建材</div>
+                    </div>
+                    <div class="" data-code="BK0457" data-name="输配电气" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="S">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">S——输配电气</div>
+                    </div>
+                    <div class="" data-code="BK0438" data-name="食品饮料" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="S">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">S——食品饮料</div>
+                    </div>
+                    <div class="" data-code="BK0482" data-name="商业百货" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="S">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">S——商业百货</div>
+                    </div>
+                    <div class="" data-code="BK0464" data-name="石油行业" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="S">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">S——石油行业</div>
+                    </div>
+                    <div class="" data-code="BK0448" data-name="通讯行业" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="T">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">T——通讯行业</div>
+                    </div>
+                    <div class="" data-code="BK0486" data-name="文化传媒" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="W">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">W——文化传媒</div>
+                    </div>
+                    <div class="" data-code="BK0740" data-name="文教休闲" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="W">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">W——文教休闲</div>
+                    </div>
+                    <div class="" data-code="BK0475" data-name="银行" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="Y">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">Y——银行</div>
+                    </div>
+                    <div class="" data-code="BK0726" data-name="园林工程" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="Y">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">Y——园林工程</div>
+                    </div>
+                    <div class="" data-code="BK0727" data-name="医疗行业" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="Y">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">Y——医疗行业</div>
+                    </div>
+                    <div class="" data-code="BK0458" data-name="仪器仪表" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="Y">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">Y——仪器仪表</div>
+                    </div>
+                    <div class="" data-code="BK0478" data-name="有色金属" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="Y">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">Y——有色金属</div>
+                    </div>
+                    <div class="" data-code="BK0465" data-name="医药制造" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="Y">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">Y——医药制造</div>
+                    </div>
+                    <div class="" data-code="BK0734" data-name="珠宝首饰" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="Z">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">Z——珠宝首饰</div>
+                    </div>
+                    <div class="" data-code="BK0539" data-name="综合行业" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="Z">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">Z——综合行业</div>
+                    </div>
+                    <div class="" data-code="BK0725" data-name="装修装饰" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="Z">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">Z——装修装饰</div>
+                    </div>
+                    <div class="" data-code="BK0910" data-name="专用设备" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="Z">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">Z——专用设备</div>
+                    </div>
+                    <div class="" data-code="BK0470" data-name="造纸印刷" data-increases_list="0" data-drop_list="0"
+                         data-money_inflows="0" data-money_out="0" data-have_harden="0" data-wind_vane="0"
+                         data-first_letter="Z">
+                        <div>
+                            <div class="icon" increases_list check="0">涨</div>
+                            <div class="icon" drop_list check="0">跌</div>
+                            <div class="icon" money_inflows check="0">入</div>
+                            <div class="icon" money_out check="0">出</div>
+                            <div class="icon" have_harden check="0">停</div>
+                            <br class="clearFloat"/>
+                        </div>
+                        <div class="plate_name" wind_vane check="0">Z——造纸印刷</div>
+                    </div>
+                </div>
+                <br class="clearFloat"/>
+            </div>
+        </div>
+        <div>
+            <div class="option_btn">
+                <input id="restBtn" class="layui-btn layui-btn-xs" type="button" value="重置">
+                <input id="saveBtn" class="layui-btn layui-btn-xs" type="button" value="保存">
+                <input id="importBtn" class="layui-btn layui-btn-xs" type="button" value="导入重点项">
+            </div>
+            <br class="clearFloat"/>
+        </div>
+    </div>
+</div>
+<div class="footer"></div>
+<script type="text/javascript" src="/PMSYS/library/jquery/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="/PMSYS/library/layui/layui.all.js"></script>
+<script type="text/javascript">
+    var baseUrl = top.config.ip+top.config.port+top.config.systemNmae;
+    layui.use('laydate', function() {
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#datetime'
+        });
+    });
+    $(function(){
+        //各状态点击
+        $("div[increases_list]").click(function(){
+            var state = $(this).attr("check");
+            if(state == 1){
+                $(this).attr("check",0);
+                $(this).parent().parent("div[data-increases_list]").attr("data-increases_list",0);
+            }else{
+                $(this).attr("check",1);
+                $(this).parent().parent("div[data-increases_list]").attr("data-increases_list",1);
+            }
+        });
+        $("div[drop_list]").click(function(){
+            var state = $(this).attr("check");
+            if(state == 1){
+                $(this).attr("check",0);
+                $(this).parent().parent("div[data-drop_list]").attr("data-drop_list",0);
+            }else{
+                $(this).attr("check",1);
+                $(this).parent().parent("div[data-drop_list]").attr("data-drop_list",1);
+            }
+        });
+        $("div[money_inflows]").click(function(){
+            var state = $(this).attr("check");
+            if(state == 1){
+                $(this).attr("check",0);
+                $(this).parent().parent("div[data-money_inflows]").attr("data-money_inflows",0);
+            }else{
+                $(this).attr("check",1);
+                $(this).parent().parent("div[data-money_inflows]").attr("data-money_inflows",1);
+            }
+        });
+        $("div[money_out]").click(function(){
+            var state = $(this).attr("check");
+            if(state == 1){
+                $(this).attr("check",0);
+                $(this).parent().parent("div[data-money_out]").attr("data-money_out",0);
+            }else{
+                $(this).attr("check",1);
+                $(this).parent().parent("div[data-money_out]").attr("data-money_out",1);
+            }
+        });
+        $("div[have_harden]").click(function(){
+            var state = $(this).attr("check");
+            if(state == 1){
+                $(this).attr("check",0);
+                $(this).parent().parent("div[data-have_harden]").attr("data-have_harden",0);
+            }else{
+                $(this).attr("check",1);
+                $(this).parent().parent("div[data-have_harden]").attr("data-have_harden",1);
+            }
+        });
+        $("div[wind_vane]").click(function(){
+            var state = $(this).attr("check");
+            if(state == 1){
+                $(this).attr("check",0);
+                $(this).parent("div[data-wind_vane]").attr("data-wind_vane",0);
+            }else{
+                $(this).attr("check",1);
+                $(this).parent("div[data-wind_vane]").attr("data-wind_vane",1);
+            }
+        });
+        /*加载重点项*/
+        $("#importBtn").click(function(){
+            //验证参数
+            var datetime = $("#datetime").val();
+            if(!datetime){
+                alert("请设置时间！");
+                return false;
+            }
+            $("#restBtn").click();
+            $.ajax({
+                type : "POST",
+                dataType:"json",
+                url : baseUrl+"/windVane/getTodayImportant/",
+                data : {"date":datetime},
+                success : function(result) {
+                    if(result.result_code == 200){
+                        /*涨幅榜前十*/
+                        var performerTopList = result.resultData.performerTopList;
+                        /*跌幅榜前十*/
+                        var dropTopList = result.resultData.dropTopList;
+                        /*资金流入前十*/
+                        var inflowsTopList = result.resultData.inflowsTopList;
+                        /*资金流出前十*/
+                        var outOfTopList = result.resultData.outOfTopList;
+                        /*涨停个股的行业板块*/
+                        var plateNameList = result.resultData.plateNameList;
+                        for(var i=0;i<performerTopList.length;i++){
+                            var name = performerTopList[i].name;
+                            $("div[data-name='"+name+"']").attr("data-increases_list","1");
+                            $("div[data-name='"+name+"']").find("div[increases_list]").attr("check","1");
+                        }
+                        for(var i=0;i<dropTopList.length;i++){
+                            var name = dropTopList[i].name;
+                            $("div[data-name='"+name+"']").attr("data-drop_list","1");
+                            $("div[data-name='"+name+"']").find("div[drop_list]").attr("check","1");
+                        }
+                        for(var i=0;i<inflowsTopList.length;i++){
+                            var name = inflowsTopList[i].name;
+                            $("div[data-name='"+name+"']").attr("data-money_inflows","1");
+                            $("div[data-name='"+name+"']").find("div[money_inflows]").attr("check","1");
+                        }
+                        for(var i=0;i<outOfTopList.length;i++){
+                            var name = outOfTopList[i].name;
+                            $("div[data-name='"+name+"']").attr("data-money_out","1");
+                            $("div[data-name='"+name+"']").find("div[money_out]").attr("check","1");
+                        }
+                        for(var i=0;i<plateNameList.length;i++){
+                            var name = $.trim(plateNameList[i].industry_involved);
+                            $("div[data-name='"+name+"']").attr("data-have_harden","1");
+                            $("div[data-name='"+name+"']").find("div[have_harden]").attr("check","1");
+                        }
+                    }
+                    console.log(result);
+                },
+                error : function(e){
+                }
+            });
+        });
+        /*重置*/
+        $("#restBtn").click(function(){
+            $("div[wind_vane]").attr("check",0);
+            $("div[data-wind_vane]").attr("data-wind_vane",0);
+            $("div[increases_list]").attr("check",0);
+            $("div[data-increases_list]").attr("data-increases_list",0);
+            $("div[drop_list]").attr("check",0);
+            $("div[data-drop_list]").attr("data-drop_list",0);
+            $("div[money_inflows]").attr("check",0);
+            $("div[data-money_inflows]").attr("data-money_inflows",0);
+            $("div[money_out]").attr("check",0);
+            $("div[data-money_out]").attr("data-money_out",0);
+            $("div[have_harden]").attr("check",0);
+            $("div[data-have_harden]").attr("data-have_harden",0);
+        });
+        /*保存*/
+        $("#saveBtn").click(function(){
+            //验证参数
+            var type = $("#type").val();
+            if(!type){
+                alert("请选择周期！");
+                return false;
+            }
+            var datetime = $("#datetime").val();
+            if(!datetime){
+                alert("请设置时间！");
+                return false;
+            }
+            if($("div[data-wind_vane='1']").length<1){
+                var r=confirm("未选择风向标，是否继续！")
+                if (r == false)                {
+                    return false;
+                }
+            }
+            var str = "[";
+            //构建板块信息参数
+            console.log(type+"---"+datetime);
+            var $plateListInfo = $(".plate_item .plate > div");
+            for(var i = 0;i<$plateListInfo.length;i++){
+                var plateInfo = $($plateListInfo[i]);
+                var code = plateInfo.attr("data-code");
+                var name = plateInfo.attr("data-name");
+                var increases = plateInfo.attr("data-increases_list");
+                var drop = plateInfo.attr("data-drop_list");
+                var inflows = plateInfo.attr("data-money_inflows");
+                var out = plateInfo.attr("data-money_out");
+                var harden = plateInfo.attr("data-have_harden");
+                var wind_vane = plateInfo.attr("data-wind_vane");
+                var first_letter = plateInfo.attr("data-first_letter");
+                // console.log("code:"+code+";name:"+name+";increases:"+increases+";drop:"+drop+";inflows:"+inflows+";out:"+out+";harden:"+harden+";wind_vane:"+wind_vane+";first_letter:"+first_letter);
+                str += "{";
+                str += '"code":"'+code+'",';
+                str += '"name":"'+name+'",';
+                str += '"type":'+type+',';
+                str += '"increasesList":'+increases+',';
+                str += '"dropList":'+drop+',';
+                str += '"moneyInflows":'+inflows+',';
+                str += '"moneyOut":'+out+',';
+                str += '"haveHarden":'+harden+',';
+                str += '"windVane":'+wind_vane+',';
+                str += '"firstLetter":"'+first_letter+'",';
+                str += '"createTime":"'+datetime+'"';
+                str += "},";
+            }
+            str = str.substring(0,str.length-1);
+            str += "]";
+            // console.log(str);
+            $.ajax({
+                type : "POST",
+                dataType:"json",
+                url : baseUrl+"/windVane/saveWindVane/",
+                data : {"windVaneStr":str},
+                success : function(result) {
+                    if(result.result_code == 200){
+                        layer.msg('保存成功！');
+                        $("#restBtn").click();
+                    }
+                    console.log(result);
+                },
+                error : function(e){
+                }
+            });
+
+
+        });
+       //获取涨幅榜、跌幅榜、资金流入榜、资金流出榜、涨停榜
+    });
+</script>
+</body>
+</html>

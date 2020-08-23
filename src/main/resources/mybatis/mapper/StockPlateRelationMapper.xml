@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.magic.www.permissions.mapper.StockPlateRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.magic.www.permissions.domain.StockPlateRelation" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="stock_id" property="stockId" jdbcType="INTEGER" />
+    <result column="stock_code" property="stockCode" jdbcType="VARCHAR" />
+    <result column="plate_id" property="plateId" jdbcType="INTEGER" />
+    <result column="plate_code" property="plateCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, stock_id, stock_code, plate_id, plate_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from stock_plate_relation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from stock_plate_relation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.magic.www.permissions.domain.StockPlateRelation" >
+    insert into stock_plate_relation (id, stock_id, stock_code, 
+      plate_id, plate_code)
+    values (#{id,jdbcType=INTEGER}, #{stockId,jdbcType=INTEGER}, #{stockCode,jdbcType=VARCHAR}, 
+      #{plateId,jdbcType=INTEGER}, #{plateCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.magic.www.permissions.domain.StockPlateRelation" >
+    insert into stock_plate_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="stockId != null" >
+        stock_id,
+      </if>
+      <if test="stockCode != null" >
+        stock_code,
+      </if>
+      <if test="plateId != null" >
+        plate_id,
+      </if>
+      <if test="plateCode != null" >
+        plate_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="stockId != null" >
+        #{stockId,jdbcType=INTEGER},
+      </if>
+      <if test="stockCode != null" >
+        #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="plateId != null" >
+        #{plateId,jdbcType=INTEGER},
+      </if>
+      <if test="plateCode != null" >
+        #{plateCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.magic.www.permissions.domain.StockPlateRelation" >
+    update stock_plate_relation
+    <set >
+      <if test="stockId != null" >
+        stock_id = #{stockId,jdbcType=INTEGER},
+      </if>
+      <if test="stockCode != null" >
+        stock_code = #{stockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="plateId != null" >
+        plate_id = #{plateId,jdbcType=INTEGER},
+      </if>
+      <if test="plateCode != null" >
+        plate_code = #{plateCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.magic.www.permissions.domain.StockPlateRelation" >
+    update stock_plate_relation
+    set stock_id = #{stockId,jdbcType=INTEGER},
+      stock_code = #{stockCode,jdbcType=VARCHAR},
+      plate_id = #{plateId,jdbcType=INTEGER},
+      plate_code = #{plateCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="com.magic.www.permissions.domain.StockPlateRelation" >
+    select
+    <include refid="Base_Column_List" />
+    from stock_plate_relation
+    where 1 = 1
+    <if test="stockId != null" >
+      and id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="stockId != null" >
+      and stock_id = #{stockId,jdbcType=INTEGER}
+    </if>
+    <if test="stockCode != null" >
+      and stock_code = #{stockCode,jdbcType=VARCHAR}
+    </if>
+    <if test="plateId != null" >
+      and plate_id = #{plateId,jdbcType=INTEGER}
+    </if>
+    <if test="plateCode != null" >
+      and plate_code = #{plateCode,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="queryStockPlateRelation" resultType="com.magic.www.permissions.vo.StockPlateRelationVo" parameterType="com.magic.www.permissions.vo.StockPlateRelationVo">
+    select a.id,a.stock_id,a.stock_code,b.name as stock_name,a.plate_id,a.plate_code,c.name as plate_name,c.type from stock_plate_relation a
+    left join stock_base_info_record b on a.stock_code = b.`code`
+    left join plate_base_info_record c on a.plate_code = c.`code`
+    where 1 = 1
+    <if test="stockId != null" >
+      and id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="stockId != null" >
+      and stock_id = #{stockId,jdbcType=INTEGER}
+    </if>
+    <if test="stockCode != null" >
+      and stock_code = #{stockCode,jdbcType=VARCHAR}
+    </if>
+    <if test="stockName != null" >
+      and stock_name = #{stockName,jdbcType=VARCHAR}
+    </if>
+    <if test="plateId != null" >
+      and plate_id = #{plateId,jdbcType=INTEGER}
+    </if>
+    <if test="plateCode != null" >
+      and plate_code = #{plateCode,jdbcType=VARCHAR}
+    </if>
+    <if test="plateName != null" >
+      and plate_code = #{plateName,jdbcType=VARCHAR}
+    </if>
+    <if test="type != null" >
+      and type = #{type,jdbcType=VARCHAR}
+    </if>
+    order by b.`code` desc,c.type;
+  </select>
+</mapper>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.magic.www.permissions.mapper.PlatePlateRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.magic.www.permissions.domain.PlatePlateRelation" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="m_plate_id" property="mPlateId" jdbcType="INTEGER" />
+    <result column="m_plate_code" property="mPlateCode" jdbcType="VARCHAR" />
+    <result column="v_plate_id" property="vPlateId" jdbcType="INTEGER" />
+    <result column="v_plate_code" property="vPlateCode" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, m_plate_id, m_plate_code, v_plate_id, v_plate_code, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from plate_plate_relation
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from plate_plate_relation
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.magic.www.permissions.domain.PlatePlateRelation" >
+    insert into plate_plate_relation (id, m_plate_id, m_plate_code, 
+      v_plate_id, v_plate_code, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{mPlateId,jdbcType=INTEGER}, #{mPlateCode,jdbcType=VARCHAR}, 
+      #{vPlateId,jdbcType=INTEGER}, #{vPlateCode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.magic.www.permissions.domain.PlatePlateRelation" >
+    insert into plate_plate_relation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mPlateId != null" >
+        m_plate_id,
+      </if>
+      <if test="mPlateCode != null" >
+        m_plate_code,
+      </if>
+      <if test="vPlateId != null" >
+        v_plate_id,
+      </if>
+      <if test="vPlateCode != null" >
+        v_plate_code,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mPlateId != null" >
+        #{mPlateId,jdbcType=INTEGER},
+      </if>
+      <if test="mPlateCode != null" >
+        #{mPlateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="vPlateId != null" >
+        #{vPlateId,jdbcType=INTEGER},
+      </if>
+      <if test="vPlateCode != null" >
+        #{vPlateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.magic.www.permissions.domain.PlatePlateRelation" >
+    update plate_plate_relation
+    <set >
+      <if test="mPlateId != null" >
+        m_plate_id = #{mPlateId,jdbcType=INTEGER},
+      </if>
+      <if test="mPlateCode != null" >
+        m_plate_code = #{mPlateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="vPlateId != null" >
+        v_plate_id = #{vPlateId,jdbcType=INTEGER},
+      </if>
+      <if test="vPlateCode != null" >
+        v_plate_code = #{vPlateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.magic.www.permissions.domain.PlatePlateRelation" >
+    update plate_plate_relation
+    set m_plate_id = #{mPlateId,jdbcType=INTEGER},
+      m_plate_code = #{mPlateCode,jdbcType=VARCHAR},
+      v_plate_id = #{vPlateId,jdbcType=INTEGER},
+      v_plate_code = #{vPlateCode,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <delete id="deleteByHyCode">
+    delete from plate_plate_relation
+    where m_plate_code = #{hyCode,jdbcType=VARCHAR}
+  </delete>
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="com.magic.www.permissions.domain.PlatePlateRelation">
+    select
+    <include refid="Base_Column_List" />
+    from plate_plate_relation
+    where 1 = 1
+    <if test="mPlateId != null" >
+      and id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="mPlateId != null" >
+      and m_plate_id = #{mPlateId,jdbcType=INTEGER}
+    </if>
+    <if test="mPlateCode != null" >
+      and m_plate_code = #{mPlateCode,jdbcType=VARCHAR}
+    </if>
+    <if test="vPlateId != null" >
+      and v_plate_id = #{vPlateId,jdbcType=INTEGER}
+    </if>
+    <if test="vPlateCode != null" >
+      and v_plate_code = #{vPlateCode,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+</mapper>

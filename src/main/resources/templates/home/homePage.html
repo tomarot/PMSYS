@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <link rel="stylesheet" href="/PMSYS/library/layui/css/layui.css">
+    <style type="text/css">
+        .clearFloat{
+            clear:both;
+        }
+        .div_content{
+            width: 1600px;
+            /*margin-left: 10px;*/
+            /*margin-top: 5px;*/
+            margin: 5px auto;
+        }
+        .div_content .div_card{
+            background-color: #a6afb8;
+            width: 500px;
+            height: 400px;
+            float: left;
+            margin: 10px 15px;
+        }
+    </style>
+</head>
+<body style="background-color: #d2d2d2;">
+<div class="div_content">
+    <div class="div_card">
+        <div class="layui-card">
+            <div class="layui-card-header" style="font-size: 20px;">涨停跌停数量对比(<label id="hardenDropProportionDate"></label>)</div>
+            <div class="layui-card-body" style="height: 337px;">
+                <div id="hardenDropProportion" style="width: 470px;height:330px;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="div_card">
+        <div class="layui-card">
+            <div class="layui-card-header" style="font-size: 20px;">赚钱效应(<label id="makeMoneyEffectDate"></label>)</div>
+            <div class="layui-card-body" style="height: 337px;">
+                <div id="makeMoneyEffect" style="width: 470px;height:330px;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="div_card">
+        <div class="layui-card">
+            <div class="layui-card-header" style="font-size: 20px;">风向标行业板块数量统计</div>
+            <div class="layui-card-body" style="height: 337px;">
+                <div id="windVaneCount" style="width: 470px;height:330px;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="div_card">
+        <div class="layui-card">
+            <div class="layui-card-header" style="font-size: 20px;"><label id="northMoneyHyPeriodType"></label>北向资金行业榜(<label id="northMoneyHyDate"></label>)</div>
+            <div class="layui-card-body" style="height: 337px;">
+                <div id="northMoneyHyCount" style="width: 470px;height:330px;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="div_card">
+        <div class="layui-card">
+            <div class="layui-card-header" style="font-size: 20px;"><label id="northMoneyGnPeriodType"></label>北向资金概念榜(<label id="northMoneyGnDate"></label>)</div>
+            <div class="layui-card-body" style="height: 337px;">
+                <div id="northMoneyGn10Count" style="width: 470px;height:330px;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="div_card">
+        <div class="layui-card">
+            <div class="layui-card-header" style="font-size: 20px;">涨幅情况统计(<label id="gainsCountGnDate"></label>)</div>
+            <div class="layui-card-body" style="height: 337px;">
+                <div id="gainsCount" style="width: 470px;height:330px;"></div>
+            </div>
+        </div>
+    </div>
+    <br class="clearFloat">
+</div>
+
+<script type="text/javascript" src="/PMSYS/library/jquery/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="/PMSYS/library/layui/layui.js"></script>
+<script type="text/javascript" src="/PMSYS/library/echarts/echarts.js"></script>
+<script type="text/javascript">
+    var baseUrl = top.config.ip+top.config.port+top.config.systemNmae;
+    var hardenDropProportionChart = echarts.init(document.getElementById("hardenDropProportion"));
+    var makeMoneyEffectChart = echarts.init(document.getElementById("makeMoneyEffect"));
+    var windVaneCountChart = echarts.init(document.getElementById("windVaneCount"));
+    var northMoneyHyCountChart = echarts.init(document.getElementById("northMoneyHyCount"));
+    var northMoneyGnCountChart = echarts.init(document.getElementById("northMoneyGn10Count"));
+    var gainsCountChart = echarts.init(document.getElementById("gainsCount"));
+    initHardenDropProportionChart();
+    initMakeMoneyEffectChart();
+    initWindVaneChart();
+    initNorthMoneyHyCountChart();
+    initNorthMoneyGnCountChart();
+    initGainsCountChart();
+    getHardenDropProportionDate();
+    getMakeMoneyEffectData();
+    getWindVaneCountData();
+    getNorthMoneyHyCountData(10);
+    getNorthMoneyGnCountData(10);
+    getGainsCountData();
+    /*————————涨停跌停数量对比————————*/
+
+    //初始化涨停跌停数量对比图
+    function initHardenDropProportionChart(){
+        var hardenDropProportionOption = {
+            tooltip: {
+                trigger: "item",
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            legend: {
+                orient: "vertical",
+                show:false,
+                // left: 10,
+                data: ["涨停", "跌停"]
+            },
+            series: [
+                {
+                    name: "涨停",
+                    type: "pie",
+                    radius: ["70%", "90%"],
+                    avoidLabelOverlap: false,
+                    label: {
+                        show: false,
+                        position: "center"
+                    },
+                    emphasis: {
+                        label: {
+                            show: true,
+                            fontSize: "30",
+                            fontWeight: "bold"
+                        }
+                    },
+                    labelLine: {
+                        show: false
+                    },
+                    data: [
+                        {value: 0, name: "涨停"},
+                        {value: 0, name: "跌停"}
+                    ],
+                    itemStyle:{
+                        color: function (params){
+                            var colorList = [
+                                "#f1081e","#09ef13"
+                            ];
+                            return colorList[params.dataIndex];
+                        }
+                    }
+                }
+            ]
+        };
+        hardenDropProportionChart.setOption(hardenDropProportionOption);
+    }
+    //涨停跌停数量对比图数据加载
+    function setHardenDropProportionChart(data){
+        var date = data.date;
+        $("#hardenDropProportionDate").text(date);
+        var hardenCount = data.hardenCount;
+        var dropCount = data.dropCount;
+        var hardenDropProportionOption = {
+            series: [{
+                data:[
+                    {value: hardenCount, name: "涨停"},
+                    {value: dropCount, name: "跌停"}
+                ]
+            }]
+        };
+        hardenDropProportionChart.setOption(hardenDropProportionOption);
+    }
+    //加载涨停跌停数量数据
+    function getHardenDropProportionDate(){
+        $.ajax({
+            type : "POST",
+            dataType:"json",
+            url : baseUrl+"/home/getLatestHardenDropProportionData",
+            data : {},
+            success : function(result) {
+                if(result.result_code == 200){
+                    setHardenDropProportionChart(result.resultData);
+                }
+                // console.log(result);
+            },
+            error : function(e){
+            }
+        });
+    }
+    /*————————赚钱效应————————*/
+    //初始化赚钱效应图
+    function initMakeMoneyEffectChart(){
+        var makeMoneyEffectOption = {
+            tooltip: {
+                formatter: "{a} <br/>{c} {b}"
+            },
+            series : [
+                {
+                    name: "家数",
+                    type: "gauge",
+                    z: 3,
+                    min: 0,
+                    max: 4100,
+                    splitNumber: 5,
+                    radius: "90%",
+                    pointer:{
+                        length:"75%"
+                    },
+                    itemStyle:{
+                        color:"auto"
+                    },
+                    axisLine: {            // 坐标轴线
+                        length:20,
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            width: 3,
+                            color: [ [0.1, "#09ef13"],[1, "#f1081e"] ]
+                        }
+                    },
+                    axisTick: {            // 坐标轴小标记
+                        length: 5,        // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            color: "auto"
+                        }
+                    },
+                    splitLine: {           // 分隔线
+                        length: 8,         // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                            color: "auto"
+                        }
+                    },
+                    title: {
+                        // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                        show:false,
+                        fontWeight: "bolder",
+                        fontSize: 10,
+                        fontStyle: "italic"
+                    },
+                    data: [{value: 0, name: "家"}]
+                }
+            ]
+        };
+        makeMoneyEffectChart.setOption(makeMoneyEffectOption);
+    }
+    //赚钱效应图数据加载
+    function setMakeMoneyEffectChart(data){
+        var date = data.date;
+        $("#makeMoneyEffectDate").text(date);
+        var stockNum = data.stockNum;
+        var countNum = data.countNum;
+        var max = parseInt(countNum) + 5 - countNum % 5;
+        var makeMoneyEffectOption = {
+            series : [
+                {
+                    max: max,
+                    splitNumber: 5,
+                    axisLine: {            // 坐标轴线
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            color: [ [300/max, "#09ef13"],[1, "#f1081e"] ]
+                        }
+                    },
+                    data: [
+                        {
+                            value: stockNum
+                        }
+                    ]
+                }
+            ]
+        };
+        makeMoneyEffectChart.setOption(makeMoneyEffectOption);
+    }
+    //获取赚前效应图数据
+    function getMakeMoneyEffectData(){
+        $.ajax({
+            type : "POST",
+            dataType:"json",
+            url : baseUrl+"/home/getMakeMoneyEffectData",
+            data : {},
+            success : function(result) {
+                if(result.result_code == 200){
+                    setMakeMoneyEffectChart(result.resultData);
+                }
+                //console.log(result);
+            },
+            error : function(e){
+            }
+        });
+    }
+
+    /*————————风向标数量————————*/
+    //初始化风向标数量图
+    function initWindVaneChart(){
+        var windVaneOption = {
+            grid:{
+                top:'5',
+                left : '10',   //组件离容器左侧的距离
+                right : '35',
+                bottom : '30',
+                containLabel : true     //grid 区域是否包含坐标轴的刻度标签
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross'
+                }
+            },
+            xAxis: {
+                type: "category",
+                data: []
+            },
+            yAxis: {
+                type: "value"
+            },
+            series: [{
+                data: [],
+                type: "line",
+                lineStyle:{
+                    color:'#f1081e'
+                },
+                itemStyle : {
+                    normal : {
+                        color:'#f1081e'
+                    }
+                },
+                markLine : {
+                    symbol: ['none','none'], //['none']表示是一条横线；['arrow', 'none']表示线的左边是箭头，右边没右箭头；['none','arrow']表示线的左边没有箭头，右边有箭头
+                    label:{
+                        position:"end" //将警示值放在哪个位置，三个值“start”,"middle","end" 开始 中点 结束
+                    },
+                    data : [{
+                        silent:false, //鼠标悬停事件 true没有，false有
+                        lineStyle:{ //警戒线的样式 ，虚实 颜色
+                            type:"dotted", //样式  ‘solid’和'dotted'
+                            color:"#09ef13",
+                            width: 2   //宽度
+                        },
+                        // 警戒线的标注值，可以有多个yAxis,多条警示线 或者采用 {type : 'average', name: '平均值'}，type值有 max min average，分为最大，最小，平均值
+                        yAxis: 0
+                    },
+                        {
+                            silent:false, //鼠标悬停事件 true没有，false有
+                            lineStyle:{ //警戒线的样式 ，虚实 颜色
+                                type:"dotted", //样式  ‘solid’和'dotted'
+                                color:"#FA3934",
+                                width: 2   //宽度
+                            },
+                            // 警戒线的标注值，可以有多个yAxis,多条警示线 或者采用 {type : 'average', name: '平均值'}，type值有 max min average，分为最大，最小，平均值
+                            yAxis: 0
+                        }]
+                }
+            }]
+        };
+        windVaneCountChart.setOption(windVaneOption);
+        // setWindVaneCountChart(null);
+    }
+    //风向标数量图数据加载
+    function setWindVaneCountChart(data){
+        var minNum = data.minNum;
+        var maxNum = data.maxNum;
+        var dateList = data.dateList;
+        var numList = data.numList;
+        var windVaneOption = {
+            xAxis: {
+                type: "category",
+                // data: ["2020-05-19","2020-05-21","2020-05-22","2020-05-25","2020-05-26","2020-05-27","2020-05-28","2020-05-29","2020-06-01","2020-06-02","2020-06-03","2020-06-04","2020-06-05","2020-06-08","2020-06-09","2020-06-12","2020-06-15","2020-06-16","2020-06-17","2020-06-18","2020-06-19","2020-06-22","2020-06-23","2020-06-24","2020-06-29","2020-06-30","2020-07-01","2020-07-02","2020-07-03","2020-07-06","2020-07-07","2020-07-08","2020-07-09","2020-07-10","2020-07-13","2020-07-14","2020-07-15","2020-07-16","2020-07-17","2020-07-20","2020-07-21","2020-07-22","2020-07-23","2020-07-24","2020-07-27","2020-07-28","2020-07-29","2020-07-30","2020-07-31","2020-08-03","2020-08-04","2020-08-05","2020-08-06","2020-08-07"]
+                data:dateList
+            },
+            series: [{
+                // data: ["12","15","4","4","6","4","7","9","11","11","11","10","10","9","12","16","10","15","13","18","24","20","23","24","18","22","22","27","30","39","44","48","52","58","58","57","56","37","31","44","43","44","38","16","16","21","22","17","18","23","18","21","15","16"],
+                data:numList,
+                markLine : {
+                    data : [{
+                        yAxis: minNum
+                    },
+                    {
+                        yAxis: maxNum
+                    }]
+                }
+            }]
+        }
+        windVaneCountChart.setOption(windVaneOption);
+    }
+    //获取风向标数量图数据
+    function getWindVaneCountData(){
+        $.ajax({
+            type : "POST",
+            dataType:"json",
+            url : baseUrl+"/home/getWindVaneCountData",
+            data : {},
+            success : function(result) {
+                if(result.result_code == 200){
+                    setWindVaneCountChart(result.resultData);
+                }
+                //console.log(result);
+            },
+            error : function(e){
+            }
+        });
+    }
+
+    /*————————北向资金(行业)————————*/
+    //初始化北向资金行业图
+    function initNorthMoneyHyCountChart(){
+        var northMoneyHyCountOption = {
+            grid:{
+                top:'20',
+                left : '0%',   //组件离容器左侧的距离
+                right : '35',
+                bottom : '0%',
+                containLabel : true     //grid 区域是否包含坐标轴的刻度标签
+            },
+            toolbox: {
+                top:0,
+                feature: {
+                    myTool1: {
+                        show: true,
+                        title: '今日',
+                        icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                        onclick: function (){
+                            getNorthMoneyHyCountData("1");
+                        }
+                    },
+                    myTool2: {
+                        show: true,
+                        title: '3日',
+                        icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                        onclick: function (){
+                            getNorthMoneyHyCountData("3");
+                        }
+                    },
+                    myTool3: {
+                        show: true,
+                        title: '5日',
+                        icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                        onclick: function (){
+                            getNorthMoneyHyCountData("5");
+                        }
+                    },
+                    myTool4: {
+                        show: true,
+                        title: '10日',
+                        icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                        onclick: function (){
+                            getNorthMoneyHyCountData("10");
+                        }
+                    },
+                    myTool5: {
+                        show: true,
+                        title: '月',
+                        icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                        onclick: function (){
+                            getNorthMoneyHyCountData("m");
+                        }
+                    },
+                    myTool6: {
+                        show: true,
+                        title: '季',
+                        icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                        onclick: function (){
+                            getNorthMoneyHyCountData("jd");
+                        }
+                    },
+                    myTool7: {
+                        show: true,
+                        title: '年',
+                        icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                        onclick: function (){
+                            getNorthMoneyHyCountData("y");
+                        }
+                    }
+                }
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            xAxis: {
+                type: 'category',
+                data: ['电子元件', '食品饮料', '材料行业', '水泥建材', '电力行业', '机械行业', '电子信息', '电子信息', '电子信息','电子元件', '食品饮料', '材料行业', '水泥建材', '电力行业', '机械行业', '电子信息', '电子信息', '电子信息', '电子信息', '电子信息'],
+                axisLabel: {
+                    show: true,
+                    textStyle: {
+                        color: '#595C61'
+                    },
+                    formatter:function(value){
+                        return value.split("").join("\n");
+                    }
+                }
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: [1000, 900, 850, 780, 670, 510, 430,300,210,101,-100,-250,-305,-406,-500,-650,-700,-850,-900,-1023],
+                type: 'bar',
+                barWidth : 10,//柱图宽度
+                itemStyle:{
+                    color:function(paras){
+                        return paras.data > 0?"#f1081e":"#09ef13";
+                    }
+                },
+                markLine : {
+                    symbol: ['none','none'], //['none']表示是一条横线；['arrow', 'none']表示线的左边是箭头，右边没右箭头；['none','arrow']表示线的左边没有箭头，右边有箭头
+                    label:{
+                        position:"end" //将警示值放在哪个位置，三个值“start”,"middle","end" 开始 中点 结束
+                    },
+                    data : [{
+                        silent:false, //鼠标悬停事件 true没有，false有
+                        lineStyle:{ //警戒线的样式 ，虚实 颜色
+                            type:"dotted", //样式  ‘solid’和'dotted'
+                            color:"#09ef13",
+                            width: 2   //宽度
+                        },
+                        // 警戒线的标注值，可以有多个yAxis,多条警示线 或者采用 {type : 'average', name: '平均值'}，type值有 max min average，分为最大，最小，平均值
+                        yAxis: -10
+                    },
+                        {
+                            silent:false, //鼠标悬停事件 true没有，false有
+                            lineStyle:{ //警戒线的样式 ，虚实 颜色
+                                type:"dotted", //样式  ‘solid’和'dotted'
+                                color:"#FA3934",
+                                width: 2   //宽度
+                            },
+                            // 警戒线的标注值，可以有多个yAxis,多条警示线 或者采用 {type : 'average', name: '平均值'}，type值有 max min average，分为最大，最小，平均值
+                            yAxis: 10
+                        }]
+                }
+            }]
+        };
+        northMoneyHyCountChart.setOption(northMoneyHyCountOption);
+    }
+    //北向资金行业图数据加载
+    function setNorthMoneyHyCountChart(data,periodType){
+        var latestDate = data.latestDate;
+        var plateNameList = data.plateNameList;
+        var plateValueList = data.plateValueList;
+        var msg = "";
+        if(periodType == '1'){
+            msg = "1日";
+        }else if(periodType == '3'){
+            msg = "3日";
+        }else if(periodType == '5'){
+            msg = "5日"
+        }else if(periodType == '10'){
+            msg = "10日"
+        }else if(periodType == 'm'){
+            msg = "1月"
+        }else if(periodType == 'jd'){
+            msg = "1季"
+        }else if(periodType == 'y'){
+            msg = "1年"
+        }
+        $("#northMoneyHyPeriodType").text(msg);
+        $("#northMoneyHyDate").text(latestDate);
+        var northMoneyHyCountOption = {
+            xAxis: {
+                data: plateNameList
+            },
+            series: [{
+                data: plateValueList
+            }]
+        };
+        northMoneyHyCountChart.setOption(northMoneyHyCountOption);
+    }
+    //获取北向资金行业图数据
+    function getNorthMoneyHyCountData(periodType){
+        $.ajax({
+            type : "POST",
+            dataType:"json",
+            url : baseUrl+"/home/getNorthMoneyHyCountData",
+            data : {"periodType":periodType},
+            success : function(result) {
+                if(result.result_code == 200){
+                    setNorthMoneyHyCountChart(result.resultData,periodType);
+                }
+                // console.log(result);
+            },
+            error : function(e){
+            }
+        });
+    }
+
+
+    /*————————北向资金(概念)————————*/
+    //初始化北向资金概念图
+    function initNorthMoneyGnCountChart(){
+        var northMoneyGnCountOption = {
+            grid:{
+                top:'20',
+                left : '0%',   //组件离容器左侧的距离
+                right : '35',
+                bottom : '0%',
+                containLabel : true     //grid 区域是否包含坐标轴的刻度标签
+            },
+            toolbox: {
+                top:0,
+                feature: {
+                    myTool1: {
+                        show: true,
+                        title: '今日',
+                        icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                        onclick: function (){
+                            getNorthMoneyGnCountData("1");
+                        }
+                    },
+                    myTool2: {
+                        show: true,
+                        title: '3日',
+                        icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                        onclick: function (){
+                            getNorthMoneyGnCountData("3");
+                        }
+                    },
+                    myTool3: {
+                        show: true,
+                        title: '5日',
+                        icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                        onclick: function (){
+                            getNorthMoneyGnCountData("5");
+                        }
+                    },
+                    myTool4: {
+                        show: true,
+                        title: '10日',
+                        icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                        onclick: function (){
+                            getNorthMoneyGnCountData("10");
+                        }
+                    },
+                    myTool5: {
+                        show: true,
+                        title: '月',
+                        icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                        onclick: function (){
+                            getNorthMoneyGnCountData("m");
+                        }
+                    },
+                    myTool6: {
+                        show: true,
+                        title: '季',
+                        icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                        onclick: function (){
+                            getNorthMoneyGnCountData("jd");
+                        }
+                    },
+                    myTool7: {
+                        show: true,
+                        title: '年',
+                        icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                        onclick: function (){
+                            getNorthMoneyGnCountData("y");
+                        }
+                    }
+                }
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            xAxis: {
+                type: 'category',
+                data: ['电子元件', '食品饮料', '材料行业', '水泥建材', '电力行业', '机械行业', '电子信息', '电子信息', '电子信息','电子元件', '食品饮料', '材料行业', '水泥建材', '电力行业', '机械行业', '电子信息', '电子信息', '电子信息', '电子信息', '电子信息'],
+                axisLabel: {
+                    show: true,
+                    textStyle: {
+                        color: '#595C61'
+                    },
+                    formatter:function(value){
+                        return value.split("").join("\n");
+                    }
+                }
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: [1000, 900, 850, 780, 670, 510, 430,300,210,101,-100,-250,-305,-406,-500,-650,-700,-850,-900,-1023],
+                type: 'bar',
+                barWidth : 10,//柱图宽度
+                itemStyle:{
+                    color:function(paras){
+                        return paras.data > 0?"#f1081e":"#09ef13";
+                    }
+                },
+                markLine : {
+                    symbol: ['none','none'], //['none']表示是一条横线；['arrow', 'none']表示线的左边是箭头，右边没右箭头；['none','arrow']表示线的左边没有箭头，右边有箭头
+                    label:{
+                        position:"end" //将警示值放在哪个位置，三个值“start”,"middle","end" 开始 中点 结束
+                    },
+                    data : [{
+                        silent:false, //鼠标悬停事件 true没有，false有
+                        lineStyle:{ //警戒线的样式 ，虚实 颜色
+                            type:"dotted", //样式  ‘solid’和'dotted'
+                            color:"#09ef13",
+                            width: 2   //宽度
+                        },
+                        // 警戒线的标注值，可以有多个yAxis,多条警示线 或者采用 {type : 'average', name: '平均值'}，type值有 max min average，分为最大，最小，平均值
+                        yAxis: -10
+                    },
+                        {
+                            silent:false, //鼠标悬停事件 true没有，false有
+                            lineStyle:{ //警戒线的样式 ，虚实 颜色
+                                type:"dotted", //样式  ‘solid’和'dotted'
+                                color:"#FA3934",
+                                width: 2   //宽度
+                            },
+                            // 警戒线的标注值，可以有多个yAxis,多条警示线 或者采用 {type : 'average', name: '平均值'}，type值有 max min average，分为最大，最小，平均值
+                            yAxis: 10
+                        }]
+                }
+            }]
+        };
+        northMoneyGnCountChart.setOption(northMoneyGnCountOption);
+    }
+    //北向资金概念图数据加载
+    function setNorthMoneyGnCountChart(data,periodType){
+        var latestDate = data.latestDate;
+        var plateNameList = data.plateNameList;
+        var plateValueList = data.plateValueList;
+        var msg = "";
+        if(periodType == '1'){
+            msg = "1日";
+        }else if(periodType == '3'){
+            msg = "3日";
+        }else if(periodType == '5'){
+            msg = "5日"
+        }else if(periodType == '10'){
+            msg = "10日"
+        }else if(periodType == 'm'){
+            msg = "1月"
+        }else if(periodType == 'jd'){
+            msg = "1季"
+        }else if(periodType == 'y'){
+            msg = "1年"
+        }
+        $("#northMoneyGnPeriodType").text(msg);
+        $("#northMoneyGnDate").text(latestDate);
+        var northMoneyGnCountOption = {
+            xAxis: {
+                data: plateNameList
+            },
+            series: [{
+                data: plateValueList
+            }]
+        };
+        northMoneyGnCountChart.setOption(northMoneyGnCountOption);
+    }
+    //获取北向资金概念图数据
+    function getNorthMoneyGnCountData(periodType){
+        $.ajax({
+            type : "POST",
+            dataType:"json",
+            url : baseUrl+"/home/getNorthMoneyGnCountData",
+            data : {"periodType":periodType},
+            success : function(result) {
+                if(result.result_code == 200){
+                    setNorthMoneyGnCountChart(result.resultData,periodType);
+                }
+                // console.log(result);
+            },
+            error : function(e){
+            }
+        });
+    }
+
+    /*————————初始化涨幅分布情况图————————*/
+    //初始化涨幅分布情图
+    function initGainsCountChart(){
+        var gainsCountOption = {
+            grid:{
+                top:'20',
+                left : '0%',   //组件离容器左侧的距离
+                right : '35',
+                bottom : '0%',
+                containLabel : true     //grid 区域是否包含坐标轴的刻度标签
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            xAxis: {
+                type: 'category',
+                data: [],
+                axisLabel: {
+                    show: true,
+                    textStyle: {
+                        color: '#595C61'
+                    }
+                }
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: [],
+                type: 'bar',
+                barWidth : 10,//柱图宽度
+                itemStyle:{
+                    color:function(paras){
+                        return paras.dataIndex >= 10?"#09ef13":"#f1081e";
+                    }
+                },
+                markLine : {
+                    symbol: ['none','none'], //['none']表示是一条横线；['arrow', 'none']表示线的左边是箭头，右边没右箭头；['none','arrow']表示线的左边没有箭头，右边有箭头
+                    label:{
+                        position:"end" //将警示值放在哪个位置，三个值“start”,"middle","end" 开始 中点 结束
+                    },
+                    data : [{
+                        silent:false, //鼠标悬停事件 true没有，false有
+                        lineStyle:{ //警戒线的样式 ，虚实 颜色
+                            type:"dotted", //样式  ‘solid’和'dotted'
+                            color:"#f1081e",
+                            width: 2   //宽度
+                        },
+                        // 警戒线的标注值，可以有多个yAxis,多条警示线 或者采用 {type : 'average', name: '平均值'}，type值有 max min average，分为最大，最小，平均值
+                        yAxis: 300
+                    }]
+                }
+            }]
+        };
+        gainsCountChart.setOption(gainsCountOption);
+    }
+    //初始化涨幅分布情图数据加载
+    function setGainsCountChart(data){
+        var latestDate = data.latestDate;
+        var nameList = data.nameList;
+        var valueList = data.valueList;
+        $("#gainsCountGnDate").text(latestDate);
+        var gainsCountOption = {
+            xAxis: {
+                data: nameList
+            },
+            series: [{
+                data: valueList
+            }]
+        };
+        gainsCountChart.setOption(gainsCountOption);
+    }
+    //初始化涨幅分布情图数据
+    function getGainsCountData(){
+        $.ajax({
+            type : "POST",
+            dataType:"json",
+            url : baseUrl+"/home/getGainsCountData",
+            data : {},
+            success : function(result) {
+                if(result.result_code == 200){
+                    setGainsCountChart(result.resultData);
+                }
+                // console.log(result);
+            },
+            error : function(e){
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

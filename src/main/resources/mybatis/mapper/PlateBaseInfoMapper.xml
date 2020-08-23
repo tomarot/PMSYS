@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.magic.www.permissions.mapper.PlateBaseInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.magic.www.permissions.domain.PlateBaseInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="available" property="available" jdbcType="VARCHAR" />
+    <result column="confirm_state" property="confirmState" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, name, type, available, confirm_state, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from plate_base_info_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from plate_base_info_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.magic.www.permissions.domain.PlateBaseInfo" >
+    insert into plate_base_info_record (id, code, name, 
+      type, available, confirm_state, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{available,jdbcType=VARCHAR}, #{confirmState,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.magic.www.permissions.domain.PlateBaseInfo" >
+    insert into plate_base_info_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="available != null" >
+        available,
+      </if>
+      <if test="confirmState != null" >
+        confirm_state,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null" >
+        #{available,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmState != null" >
+        #{confirmState,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.magic.www.permissions.domain.PlateBaseInfo" >
+    update plate_base_info_record
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null" >
+        available = #{available,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmState != null" >
+        confirm_state = #{confirmState,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.magic.www.permissions.domain.PlateBaseInfo" >
+    update plate_base_info_record
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      available = #{available,jdbcType=VARCHAR},
+      confirm_state = #{confirmState,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="com.magic.www.permissions.domain.PlateBaseInfo">
+    select
+    <include refid="Base_Column_List" />
+    from plate_base_info_record
+    where 1 = 1
+    <if test="code != null" >
+      and id = #{id,jdbcType=INTEGER}
+    </if>
+    <if test="code != null" >
+      and code = #{code,jdbcType=VARCHAR}
+    </if>
+    <if test="name != null" >
+      and name = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="type != null" >
+      and type = #{type,jdbcType=VARCHAR}
+    </if>
+    <if test="available != null" >
+      and available = #{available,jdbcType=VARCHAR}
+    </if>
+    <if test="confirmState != null" >
+      and confirm_state = #{confirmState,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+</mapper>

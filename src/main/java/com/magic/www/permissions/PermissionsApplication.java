@@ -3,20 +3,30 @@ package com.magic.www.permissions;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.server.ErrorPage;
 import org.springframework.boot.web.server.ErrorPageRegistrar;
 import org.springframework.boot.web.server.ErrorPageRegistry;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 
 @Component
+@EnableScheduling
 @SpringBootApplication
 @MapperScan("com.magic.www.permissions.mapper")
+//public class PermissionsApplication extends SpringBootServletInitializer implements ErrorPageRegistrar {
 public class PermissionsApplication implements ErrorPageRegistrar {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PermissionsApplication.class, args);
 	}
+    // 继承SpringBootServletInitializer 实现configure 方便打war 外部服务器部署。
+//    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+//        // 注意这里要指向原先用main方法执行的Application启动类
+//        return application.sources(PermissionsApplication.class);
+//    }
 
 	@Override
 	public void registerErrorPages(ErrorPageRegistry registry) {

@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.magic.www.permissions.mapper.WindVaneMapper" >
+  <resultMap id="BaseResultMap" type="com.magic.www.permissions.domain.WindVane" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="increases_list" property="increasesList" jdbcType="VARCHAR" />
+    <result column="drop_list" property="dropList" jdbcType="VARCHAR" />
+    <result column="money_inflows" property="moneyInflows" jdbcType="VARCHAR" />
+    <result column="money_out" property="moneyOut" jdbcType="VARCHAR" />
+    <result column="have_harden" property="haveHarden" jdbcType="VARCHAR" />
+    <result column="wind_vane" property="windVane" jdbcType="VARCHAR" />
+    <result column="first_letter" property="firstLetter" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, name, type, increases_list, drop_list, money_inflows, money_out, have_harden, 
+    wind_vane, first_letter, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from plate_wind_vane_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from plate_wind_vane_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.magic.www.permissions.domain.WindVane" >
+    insert into plate_wind_vane_record (id, code, name, 
+      type, increases_list, drop_list, 
+      money_inflows, money_out, have_harden, 
+      wind_vane, first_letter, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{increasesList,jdbcType=VARCHAR}, #{dropList,jdbcType=VARCHAR}, 
+      #{moneyInflows,jdbcType=VARCHAR}, #{moneyOut,jdbcType=VARCHAR}, #{haveHarden,jdbcType=VARCHAR}, 
+      #{windVane,jdbcType=VARCHAR}, #{firstLetter,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.magic.www.permissions.domain.WindVane" >
+    insert into plate_wind_vane_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="increasesList != null" >
+        increases_list,
+      </if>
+      <if test="dropList != null" >
+        drop_list,
+      </if>
+      <if test="moneyInflows != null" >
+        money_inflows,
+      </if>
+      <if test="moneyOut != null" >
+        money_out,
+      </if>
+      <if test="haveHarden != null" >
+        have_harden,
+      </if>
+      <if test="windVane != null" >
+        wind_vane,
+      </if>
+      <if test="firstLetter != null" >
+        first_letter,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="increasesList != null" >
+        #{increasesList,jdbcType=VARCHAR},
+      </if>
+      <if test="dropList != null" >
+        #{dropList,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyInflows != null" >
+        #{moneyInflows,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyOut != null" >
+        #{moneyOut,jdbcType=VARCHAR},
+      </if>
+      <if test="haveHarden != null" >
+        #{haveHarden,jdbcType=VARCHAR},
+      </if>
+      <if test="windVane != null" >
+        #{windVane,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLetter != null" >
+        #{firstLetter,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.magic.www.permissions.domain.WindVane" >
+    update plate_wind_vane_record
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="increasesList != null" >
+        increases_list = #{increasesList,jdbcType=VARCHAR},
+      </if>
+      <if test="dropList != null" >
+        drop_list = #{dropList,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyInflows != null" >
+        money_inflows = #{moneyInflows,jdbcType=VARCHAR},
+      </if>
+      <if test="moneyOut != null" >
+        money_out = #{moneyOut,jdbcType=VARCHAR},
+      </if>
+      <if test="haveHarden != null" >
+        have_harden = #{haveHarden,jdbcType=VARCHAR},
+      </if>
+      <if test="windVane != null" >
+        wind_vane = #{windVane,jdbcType=VARCHAR},
+      </if>
+      <if test="firstLetter != null" >
+        first_letter = #{firstLetter,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.magic.www.permissions.domain.WindVane">
+    update plate_wind_vane_record
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      increases_list = #{increasesList,jdbcType=VARCHAR},
+      drop_list = #{dropList,jdbcType=VARCHAR},
+      money_inflows = #{moneyInflows,jdbcType=VARCHAR},
+      money_out = #{moneyOut,jdbcType=VARCHAR},
+      have_harden = #{haveHarden,jdbcType=VARCHAR},
+      wind_vane = #{windVane,jdbcType=VARCHAR},
+      first_letter = #{firstLetter,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getWindVaneDateList" resultType="java.util.Date" parameterType="String">
+       select  create_time from plate_wind_vane_record
+       where type = #{type,jdbcType=VARCHAR}
+       GROUP BY create_time
+       ORDER BY create_time DESC
+  </select>
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="com.magic.www.permissions.domain.WindVane">
+      select
+      <include refid="Base_Column_List" />
+      from plate_wind_vane_record
+      where 1=1
+    <if test="code != null" >
+      and code = #{code,jdbcType=VARCHAR}
+    </if>
+    <if test="name != null" >
+      and name = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="type != null" >
+      and type = #{type,jdbcType=VARCHAR}
+    </if>
+    <if test="increasesList != null" >
+      and increases_list = #{increasesList,jdbcType=VARCHAR}
+    </if>
+    <if test="dropList != null" >
+      and drop_list = #{dropList,jdbcType=VARCHAR}
+    </if>
+    <if test="moneyInflows != null" >
+      and money_inflows = #{moneyInflows,jdbcType=VARCHAR}
+    </if>
+    <if test="moneyOut != null" >
+      and money_out = #{moneyOut,jdbcType=VARCHAR}
+    </if>
+    <if test="haveHarden != null" >
+      and have_harden = #{haveHarden,jdbcType=VARCHAR}
+    </if>
+    <if test="windVane != null" >
+      and wind_vane = #{windVane,jdbcType=VARCHAR}
+    </if>
+    <if test="firstLetter != null" >
+      and first_letter = #{firstLetter,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="startDate != null" >
+      and create_time <![CDATA[>=]]> #{startDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="endDate != null" >
+      and create_time <![CDATA[<=]]> #{endDate,jdbcType=TIMESTAMP}
+    </if>
+    order by create_time DESC,first_letter,name
+    <if test="pageState != 0">
+      LIMIT #{offset,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};
+    </if>
+  </select>
+  <select id="queryMinWindVaneNum" resultType="java.lang.Integer">
+    select min(t.count) as min from (select t.create_time,count(t.create_time) as count from plate_wind_vane_record t where t.wind_vane = 1
+    <if test="type != null" >
+      and type = #{type,jdbcType=VARCHAR}
+    </if>
+    <if test="startDate != null" >
+      and create_time <![CDATA[>=]]> #{startDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="endDate != null" >
+      and create_time <![CDATA[<=]]> #{endDate,jdbcType=TIMESTAMP}
+    </if>
+    GROUP BY t.create_time) t
+  </select>
+  <select id="queryMaxWindVaneNum" resultType="java.lang.Integer">
+    select max(t.count) as max from (select t.create_time,count(t.create_time) as count from plate_wind_vane_record t where t.wind_vane = 1
+    <if test="type != null" >
+      and type = #{type,jdbcType=VARCHAR}
+    </if>
+    <if test="startDate != null" >
+      and create_time <![CDATA[>=]]> #{startDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="endDate != null" >
+      and create_time <![CDATA[<=]]> #{endDate,jdbcType=TIMESTAMP}
+    </if>
+    GROUP BY t.create_time) t
+  </select>
+  <select id="queryWindVaneNum" resultType="java.util.Map">
+    select t.create_time,count(t.create_time) as count from plate_wind_vane_record t where t.wind_vane = 1
+    <if test="type != null" >
+      and type = #{type,jdbcType=VARCHAR}
+    </if>
+    <if test="startDate != null" >
+      and create_time <![CDATA[>=]]> #{startDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="endDate != null" >
+      and create_time <![CDATA[<=]]> #{endDate,jdbcType=TIMESTAMP}
+    </if>
+    GROUP BY t.create_time
+  </select>
+</mapper>

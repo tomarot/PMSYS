@@ -2,42 +2,131 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>登录</title>
+    <title>用户登录</title>
+    <style>
+        body{
+            background: #FAFAFA;
+        }
+        .myDiv input.b{
+            margin-top: 50px;
+            height: 50px;
+            width: 104%;
+            border-radius: 25px;
+            color: #898989;
+            background: #DDDDDD;
+            border:2px solid #fff;
+            outline: none;
+        }
+        .myDiv input.b:hover{
+            background-color: palegreen;
+        }
+        .myDiv{
+            width:400px;
+            height: 300px;
+            margin:200px auto;
+        }
+        .myDiv input.t{
+            width:100%;
+            height:50px;
+            border:1px solid #ddd;
+            border-radius: 25px;
+            padding-left: 15px;
+            margin-top:40px;
+
+        }
+        .myDiv input.t:focus{
+            border-color:#00BAFA;
+            outline: none;
+        }
+        .myDiv input.t + label{
+            margin-left: 20px;
+            margin-top: -38px;
+            height: 23px;
+            display: block;
+            background-color: #ddd;
+            pointer-events: none;
+            color:#CCCCCC;
+        }
+        .myDiv input.t + label:before{
+            content: attr(alt);
+            transition-duration: .2s;
+        }
+        .myDiv input.t:focus + label:before,
+        .myDiv input.t:valid + label:before{
+            content:attr(filed);
+            display: inline-block;
+            /*transition-duration: .2s;*/
+            transform: translate(0,-33px);
+            font-size: 20px;
+            color:#00BAFA;
+            background-image: linear-gradient(to bottom, #FAFAFA, #FAFAFA);
+            background-size: 100% 10px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .myDiv input.t:invalid + label:before{
+            content:attr(alt);
+        }
+    </style>
 </head>
 <body>
-<form id="dataform">
-    用户名：<input name="username" type="text">
-    密码：<input name="password" type="password">
-    <br/>
-    <button id="submitBtn" type="button">登录</button>
-    <br/>
-   <!-- <button id="qqLoginBtn" type="button">qq登录</button>
-    <button id="sinaLoginBtn" type="button">微博登录</button>-->
-</form>
+<div class="myDiv">
+    <form  id="dataForm">
+        <input id="username" class="t" type="text" name="username" required="" value="lilith"/>
+        <label alt="请输入用户名" filed = "用户名"></label>
+        <input id="password" class="t" type="password" name="password" required="" value="123456"/>
+        <label alt="请输入密码" filed = "密码"></label>
+        <input id="submitBtn" class="b" type="button" value="登录"/>
+    </form>
+</div>
+<script src="/PMSYS/base/config.js"></script>
 <script type="text/javascript" src="/PMSYS/library/jquery/jquery-3.1.1.min.js"></script>
+<script src="/PMSYS/library/layui/layui.js"></script>
 <script>
-    $(function(){
-        $("#submitBtn").click(function(){
-            var data = $("#dataform").serialize();
-            $.ajax({
-                url:"/PMSYS/login/doLogin",
-                data:data,
-                dataType:"json",
-                type:"post",
-                success:function (result) {
-                    if(result.result_code==200){
-                        alert("登录成功");
-                        window.location.href='http://localhost:8081/PMSYS/index/toIndex';
-                    }else{
-                        alert(result.result_msg);
-                    }
-                },
-                error:function(result){
+    var baseUrl = top.config.ip+top.config.port+top.config.systemNmae;
+    layui.use('layer', function() {
+        var layer = layui.layer;
 
+        $(function(){
+            $("#submitBtn").click(function(){
+                if(valid()){
+                    login();
                 }
             });
+            /* 验证参数*/
+            function valid(){
+                if(!$("#username").val()){
+                    layer.msg("请填写用户名！");
+                    return false;
+                }
+                if(!$("#password")){
+                    layer.msg("请填写密码！");
+                    return false;
+                }
+                return true;
+            }
+            /* 登录 */
+            function login(){
+                var data = $("#dataForm").serialize();
+                $.ajax({
+                    url:"/PMSYS/login/doLogin",
+                    data:data,
+                    dataType:"json",
+                    type:"post",
+                    success:function (result) {
+                        if(result.result_code==200){
+                            window.location.href=baseUrl+'/index/toIndex';
+                        }else{
+                            alert(result.result_msg);
+                        }
+                    },
+                    error:function(result){
+
+                    }
+                });
+            }
         });
-    })
+    });
 </script>
 </body>
 </html>

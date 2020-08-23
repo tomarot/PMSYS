@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.magic.www.permissions.mapper.PlateMapper" >
+  <resultMap id="BaseResultMap" type="com.magic.www.permissions.domain.Plate" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ranking_p" property="rankingP" jdbcType="INTEGER" />
+    <result column="ranking_r" property="rankingR" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="gains" property="gains" jdbcType="VARCHAR" />
+    <result column="three_days_gains" property="threeDaysGains" jdbcType="VARCHAR" />
+    <result column="higher_speed" property="higherSpeed" jdbcType="VARCHAR" />
+    <result column="lead_stock" property="leadStock" jdbcType="VARCHAR" />
+    <result column="up_down_num" property="upDownNum" jdbcType="VARCHAR" />
+    <result column="up_down_proportion" property="upDownProportion" jdbcType="VARCHAR" />
+    <result column="change_hand" property="changeHand" jdbcType="VARCHAR" />
+    <result column="total_hand" property="totalHand" jdbcType="VARCHAR" />
+    <result column="three_days_change_hand" property="threeDaysChangeHand" jdbcType="VARCHAR" />
+    <result column="total_price" property="totalPrice" jdbcType="VARCHAR" />
+    <result column="total_market" property="totalMarket" jdbcType="VARCHAR" />
+    <result column="current_market" property="currentMarket" jdbcType="VARCHAR" />
+    <result column="average_income" property="averageIncome" jdbcType="VARCHAR" />
+    <result column="average_equity" property="averageEquity" jdbcType="VARCHAR" />
+    <result column="pe_ratio" property="peRatio" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ranking_p, ranking_r, name, gains, three_days_gains, higher_speed, lead_stock, 
+    up_down_num, up_down_proportion, change_hand, total_hand, three_days_change_hand, 
+    total_price, total_market, current_market, average_income, average_equity, pe_ratio, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from plate_data_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from plate_data_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.magic.www.permissions.domain.Plate" >
+    insert into plate_data_record (id, ranking_p, ranking_r, 
+      name, gains, three_days_gains, 
+      higher_speed, lead_stock, up_down_num, 
+      up_down_proportion, change_hand, total_hand, 
+      three_days_change_hand, total_price, total_market, 
+      current_market, average_income, average_equity, 
+      pe_ratio, create_time)
+    values (#{id,jdbcType=INTEGER}, #{rankingP,jdbcType=INTEGER}, #{rankingR,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{gains,jdbcType=VARCHAR}, #{threeDaysGains,jdbcType=VARCHAR}, 
+      #{higherSpeed,jdbcType=VARCHAR}, #{leadStock,jdbcType=VARCHAR}, #{upDownNum,jdbcType=VARCHAR}, 
+      #{upDownProportion,jdbcType=VARCHAR}, #{changeHand,jdbcType=VARCHAR}, #{totalHand,jdbcType=VARCHAR}, 
+      #{threeDaysChangeHand,jdbcType=VARCHAR}, #{totalPrice,jdbcType=VARCHAR}, #{totalMarket,jdbcType=VARCHAR}, 
+      #{currentMarket,jdbcType=VARCHAR}, #{averageIncome,jdbcType=VARCHAR}, #{averageEquity,jdbcType=VARCHAR}, 
+      #{peRatio,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.magic.www.permissions.domain.Plate" >
+    insert into plate_data_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="rankingP != null" >
+        ranking_p,
+      </if>
+      <if test="rankingR != null" >
+        ranking_r,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="gains != null" >
+        gains,
+      </if>
+      <if test="threeDaysGains != null" >
+        three_days_gains,
+      </if>
+      <if test="higherSpeed != null" >
+        higher_speed,
+      </if>
+      <if test="leadStock != null" >
+        lead_stock,
+      </if>
+      <if test="upDownNum != null" >
+        up_down_num,
+      </if>
+      <if test="upDownProportion != null" >
+        up_down_proportion,
+      </if>
+      <if test="changeHand != null" >
+        change_hand,
+      </if>
+      <if test="totalHand != null" >
+        total_hand,
+      </if>
+      <if test="threeDaysChangeHand != null" >
+        three_days_change_hand,
+      </if>
+      <if test="totalPrice != null" >
+        total_price,
+      </if>
+      <if test="totalMarket != null" >
+        total_market,
+      </if>
+      <if test="currentMarket != null" >
+        current_market,
+      </if>
+      <if test="averageIncome != null" >
+        average_income,
+      </if>
+      <if test="averageEquity != null" >
+        average_equity,
+      </if>
+      <if test="peRatio != null" >
+        pe_ratio,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="rankingP != null" >
+        #{rankingP,jdbcType=INTEGER},
+      </if>
+      <if test="rankingR != null" >
+        #{rankingR,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gains != null" >
+        #{gains,jdbcType=VARCHAR},
+      </if>
+      <if test="threeDaysGains != null" >
+        #{threeDaysGains,jdbcType=VARCHAR},
+      </if>
+      <if test="higherSpeed != null" >
+        #{higherSpeed,jdbcType=VARCHAR},
+      </if>
+      <if test="leadStock != null" >
+        #{leadStock,jdbcType=VARCHAR},
+      </if>
+      <if test="upDownNum != null" >
+        #{upDownNum,jdbcType=VARCHAR},
+      </if>
+      <if test="upDownProportion != null" >
+        #{upDownProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="changeHand != null" >
+        #{changeHand,jdbcType=VARCHAR},
+      </if>
+      <if test="totalHand != null" >
+        #{totalHand,jdbcType=VARCHAR},
+      </if>
+      <if test="threeDaysChangeHand != null" >
+        #{threeDaysChangeHand,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="totalMarket != null" >
+        #{totalMarket,jdbcType=VARCHAR},
+      </if>
+      <if test="currentMarket != null" >
+        #{currentMarket,jdbcType=VARCHAR},
+      </if>
+      <if test="averageIncome != null" >
+        #{averageIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="averageEquity != null" >
+        #{averageEquity,jdbcType=VARCHAR},
+      </if>
+      <if test="peRatio != null" >
+        #{peRatio,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.magic.www.permissions.domain.Plate" >
+    update plate_data_record
+    <set >
+      <if test="rankingP != null" >
+        ranking_p = #{rankingP,jdbcType=INTEGER},
+      </if>
+      <if test="rankingR != null" >
+        ranking_r = #{rankingR,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gains != null" >
+        gains = #{gains,jdbcType=VARCHAR},
+      </if>
+      <if test="threeDaysGains != null" >
+        three_days_gains = #{threeDaysGains,jdbcType=VARCHAR},
+      </if>
+      <if test="higherSpeed != null" >
+        higher_speed = #{higherSpeed,jdbcType=VARCHAR},
+      </if>
+      <if test="leadStock != null" >
+        lead_stock = #{leadStock,jdbcType=VARCHAR},
+      </if>
+      <if test="upDownNum != null" >
+        up_down_num = #{upDownNum,jdbcType=VARCHAR},
+      </if>
+      <if test="upDownProportion != null" >
+        up_down_proportion = #{upDownProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="changeHand != null" >
+        change_hand = #{changeHand,jdbcType=VARCHAR},
+      </if>
+      <if test="totalHand != null" >
+        total_hand = #{totalHand,jdbcType=VARCHAR},
+      </if>
+      <if test="threeDaysChangeHand != null" >
+        three_days_change_hand = #{threeDaysChangeHand,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null" >
+        total_price = #{totalPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="totalMarket != null" >
+        total_market = #{totalMarket,jdbcType=VARCHAR},
+      </if>
+      <if test="currentMarket != null" >
+        current_market = #{currentMarket,jdbcType=VARCHAR},
+      </if>
+      <if test="averageIncome != null" >
+        average_income = #{averageIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="averageEquity != null" >
+        average_equity = #{averageEquity,jdbcType=VARCHAR},
+      </if>
+      <if test="peRatio != null" >
+        pe_ratio = #{peRatio,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.magic.www.permissions.domain.Plate" >
+    update plate_data_record
+    set ranking_p = #{rankingP,jdbcType=INTEGER},
+      ranking_r = #{rankingR,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      gains = #{gains,jdbcType=VARCHAR},
+      three_days_gains = #{threeDaysGains,jdbcType=VARCHAR},
+      higher_speed = #{higherSpeed,jdbcType=VARCHAR},
+      lead_stock = #{leadStock,jdbcType=VARCHAR},
+      up_down_num = #{upDownNum,jdbcType=VARCHAR},
+      up_down_proportion = #{upDownProportion,jdbcType=VARCHAR},
+      change_hand = #{changeHand,jdbcType=VARCHAR},
+      total_hand = #{totalHand,jdbcType=VARCHAR},
+      three_days_change_hand = #{threeDaysChangeHand,jdbcType=VARCHAR},
+      total_price = #{totalPrice,jdbcType=VARCHAR},
+      total_market = #{totalMarket,jdbcType=VARCHAR},
+      current_market = #{currentMarket,jdbcType=VARCHAR},
+      average_income = #{averageIncome,jdbcType=VARCHAR},
+      average_equity = #{averageEquity,jdbcType=VARCHAR},
+      pe_ratio = #{peRatio,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!--获取板块涨幅榜数据-->
+  <select id="queryPerformerTop" resultMap="BaseResultMap" >
+  select
+  <include refid="Base_Column_List" />
+  from plate_data_record t
+  where t.create_time = #{date} and t.gains <![CDATA[>]]> 0 order by ranking_p ASC LIMIT 0,#{num};
+  </select>
+  <!--获取板块跌幅榜数据-->
+  <select id="queryDropTop" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from plate_data_record t
+    where t.create_time = #{date} and t.gains <![CDATA[<]]> 0 order by ranking_p DESC LIMIT 0,#{num};
+  </select>
+</mapper>

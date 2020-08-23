@@ -135,6 +135,7 @@ public class ShiroConfig {
         map.put("/**/*.jpeg", "anon");
         map.put("/**/*.gif", "anon");
         map.put("/**/fonts/*", "anon");
+        map.put("/**/font/*", "anon");
         map.put("/**/*.svg", "anon");
         map.put("/**", "authc");
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面

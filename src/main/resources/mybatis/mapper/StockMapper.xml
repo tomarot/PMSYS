@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.magic.www.permissions.mapper.StockMapper" >
+  <resultMap id="BaseResultMap" type="com.magic.www.permissions.domain.Stock" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="VARCHAR" />
+    <result column="gains" property="gains" jdbcType="VARCHAR" />
+    <result column="gainsval" property="gainsval" jdbcType="VARCHAR" />
+    <result column="totalval" property="totalval" jdbcType="VARCHAR" />
+    <result column="change_hand" property="changeHand" jdbcType="VARCHAR" />
+    <result column="buy_price" property="buyPrice" jdbcType="VARCHAR" />
+    <result column="sell_price" property="sellPrice" jdbcType="VARCHAR" />
+    <result column="higher_speed" property="higherSpeed" jdbcType="VARCHAR" />
+    <result column="total_hand" property="totalHand" jdbcType="VARCHAR" />
+    <result column="total_price" property="totalPrice" jdbcType="VARCHAR" />
+    <result column="pe_ratio" property="peRatio" jdbcType="VARCHAR" />
+    <result column="industry_involved" property="industryInvolved" jdbcType="VARCHAR" />
+    <result column="highest" property="highest" jdbcType="VARCHAR" />
+    <result column="newvol" property="newvol" jdbcType="VARCHAR" />
+    <result column="start_price" property="startPrice" jdbcType="VARCHAR" />
+    <result column="yesterday_end_price" property="yesterdayEndPrice" jdbcType="VARCHAR" />
+    <result column="amplitude" property="amplitude" jdbcType="VARCHAR" />
+    <result column="than" property="than" jdbcType="VARCHAR" />
+    <result column="lowest" property="lowest" jdbcType="VARCHAR" />
+    <result column="committee_poor" property="committeePoor" jdbcType="VARCHAR" />
+    <result column="average_price" property="averagePrice" jdbcType="VARCHAR" />
+    <result column="inside_dish" property="insideDish" jdbcType="VARCHAR" />
+    <result column="outside_dish" property="outsideDish" jdbcType="VARCHAR" />
+    <result column="inside_outside_than" property="insideOutsideThan" jdbcType="VARCHAR" />
+    <result column="buy_one_val" property="buyOneVal" jdbcType="VARCHAR" />
+    <result column="appoint_than" property="appointThan" jdbcType="VARCHAR" />
+    <result column="pb_ratio" property="pbRatio" jdbcType="VARCHAR" />
+    <result column="total_equity" property="totalEquity" jdbcType="VARCHAR" />
+    <result column="sell_one_val" property="sellOneVal" jdbcType="VARCHAR" />
+    <result column="circulation_capital" property="circulationCapital" jdbcType="VARCHAR" />
+    <result column="current_market" property="currentMarket" jdbcType="VARCHAR" />
+    <result column="three_days_gains" property="threeDaysGains" jdbcType="VARCHAR" />
+    <result column="six_days_gains" property="sixDaysGains" jdbcType="VARCHAR" />
+    <result column="three_days_change_hand" property="threeDaysChangeHand" jdbcType="VARCHAR" />
+    <result column="six_days_change_hand" property="sixDaysChangeHand" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, name, price, gains, gainsval, totalval, change_hand, buy_price, sell_price, 
+    higher_speed, total_hand, total_price, pe_ratio, industry_involved, highest, newvol, 
+    start_price, yesterday_end_price, amplitude, than, lowest, committee_poor, average_price, 
+    inside_dish, outside_dish, inside_outside_than, buy_one_val, appoint_than, pb_ratio, 
+    total_equity, sell_one_val, circulation_capital, current_market, three_days_gains, 
+    six_days_gains, three_days_change_hand, six_days_change_hand, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from stock_hs_data_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from stock_hs_data_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.magic.www.permissions.domain.Stock" >
+    insert into stock_hs_data_record (id, code, name, 
+      price, gains, gainsval, 
+      totalval, change_hand, buy_price, 
+      sell_price, higher_speed, total_hand, 
+      total_price, pe_ratio, industry_involved, 
+      highest, newvol, start_price, 
+      yesterday_end_price, amplitude, than, 
+      lowest, committee_poor, average_price, 
+      inside_dish, outside_dish, inside_outside_than, 
+      buy_one_val, appoint_than, pb_ratio, 
+      total_equity, sell_one_val, circulation_capital, 
+      current_market, three_days_gains, six_days_gains, 
+      three_days_change_hand, six_days_change_hand, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{price,jdbcType=VARCHAR}, #{gains,jdbcType=VARCHAR}, #{gainsval,jdbcType=VARCHAR}, 
+      #{totalval,jdbcType=VARCHAR}, #{changeHand,jdbcType=VARCHAR}, #{buyPrice,jdbcType=VARCHAR}, 
+      #{sellPrice,jdbcType=VARCHAR}, #{higherSpeed,jdbcType=VARCHAR}, #{totalHand,jdbcType=VARCHAR}, 
+      #{totalPrice,jdbcType=VARCHAR}, #{peRatio,jdbcType=VARCHAR}, #{industryInvolved,jdbcType=VARCHAR}, 
+      #{highest,jdbcType=VARCHAR}, #{newvol,jdbcType=VARCHAR}, #{startPrice,jdbcType=VARCHAR}, 
+      #{yesterdayEndPrice,jdbcType=VARCHAR}, #{amplitude,jdbcType=VARCHAR}, #{than,jdbcType=VARCHAR}, 
+      #{lowest,jdbcType=VARCHAR}, #{committeePoor,jdbcType=VARCHAR}, #{averagePrice,jdbcType=VARCHAR}, 
+      #{insideDish,jdbcType=VARCHAR}, #{outsideDish,jdbcType=VARCHAR}, #{insideOutsideThan,jdbcType=VARCHAR}, 
+      #{buyOneVal,jdbcType=VARCHAR}, #{appointThan,jdbcType=VARCHAR}, #{pbRatio,jdbcType=VARCHAR}, 
+      #{totalEquity,jdbcType=VARCHAR}, #{sellOneVal,jdbcType=VARCHAR}, #{circulationCapital,jdbcType=VARCHAR}, 
+      #{currentMarket,jdbcType=VARCHAR}, #{threeDaysGains,jdbcType=VARCHAR}, #{sixDaysGains,jdbcType=VARCHAR}, 
+      #{threeDaysChangeHand,jdbcType=VARCHAR}, #{sixDaysChangeHand,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.magic.www.permissions.domain.Stock" >
+    insert into stock_hs_data_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="gains != null" >
+        gains,
+      </if>
+      <if test="gainsval != null" >
+        gainsval,
+      </if>
+      <if test="totalval != null" >
+        totalval,
+      </if>
+      <if test="changeHand != null" >
+        change_hand,
+      </if>
+      <if test="buyPrice != null" >
+        buy_price,
+      </if>
+      <if test="sellPrice != null" >
+        sell_price,
+      </if>
+      <if test="higherSpeed != null" >
+        higher_speed,
+      </if>
+      <if test="totalHand != null" >
+        total_hand,
+      </if>
+      <if test="totalPrice != null" >
+        total_price,
+      </if>
+      <if test="peRatio != null" >
+        pe_ratio,
+      </if>
+      <if test="industryInvolved != null" >
+        industry_involved,
+      </if>
+      <if test="highest != null" >
+        highest,
+      </if>
+      <if test="newvol != null" >
+        newvol,
+      </if>
+      <if test="startPrice != null" >
+        start_price,
+      </if>
+      <if test="yesterdayEndPrice != null" >
+        yesterday_end_price,
+      </if>
+      <if test="amplitude != null" >
+        amplitude,
+      </if>
+      <if test="than != null" >
+        than,
+      </if>
+      <if test="lowest != null" >
+        lowest,
+      </if>
+      <if test="committeePoor != null" >
+        committee_poor,
+      </if>
+      <if test="averagePrice != null" >
+        average_price,
+      </if>
+      <if test="insideDish != null" >
+        inside_dish,
+      </if>
+      <if test="outsideDish != null" >
+        outside_dish,
+      </if>
+      <if test="insideOutsideThan != null" >
+        inside_outside_than,
+      </if>
+      <if test="buyOneVal != null" >
+        buy_one_val,
+      </if>
+      <if test="appointThan != null" >
+        appoint_than,
+      </if>
+      <if test="pbRatio != null" >
+        pb_ratio,
+      </if>
+      <if test="totalEquity != null" >
+        total_equity,
+      </if>
+      <if test="sellOneVal != null" >
+        sell_one_val,
+      </if>
+      <if test="circulationCapital != null" >
+        circulation_capital,
+      </if>
+      <if test="currentMarket != null" >
+        current_market,
+      </if>
+      <if test="threeDaysGains != null" >
+        three_days_gains,
+      </if>
+      <if test="sixDaysGains != null" >
+        six_days_gains,
+      </if>
+      <if test="threeDaysChangeHand != null" >
+        three_days_change_hand,
+      </if>
+      <if test="sixDaysChangeHand != null" >
+        six_days_change_hand,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="gains != null" >
+        #{gains,jdbcType=VARCHAR},
+      </if>
+      <if test="gainsval != null" >
+        #{gainsval,jdbcType=VARCHAR},
+      </if>
+      <if test="totalval != null" >
+        #{totalval,jdbcType=VARCHAR},
+      </if>
+      <if test="changeHand != null" >
+        #{changeHand,jdbcType=VARCHAR},
+      </if>
+      <if test="buyPrice != null" >
+        #{buyPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="sellPrice != null" >
+        #{sellPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="higherSpeed != null" >
+        #{higherSpeed,jdbcType=VARCHAR},
+      </if>
+      <if test="totalHand != null" >
+        #{totalHand,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="peRatio != null" >
+        #{peRatio,jdbcType=VARCHAR},
+      </if>
+      <if test="industryInvolved != null" >
+        #{industryInvolved,jdbcType=VARCHAR},
+      </if>
+      <if test="highest != null" >
+        #{highest,jdbcType=VARCHAR},
+      </if>
+      <if test="newvol != null" >
+        #{newvol,jdbcType=VARCHAR},
+      </if>
+      <if test="startPrice != null" >
+        #{startPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="yesterdayEndPrice != null" >
+        #{yesterdayEndPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="amplitude != null" >
+        #{amplitude,jdbcType=VARCHAR},
+      </if>
+      <if test="than != null" >
+        #{than,jdbcType=VARCHAR},
+      </if>
+      <if test="lowest != null" >
+        #{lowest,jdbcType=VARCHAR},
+      </if>
+      <if test="committeePoor != null" >
+        #{committeePoor,jdbcType=VARCHAR},
+      </if>
+      <if test="averagePrice != null" >
+        #{averagePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="insideDish != null" >
+        #{insideDish,jdbcType=VARCHAR},
+      </if>
+      <if test="outsideDish != null" >
+        #{outsideDish,jdbcType=VARCHAR},
+      </if>
+      <if test="insideOutsideThan != null" >
+        #{insideOutsideThan,jdbcType=VARCHAR},
+      </if>
+      <if test="buyOneVal != null" >
+        #{buyOneVal,jdbcType=VARCHAR},
+      </if>
+      <if test="appointThan != null" >
+        #{appointThan,jdbcType=VARCHAR},
+      </if>
+      <if test="pbRatio != null" >
+        #{pbRatio,jdbcType=VARCHAR},
+      </if>
+      <if test="totalEquity != null" >
+        #{totalEquity,jdbcType=VARCHAR},
+      </if>
+      <if test="sellOneVal != null" >
+        #{sellOneVal,jdbcType=VARCHAR},
+      </if>
+      <if test="circulationCapital != null" >
+        #{circulationCapital,jdbcType=VARCHAR},
+      </if>
+      <if test="currentMarket != null" >
+        #{currentMarket,jdbcType=VARCHAR},
+      </if>
+      <if test="threeDaysGains != null" >
+        #{threeDaysGains,jdbcType=VARCHAR},
+      </if>
+      <if test="sixDaysGains != null" >
+        #{sixDaysGains,jdbcType=VARCHAR},
+      </if>
+      <if test="threeDaysChangeHand != null" >
+        #{threeDaysChangeHand,jdbcType=VARCHAR},
+      </if>
+      <if test="sixDaysChangeHand != null" >
+        #{sixDaysChangeHand,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.magic.www.permissions.domain.Stock" >
+    update stock_hs_data_record
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="gains != null" >
+        gains = #{gains,jdbcType=VARCHAR},
+      </if>
+      <if test="gainsval != null" >
+        gainsval = #{gainsval,jdbcType=VARCHAR},
+      </if>
+      <if test="totalval != null" >
+        totalval = #{totalval,jdbcType=VARCHAR},
+      </if>
+      <if test="changeHand != null" >
+        change_hand = #{changeHand,jdbcType=VARCHAR},
+      </if>
+      <if test="buyPrice != null" >
+        buy_price = #{buyPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="sellPrice != null" >
+        sell_price = #{sellPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="higherSpeed != null" >
+        higher_speed = #{higherSpeed,jdbcType=VARCHAR},
+      </if>
+      <if test="totalHand != null" >
+        total_hand = #{totalHand,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null" >
+        total_price = #{totalPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="peRatio != null" >
+        pe_ratio = #{peRatio,jdbcType=VARCHAR},
+      </if>
+      <if test="industryInvolved != null" >
+        industry_involved = #{industryInvolved,jdbcType=VARCHAR},
+      </if>
+      <if test="highest != null" >
+        highest = #{highest,jdbcType=VARCHAR},
+      </if>
+      <if test="newvol != null" >
+        newvol = #{newvol,jdbcType=VARCHAR},
+      </if>
+      <if test="startPrice != null" >
+        start_price = #{startPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="yesterdayEndPrice != null" >
+        yesterday_end_price = #{yesterdayEndPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="amplitude != null" >
+        amplitude = #{amplitude,jdbcType=VARCHAR},
+      </if>
+      <if test="than != null" >
+        than = #{than,jdbcType=VARCHAR},
+      </if>
+      <if test="lowest != null" >
+        lowest = #{lowest,jdbcType=VARCHAR},
+      </if>
+      <if test="committeePoor != null" >
+        committee_poor = #{committeePoor,jdbcType=VARCHAR},
+      </if>
+      <if test="averagePrice != null" >
+        average_price = #{averagePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="insideDish != null" >
+        inside_dish = #{insideDish,jdbcType=VARCHAR},
+      </if>
+      <if test="outsideDish != null" >
+        outside_dish = #{outsideDish,jdbcType=VARCHAR},
+      </if>
+      <if test="insideOutsideThan != null" >
+        inside_outside_than = #{insideOutsideThan,jdbcType=VARCHAR},
+      </if>
+      <if test="buyOneVal != null" >
+        buy_one_val = #{buyOneVal,jdbcType=VARCHAR},
+      </if>
+      <if test="appointThan != null" >
+        appoint_than = #{appointThan,jdbcType=VARCHAR},
+      </if>
+      <if test="pbRatio != null" >
+        pb_ratio = #{pbRatio,jdbcType=VARCHAR},
+      </if>
+      <if test="totalEquity != null" >
+        total_equity = #{totalEquity,jdbcType=VARCHAR},
+      </if>
+      <if test="sellOneVal != null" >
+        sell_one_val = #{sellOneVal,jdbcType=VARCHAR},
+      </if>
+      <if test="circulationCapital != null" >
+        circulation_capital = #{circulationCapital,jdbcType=VARCHAR},
+      </if>
+      <if test="currentMarket != null" >
+        current_market = #{currentMarket,jdbcType=VARCHAR},
+      </if>
+      <if test="threeDaysGains != null" >
+        three_days_gains = #{threeDaysGains,jdbcType=VARCHAR},
+      </if>
+      <if test="sixDaysGains != null" >
+        six_days_gains = #{sixDaysGains,jdbcType=VARCHAR},
+      </if>
+      <if test="threeDaysChangeHand != null" >
+        three_days_change_hand = #{threeDaysChangeHand,jdbcType=VARCHAR},
+      </if>
+      <if test="sixDaysChangeHand != null" >
+        six_days_change_hand = #{sixDaysChangeHand,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.magic.www.permissions.domain.Stock" >
+    update stock_hs_data_record
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      gains = #{gains,jdbcType=VARCHAR},
+      gainsval = #{gainsval,jdbcType=VARCHAR},
+      totalval = #{totalval,jdbcType=VARCHAR},
+      change_hand = #{changeHand,jdbcType=VARCHAR},
+      buy_price = #{buyPrice,jdbcType=VARCHAR},
+      sell_price = #{sellPrice,jdbcType=VARCHAR},
+      higher_speed = #{higherSpeed,jdbcType=VARCHAR},
+      total_hand = #{totalHand,jdbcType=VARCHAR},
+      total_price = #{totalPrice,jdbcType=VARCHAR},
+      pe_ratio = #{peRatio,jdbcType=VARCHAR},
+      industry_involved = #{industryInvolved,jdbcType=VARCHAR},
+      highest = #{highest,jdbcType=VARCHAR},
+      newvol = #{newvol,jdbcType=VARCHAR},
+      start_price = #{startPrice,jdbcType=VARCHAR},
+      yesterday_end_price = #{yesterdayEndPrice,jdbcType=VARCHAR},
+      amplitude = #{amplitude,jdbcType=VARCHAR},
+      than = #{than,jdbcType=VARCHAR},
+      lowest = #{lowest,jdbcType=VARCHAR},
+      committee_poor = #{committeePoor,jdbcType=VARCHAR},
+      average_price = #{averagePrice,jdbcType=VARCHAR},
+      inside_dish = #{insideDish,jdbcType=VARCHAR},
+      outside_dish = #{outsideDish,jdbcType=VARCHAR},
+      inside_outside_than = #{insideOutsideThan,jdbcType=VARCHAR},
+      buy_one_val = #{buyOneVal,jdbcType=VARCHAR},
+      appoint_than = #{appointThan,jdbcType=VARCHAR},
+      pb_ratio = #{pbRatio,jdbcType=VARCHAR},
+      total_equity = #{totalEquity,jdbcType=VARCHAR},
+      sell_one_val = #{sellOneVal,jdbcType=VARCHAR},
+      circulation_capital = #{circulationCapital,jdbcType=VARCHAR},
+      current_market = #{currentMarket,jdbcType=VARCHAR},
+      three_days_gains = #{threeDaysGains,jdbcType=VARCHAR},
+      six_days_gains = #{sixDaysGains,jdbcType=VARCHAR},
+      three_days_change_hand = #{threeDaysChangeHand,jdbcType=VARCHAR},
+      six_days_change_hand = #{sixDaysChangeHand,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="com.magic.www.permissions.domain.Stock">
+    select
+    <include refid="Base_Column_List" />
+    from stock_hs_data_record
+    where 1 = 1
+    <if test="code != null" >
+      and code = #{code,jdbcType=VARCHAR}
+    </if>
+    <if test="name != null" >
+      and name = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="price != null" >
+      and price = #{price,jdbcType=VARCHAR}
+    </if>
+    <if test="gains != null" >
+      and gains = #{gains,jdbcType=VARCHAR}
+    </if>
+    <if test="gainsval != null" >
+      and gainsval = #{gainsval,jdbcType=VARCHAR}
+    </if>
+    <if test="totalval != null" >
+      and totalval = #{totalval,jdbcType=VARCHAR}
+    </if>
+    <if test="changeHand != null" >
+      and change_hand = #{changeHand,jdbcType=VARCHAR}
+    </if>
+    <if test="buyPrice != null" >
+      and buy_price = #{buyPrice,jdbcType=VARCHAR}
+    </if>
+    <if test="sellPrice != null" >
+      and sell_price = #{sellPrice,jdbcType=VARCHAR}
+    </if>
+    <if test="higherSpeed != null" >
+      and higher_speed = #{higherSpeed,jdbcType=VARCHAR}
+    </if>
+    <if test="totalHand != null" >
+      and total_hand = #{totalHand,jdbcType=VARCHAR}
+    </if>
+    <if test="totalPrice != null" >
+      and total_price = #{totalPrice,jdbcType=VARCHAR}
+    </if>
+    <if test="peRatio != null" >
+      and pe_ratio = #{peRatio,jdbcType=VARCHAR}
+    </if>
+    <if test="industryInvolved != null" >
+      and industry_involved = #{industryInvolved,jdbcType=VARCHAR}
+    </if>
+    <if test="highest != null" >
+      and highest = #{highest,jdbcType=VARCHAR}
+    </if>
+    <if test="newvol != null" >
+      and newvol = #{newvol,jdbcType=VARCHAR}
+    </if>
+    <if test="startPrice != null" >
+      and start_price = #{startPrice,jdbcType=VARCHAR}
+    </if>
+    <if test="yesterdayEndPrice != null" >
+      and yesterday_end_price = #{yesterdayEndPrice,jdbcType=VARCHAR}
+    </if>
+    <if test="amplitude != null" >
+      and amplitude = #{amplitude,jdbcType=VARCHAR}
+    </if>
+    <if test="than != null" >
+      and than = #{than,jdbcType=VARCHAR}
+    </if>
+    <if test="lowest != null" >
+      and lowest = #{lowest,jdbcType=VARCHAR}
+    </if>
+    <if test="committeePoor != null" >
+      and committee_poor = #{committeePoor,jdbcType=VARCHAR}
+    </if>
+    <if test="averagePrice != null" >
+      and average_price = #{averagePrice,jdbcType=VARCHAR}
+    </if>
+    <if test="insideDish != null" >
+      and inside_dish = #{insideDish,jdbcType=VARCHAR}
+    </if>
+    <if test="outsideDish != null" >
+      and outside_dish = #{outsideDish,jdbcType=VARCHAR}
+    </if>
+    <if test="insideOutsideThan != null" >
+      and inside_outside_than = #{insideOutsideThan,jdbcType=VARCHAR}
+    </if>
+    <if test="buyOneVal != null" >
+      and buy_one_val = #{buyOneVal,jdbcType=VARCHAR}
+    </if>
+    <if test="appointThan != null" >
+      and appoint_than = #{appointThan,jdbcType=VARCHAR}
+    </if>
+    <if test="pbRatio != null" >
+      and pb_ratio = #{pbRatio,jdbcType=VARCHAR}
+    </if>
+    <if test="totalEquity != null" >
+      and total_equity = #{totalEquity,jdbcType=VARCHAR}
+    </if>
+    <if test="sellOneVal != null" >
+      and sell_one_val = #{sellOneVal,jdbcType=VARCHAR}
+    </if>
+    <if test="circulationCapital != null" >
+      and circulation_capital = #{circulationCapital,jdbcType=VARCHAR}
+    </if>
+    <if test="currentMarket != null" >
+      and current_market = #{currentMarket,jdbcType=VARCHAR}
+    </if>
+    <if test="threeDaysGains != null" >
+      and three_days_gains = #{threeDaysGains,jdbcType=VARCHAR}
+    </if>
+    <if test="sixDaysGains != null" >
+      and six_days_gains = #{sixDaysGains,jdbcType=VARCHAR}
+    </if>
+    <if test="threeDaysChangeHand != null" >
+      and three_days_change_hand = #{threeDaysChangeHand,jdbcType=VARCHAR}
+    </if>
+    <if test="sixDaysChangeHand != null" >
+      and six_days_change_hand = #{sixDaysChangeHand,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="startDate != null" >
+      and create_time <![CDATA[>=]]> #{startDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="endDate != null" >
+      and create_time <![CDATA[<=]]> #{endDate,jdbcType=TIMESTAMP}
+    </if>
+    order by create_time DESC
+    <if test="pageState != 0">
+      LIMIT #{offset,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};
+    </if>
+  </select>
+  <!--获取涨停股票-->
+  <select id="queryHardenStock" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from stock_hs_data_record t
+    where t.create_time = #{date} and t.sell_price = 0 and t.gains <![CDATA[<]]> 11 and t.gains <![CDATA[>]]> 9;
+  </select>
+  <!--获取跌停股票-->
+  <select id="queryDropStock" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from stock_hs_data_record t
+    where t.create_time = #{date} and t.buy_price = 0 and t.gains <![CDATA[<]]> -9;
+  </select>
+  <!--获取涨停股票的板块名称列表-->
+  <select id="queryPlateListForHardenStock" resultType="java.util.Map">
+    select t.industry_involved,count(1) as count
+    from stock_hs_data_record t
+    where t.create_time = #{date} and t.sell_price = 0 and t.gains <![CDATA[<]]> 11 and t.gains <![CDATA[>]]> 9 group by t.industry_involved;
+  </select>
+  <!--获取涨幅大于3%的数据-->
+  <select id="queryStockByGreater3" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from stock_hs_data_record t
+    where t.create_time = #{date} and t.gains <![CDATA[>]]> 3;
+  </select>
+  <select id="queryGainsCount" resultType="java.util.Map">
+    SELECT
+    DATE_FORMAT(s.create_time,'%y-%m-%d') as 'date',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> 10.2 and s.gains<![CDATA[>=]]> 9 THEN s.id END) as 'gains10',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> 9 and s.gains<![CDATA[>=]]> 8 THEN s.id END) as 'gains9',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> 8 and s.gains<![CDATA[>=]]> 7 THEN s.id END) as 'gains8',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> 7 and s.gains<![CDATA[>=]]> 6 THEN s.id END) as 'gains7',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> 6 and s.gains<![CDATA[>=]]> 5 THEN s.id END) as 'gains6',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> 5 and s.gains<![CDATA[>=]]> 4 THEN s.id END) as 'gains5',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> 4 and s.gains<![CDATA[>=]]> 3 THEN s.id END) as 'gains4',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> 3 and s.gains<![CDATA[>=]]> 2 THEN s.id END) as 'gains3',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> 2 and s.gains<![CDATA[>=]]> 1 THEN s.id END) as 'gains2',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> 1 and s.gains<![CDATA[>=]]> 0 THEN s.id END) as 'gains1',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> 0 and s.gains<![CDATA[>=]]> -1 THEN s.id END) as 'gains-1',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> -1 and s.gains<![CDATA[>=]]> -2 THEN s.id END) as 'gains-2',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> -2 and s.gains<![CDATA[>=]]> -3 THEN s.id END) as 'gains-3',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> -3 and s.gains<![CDATA[>=]]> -4 THEN s.id END) as 'gains-4',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> -4 and s.gains<![CDATA[>=]]> -5 THEN s.id END) as 'gains-5',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> -5 and s.gains<![CDATA[>=]]> -6 THEN s.id END) as 'gains-6',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> -6 and s.gains<![CDATA[>=]]> -7 THEN s.id END) as 'gains-7',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> -7 and s.gains<![CDATA[>=]]> -8 THEN s.id END) as 'gains-8',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> -8 and s.gains<![CDATA[>=]]> -9 THEN s.id END) as 'gains-9',
+    COUNT(CASE WHEN s.gains <![CDATA[<]]> -9 and s.gains<![CDATA[>=]]> -10.2 THEN s.id END) as 'gains-10'
+    FROM stock_hs_data_record s
+    where 1 = 1
+    <if test="startDate != null" >
+      and s.create_time <![CDATA[>=]]> #{startDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="endDate != null" >
+      and s.create_time <![CDATA[<=]]> #{endDate,jdbcType=TIMESTAMP}
+    </if>
+    group by DATE_FORMAT(s.create_time,'%y-%m-%d')
+    ORDER BY date DESC
+    <if test="pageState != 0">
+      LIMIT #{offset,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};
+    </if>
+  </select>
+</mapper>

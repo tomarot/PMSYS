@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.magic.www.permissions.mapper.CollectStockMoneyRankingMapper" >
+  <resultMap id="BaseResultMap" type="com.magic.www.permissions.domain.CollectStockMoneyRanking" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="date_type" property="dateType" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="zdf" property="zdf" jdbcType="VARCHAR" />
+    <result column="main_net_inflow" property="mainNetInflow" jdbcType="VARCHAR" />
+    <result column="main_net_proportion" property="mainNetProportion" jdbcType="VARCHAR" />
+    <result column="very_large_single_net" property="veryLargeSingleNet" jdbcType="VARCHAR" />
+    <result column="very_large_single_proportion" property="veryLargeSingleProportion" jdbcType="VARCHAR" />
+    <result column="large_single_net" property="largeSingleNet" jdbcType="VARCHAR" />
+    <result column="large_single_proportion" property="largeSingleProportion" jdbcType="VARCHAR" />
+    <result column="single_net" property="singleNet" jdbcType="VARCHAR" />
+    <result column="single_net_proportion" property="singleNetProportion" jdbcType="VARCHAR" />
+    <result column="small_single_net" property="smallSingleNet" jdbcType="VARCHAR" />
+    <result column="small_single_proportion" property="smallSingleProportion" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, date_type, code, name, zdf, main_net_inflow, main_net_proportion, very_large_single_net, 
+    very_large_single_proportion, large_single_net, large_single_proportion, single_net, 
+    single_net_proportion, small_single_net, small_single_proportion, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from collect_stock_money_ranking
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from collect_stock_money_ranking
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.magic.www.permissions.domain.CollectStockMoneyRanking" >
+    insert into collect_stock_money_ranking (id, date_type, code, 
+      name, zdf, main_net_inflow, 
+      main_net_proportion, very_large_single_net, 
+      very_large_single_proportion, large_single_net, 
+      large_single_proportion, single_net, single_net_proportion, 
+      small_single_net, small_single_proportion, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{dateType,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{zdf,jdbcType=VARCHAR}, #{mainNetInflow,jdbcType=VARCHAR}, 
+      #{mainNetProportion,jdbcType=VARCHAR}, #{veryLargeSingleNet,jdbcType=VARCHAR}, 
+      #{veryLargeSingleProportion,jdbcType=VARCHAR}, #{largeSingleNet,jdbcType=VARCHAR}, 
+      #{largeSingleProportion,jdbcType=VARCHAR}, #{singleNet,jdbcType=VARCHAR}, #{singleNetProportion,jdbcType=VARCHAR}, 
+      #{smallSingleNet,jdbcType=VARCHAR}, #{smallSingleProportion,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.magic.www.permissions.domain.CollectStockMoneyRanking" >
+    insert into collect_stock_money_ranking
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dateType != null" >
+        date_type,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="zdf != null" >
+        zdf,
+      </if>
+      <if test="mainNetInflow != null" >
+        main_net_inflow,
+      </if>
+      <if test="mainNetProportion != null" >
+        main_net_proportion,
+      </if>
+      <if test="veryLargeSingleNet != null" >
+        very_large_single_net,
+      </if>
+      <if test="veryLargeSingleProportion != null" >
+        very_large_single_proportion,
+      </if>
+      <if test="largeSingleNet != null" >
+        large_single_net,
+      </if>
+      <if test="largeSingleProportion != null" >
+        large_single_proportion,
+      </if>
+      <if test="singleNet != null" >
+        single_net,
+      </if>
+      <if test="singleNetProportion != null" >
+        single_net_proportion,
+      </if>
+      <if test="smallSingleNet != null" >
+        small_single_net,
+      </if>
+      <if test="smallSingleProportion != null" >
+        small_single_proportion,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dateType != null" >
+        #{dateType,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="zdf != null" >
+        #{zdf,jdbcType=VARCHAR},
+      </if>
+      <if test="mainNetInflow != null" >
+        #{mainNetInflow,jdbcType=VARCHAR},
+      </if>
+      <if test="mainNetProportion != null" >
+        #{mainNetProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="veryLargeSingleNet != null" >
+        #{veryLargeSingleNet,jdbcType=VARCHAR},
+      </if>
+      <if test="veryLargeSingleProportion != null" >
+        #{veryLargeSingleProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="largeSingleNet != null" >
+        #{largeSingleNet,jdbcType=VARCHAR},
+      </if>
+      <if test="largeSingleProportion != null" >
+        #{largeSingleProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="singleNet != null" >
+        #{singleNet,jdbcType=VARCHAR},
+      </if>
+      <if test="singleNetProportion != null" >
+        #{singleNetProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="smallSingleNet != null" >
+        #{smallSingleNet,jdbcType=VARCHAR},
+      </if>
+      <if test="smallSingleProportion != null" >
+        #{smallSingleProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.magic.www.permissions.domain.CollectStockMoneyRanking" >
+    update collect_stock_money_ranking
+    <set >
+      <if test="dateType != null" >
+        date_type = #{dateType,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="zdf != null" >
+        zdf = #{zdf,jdbcType=VARCHAR},
+      </if>
+      <if test="mainNetInflow != null" >
+        main_net_inflow = #{mainNetInflow,jdbcType=VARCHAR},
+      </if>
+      <if test="mainNetProportion != null" >
+        main_net_proportion = #{mainNetProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="veryLargeSingleNet != null" >
+        very_large_single_net = #{veryLargeSingleNet,jdbcType=VARCHAR},
+      </if>
+      <if test="veryLargeSingleProportion != null" >
+        very_large_single_proportion = #{veryLargeSingleProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="largeSingleNet != null" >
+        large_single_net = #{largeSingleNet,jdbcType=VARCHAR},
+      </if>
+      <if test="largeSingleProportion != null" >
+        large_single_proportion = #{largeSingleProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="singleNet != null" >
+        single_net = #{singleNet,jdbcType=VARCHAR},
+      </if>
+      <if test="singleNetProportion != null" >
+        single_net_proportion = #{singleNetProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="smallSingleNet != null" >
+        small_single_net = #{smallSingleNet,jdbcType=VARCHAR},
+      </if>
+      <if test="smallSingleProportion != null" >
+        small_single_proportion = #{smallSingleProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.magic.www.permissions.domain.CollectStockMoneyRanking" >
+    update collect_stock_money_ranking
+    set date_type = #{dateType,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      zdf = #{zdf,jdbcType=VARCHAR},
+      main_net_inflow = #{mainNetInflow,jdbcType=VARCHAR},
+      main_net_proportion = #{mainNetProportion,jdbcType=VARCHAR},
+      very_large_single_net = #{veryLargeSingleNet,jdbcType=VARCHAR},
+      very_large_single_proportion = #{veryLargeSingleProportion,jdbcType=VARCHAR},
+      large_single_net = #{largeSingleNet,jdbcType=VARCHAR},
+      large_single_proportion = #{largeSingleProportion,jdbcType=VARCHAR},
+      single_net = #{singleNet,jdbcType=VARCHAR},
+      single_net_proportion = #{singleNetProportion,jdbcType=VARCHAR},
+      small_single_net = #{smallSingleNet,jdbcType=VARCHAR},
+      small_single_proportion = #{smallSingleProportion,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="com.magic.www.permissions.domain.CollectStockMoneyRanking">
+    select
+    <include refid="Base_Column_List" />
+    from collect_stock_money_ranking
+    where 1 = 1
+    <if test="dateType != null" >
+      date_type = #{dateType,jdbcType=VARCHAR},
+    </if>
+    <if test="code != null" >
+      code = #{code,jdbcType=VARCHAR},
+    </if>
+    <if test="name != null" >
+      name = #{name,jdbcType=VARCHAR},
+    </if>
+    <if test="zdf != null" >
+      zdf = #{zdf,jdbcType=VARCHAR},
+    </if>
+    <if test="mainNetInflow != null" >
+      main_net_inflow = #{mainNetInflow,jdbcType=VARCHAR},
+    </if>
+    <if test="mainNetProportion != null" >
+      main_net_proportion = #{mainNetProportion,jdbcType=VARCHAR},
+    </if>
+    <if test="veryLargeSingleNet != null" >
+      very_large_single_net = #{veryLargeSingleNet,jdbcType=VARCHAR},
+    </if>
+    <if test="veryLargeSingleProportion != null" >
+      very_large_single_proportion = #{veryLargeSingleProportion,jdbcType=VARCHAR},
+    </if>
+    <if test="largeSingleNet != null" >
+      large_single_net = #{largeSingleNet,jdbcType=VARCHAR},
+    </if>
+    <if test="largeSingleProportion != null" >
+      large_single_proportion = #{largeSingleProportion,jdbcType=VARCHAR},
+    </if>
+    <if test="singleNet != null" >
+      single_net = #{singleNet,jdbcType=VARCHAR},
+    </if>
+    <if test="singleNetProportion != null" >
+      single_net_proportion = #{singleNetProportion,jdbcType=VARCHAR},
+    </if>
+    <if test="smallSingleNet != null" >
+      small_single_net = #{smallSingleNet,jdbcType=VARCHAR},
+    </if>
+    <if test="smallSingleProportion != null" >
+      small_single_proportion = #{smallSingleProportion,jdbcType=VARCHAR},
+    </if>
+    <if test="createTime != null" >
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+    </if>
+    <if test="createTimeStr != null" >
+      and date_format(create_time,'%Y-%m-%d') = #{createTimeStr,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+</mapper>

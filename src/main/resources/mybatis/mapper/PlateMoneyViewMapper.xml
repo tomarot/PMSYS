@@ -19,13 +19,13 @@
     select
       <include refid="Base_Column_List" />
     from view_plate_money_data t
-    where t.create_time = #{date} and type = #{type} and t.main_net_inflow <![CDATA[>]]> 0 order by t.main_net_inflow+0 desc  LIMIT 0,#{num};
+    where t.create_time = #{date} and type = #{type} and t.main_net_inflow_f <![CDATA[>]]> 0 order by t.main_net_inflow_f+0 desc  LIMIT 0,#{num};
   </select>
   <!--获取板块资金流出榜数据-->
   <select id="queryPlateMoneyOutOfTop" resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List" />
     from view_plate_money_data t
-    where t.create_time = #{date} and type = #{type} and t.main_net_inflow <![CDATA[<]]> 0 order by t.main_net_inflow+0 asc  LIMIT 0,#{num};
+    where t.create_time = #{date} and type = #{type} and t.main_net_inflow_f <![CDATA[<]]> 0 order by t.main_net_inflow_f+0 asc  LIMIT 0,#{num};
   </select>
 </mapper>

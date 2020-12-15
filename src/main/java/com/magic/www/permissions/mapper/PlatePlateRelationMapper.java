@@ -19,6 +19,12 @@ public interface PlatePlateRelationMapper {
     int updateByPrimaryKey(PlatePlateRelation record);
 
     /**
+     * 清空关联关系数据
+     * @return
+     */
+    int deleteAll();
+
+    /**
      * 清空关联关系
      * @param hyCode 行业代码
      * @return

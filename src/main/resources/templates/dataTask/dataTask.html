@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据任务</title>
+    <link rel="stylesheet" href="/PMSYS/library/layui/css/layui.css">
+</head>
+<body>
+<div style="margin: 100px;">
+    <label>点击按钮规整连续涨停数据</label>
+    <button id="continuousHardenBtn" class="layui-btn" style="margin-left: 50px;">规整连续涨停数据</button>
+    <br>
+    <br>
+    <label>点击按钮采集实时成交额股票分布</label>
+    <button id="realTimeVolumeBtn" class="layui-btn" style="margin-left: 50px;">采集实时成交额股票分布</button>
+    <br>
+    <br>
+    <label>点击按钮采集实时成交额股票分布</label>
+    <button id="updateStockAndPlateBtn" class="layui-btn" style="margin-left: 50px;">更新个股及板块基础信息</button>
+    <br>
+    <br>
+    <label>点击按钮采集板块排行数据</label>
+    <button id="collectPlateRankingBtn" class="layui-btn" style="margin-left: 50px;">采集板块排行数据</button>
+    <br>
+    <br>
+    <label>点击按钮采集板块资金排行数据</label>
+    <button id="collectPlateMoneyRankingBtn" class="layui-btn" style="margin-left: 50px;">采集板块资金排行数据</button>
+    <br>
+    <br>
+    <label>点击按钮采集个股排行数据</label>
+    <button id="collectStockRankingBtn" class="layui-btn" style="margin-left: 50px;">采集个股排行数据</button>
+    <br>
+    <br>
+    <label>点击按钮采集个股资金排行数据</label>
+    <button id="collectStockMoneyRankingBtn" class="layui-btn" style="margin-left: 50px;">采集个股资金排行数据</button>
+</div>
+<script type="text/javascript" src="/PMSYS/library/jquery/jquery-3.1.1.min.js"></script>
+<script src="/PMSYS/library/layui/layui.js"></script>
+<script>
+    var baseUrl = top.config.ip+top.config.port+top.config.systemNmae;
+    layui.use('layer', function(){
+        var layer = layui.layer;
+        $(function(){
+            /*————————规整连续涨停数据————————*/
+            $("#continuousHardenBtn").click(function(){
+                var layerIndex = layer.open({
+                    title: '提示',
+                    area: ['400px', '200px'],
+                    type:1,
+                    closeBtn: 0,
+                    content: '<div style="text-align: center;line-height: 135px;"><div style="display: inline-block;">正在规整数据...</div> <i class="layui-icon layui-icon-loading layui-anim  layui-anim-rotate layui-anim-loop" style="font-size: 20px;color: #1E9FFF;"></i></div>'
+                });
+
+                $.ajax({
+                    type : "POST",
+                    dataType:"json",
+                    url : baseUrl + "/dataTask/statisticalContinuousHarden/",
+                    data : {},
+                    success : function(result) {
+                        if(result.result_code == 200){
+                            alert(result.result_msg);
+                            layer.close(layerIndex);
+                        }
+                        // console.log(result);
+                    },
+                    error : function(e){
+                    }
+                });
+            });
+            /*————————采集规整实时成交额分布————————*/
+            $("#realTimeVolumeBtn").click(function(){
+                var layerIndex = layer.open({
+                    title: '提示',
+                    area: ['400px', '200px'],
+                    type:1,
+                    closeBtn: 0,
+                    content: '<div style="text-align: center;line-height: 135px;"><div style="display: inline-block;">正在规整数据...</div> <i class="layui-icon layui-icon-loading layui-anim  layui-anim-rotate layui-anim-loop" style="font-size: 20px;color: #1E9FFF;"></i></div>'
+                });
+
+                $.ajax({
+                    type : "POST",
+                    dataType:"json",
+                    url : baseUrl + "/dataTask/collectCurrentStockGainsData/",
+                    data : {},
+                    success : function(result) {
+                        if(result.result_code == 200){
+                            alert(result.result_msg);
+                            layer.close(layerIndex);
+                        }
+                        // console.log(result);
+                    },
+                    error : function(e){
+                    }
+                });
+            });
+            /*————————更新个股和板块基础信息————————*/
+            $("#updateStockAndPlateBtn").click(function(){
+                var layerIndex = layer.open({
+                    title: '提示',
+                    area: ['400px', '200px'],
+                    type:1,
+                    closeBtn: 0,
+                    content: '<div style="text-align: center;line-height: 135px;"><div style="display: inline-block;">正在更新数据...</div> <i class="layui-icon layui-icon-loading layui-anim  layui-anim-rotate layui-anim-loop" style="font-size: 20px;color: #1E9FFF;"></i></div>'
+                });
+
+                $.ajax({
+                    type : "POST",
+                    dataType:"json",
+                    url : baseUrl + "/dataTask/collectStockPlateInfoData/",
+                    data : {},
+                    success : function(result) {
+                        if(result.result_code == 200){
+                            alert(result.result_msg);
+                            layer.close(layerIndex);
+                        }
+                        // console.log(result);
+                    },
+                    error : function(e){
+                    }
+                });
+            });
+            /*————————采集板块排行数据————————*/
+            $("#collectPlateRankingBtn").click(function(){
+                var layerIndex = layer.open({
+                    title: '提示',
+                    area: ['400px', '200px'],
+                    type:1,
+                    closeBtn: 0,
+                    content: '<div style="text-align: center;line-height: 135px;"><div style="display: inline-block;">正在采集数据...</div> <i class="layui-icon layui-icon-loading layui-anim  layui-anim-rotate layui-anim-loop" style="font-size: 20px;color: #1E9FFF;"></i></div>'
+                });
+
+                $.ajax({
+                    type : "POST",
+                    dataType:"json",
+                    url : baseUrl + "/dataTask/collectPlateRankingData/",
+                    data : {},
+                    success : function(result) {
+                        if(result.result_code == 200){
+                            alert(result.result_msg);
+                            layer.close(layerIndex);
+                        }
+                        // console.log(result);
+                    },
+                    error : function(e){
+                    }
+                });
+            });
+            /*————————采集板块资金排行数据————————*/
+            $("#collectPlateMoneyRankingBtn").click(function(){
+                var layerIndex = layer.open({
+                    title: '提示',
+                    area: ['400px', '200px'],
+                    type:1,
+                    closeBtn: 0,
+                    content: '<div style="text-align: center;line-height: 135px;"><div style="display: inline-block;">正在采集数据...</div> <i class="layui-icon layui-icon-loading layui-anim  layui-anim-rotate layui-anim-loop" style="font-size: 20px;color: #1E9FFF;"></i></div>'
+                });
+
+                $.ajax({
+                    type : "POST",
+                    dataType:"json",
+                    url : baseUrl + "/dataTask/collectPlateMoneyRankingData/",
+                    data : {},
+                    success : function(result) {
+                        if(result.result_code == 200){
+                            alert(result.result_msg);
+                            layer.close(layerIndex);
+                        }
+                        // console.log(result);
+                    },
+                    error : function(e){
+                    }
+                });
+            });
+
+            /*————————采集个股排行数据————————*/
+            $("#collectStockRankingBtn").click(function(){
+                var layerIndex = layer.open({
+                    title: '提示',
+                    area: ['400px', '200px'],
+                    type:1,
+                    closeBtn: 0,
+                    content: '<div style="text-align: center;line-height: 135px;"><div style="display: inline-block;">正在采集数据...</div> <i class="layui-icon layui-icon-loading layui-anim  layui-anim-rotate layui-anim-loop" style="font-size: 20px;color: #1E9FFF;"></i></div>'
+                });
+
+                $.ajax({
+                    type : "POST",
+                    dataType:"json",
+                    url : baseUrl + "/dataTask/collectStockRankingData/",
+                    data : {},
+                    success : function(result) {
+                        if(result.result_code == 200){
+                            alert(result.result_msg);
+                            layer.close(layerIndex);
+                        }
+                        // console.log(result);
+                    },
+                    error : function(e){
+                    }
+                });
+            });
+
+            /*————————采集个股资金排行数据————————*/
+            $("#collectStockMoneyRankingBtn").click(function(){
+                var layerIndex = layer.open({
+                    title: '提示',
+                    area: ['400px', '200px'],
+                    type:1,
+                    closeBtn: 0,
+                    content: '<div style="text-align: center;line-height: 135px;"><div style="display: inline-block;">正在采集数据...</div> <i class="layui-icon layui-icon-loading layui-anim  layui-anim-rotate layui-anim-loop" style="font-size: 20px;color: #1E9FFF;"></i></div>'
+                });
+
+                $.ajax({
+                    type : "POST",
+                    dataType:"json",
+                    url : baseUrl + "/dataTask/collectStockMoneyRankingData/",
+                    data : {},
+                    success : function(result) {
+                        if(result.result_code == 200){
+                            alert(result.result_msg);
+                            layer.close(layerIndex);
+                        }
+                        // console.log(result);
+                    },
+                    error : function(e){
+                    }
+                });
+            });
+        });
+    });
+</script>
+</body>
+</html>

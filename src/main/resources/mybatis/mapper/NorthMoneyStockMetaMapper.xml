@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.magic.www.permissions.mapper.NorthMoneyStockMetaMapper" >
+  <resultMap id="BaseResultMap" type="com.magic.www.permissions.domain.NorthMoneyStockMeta" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="date_type" property="dateType" jdbcType="VARCHAR" />
+    <result column="hd_date" property="hdDate" jdbcType="TIMESTAMP" />
+    <result column="s_code" property="sCode" jdbcType="VARCHAR" />
+    <result column="s_name" property="sName" jdbcType="VARCHAR" />
+    <result column="h_y_name" property="hYName" jdbcType="VARCHAR" />
+    <result column="h_y_code" property="hYCode" jdbcType="VARCHAR" />
+    <result column="q_y_name" property="qYName" jdbcType="VARCHAR" />
+    <result column="q_y_code" property="qYCode" jdbcType="VARCHAR" />
+    <result column="shares_rate" property="sharesRate" jdbcType="VARCHAR" />
+    <result column="new_price" property="newPrice" jdbcType="VARCHAR" />
+    <result column="zdf" property="zdf" jdbcType="VARCHAR" />
+    <result column="share_hold" property="shareHold" jdbcType="VARCHAR" />
+    <result column="share_s_z" property="shareSZ" jdbcType="VARCHAR" />
+    <result column="ltzb" property="ltzb" jdbcType="VARCHAR" />
+    <result column="zzb" property="zzb" jdbcType="VARCHAR" />
+    <result column="share_hold_chg_one" property="shareHoldChgOne" jdbcType="VARCHAR" />
+    <result column="share_s_z_chg_one" property="shareSZChgOne" jdbcType="VARCHAR" />
+    <result column="share_s_z_chg_rate_one" property="shareSZChgRateOne" jdbcType="VARCHAR" />
+    <result column="ltzb_one" property="ltzbOne" jdbcType="VARCHAR" />
+    <result column="zzb_one" property="zzbOne" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, date_type, hd_date, s_code, s_name, h_y_name, h_y_code, q_y_name, q_y_code, shares_rate, 
+    new_price, zdf, share_hold, share_s_z, ltzb, zzb, share_hold_chg_one, share_s_z_chg_one, 
+    share_s_z_chg_rate_one, ltzb_one, zzb_one, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from collect_north_money_stock
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from collect_north_money_stock
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.magic.www.permissions.domain.NorthMoneyStockMeta" >
+    insert into collect_north_money_stock (id, date_type, hd_date, 
+      s_code, s_name, h_y_name, 
+      h_y_code, q_y_name, q_y_code, 
+      shares_rate, new_price, zdf, 
+      share_hold, share_s_z, ltzb, 
+      zzb, share_hold_chg_one, share_s_z_chg_one, 
+      share_s_z_chg_rate_one, ltzb_one, zzb_one, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{dateType,jdbcType=VARCHAR}, #{hdDate,jdbcType=TIMESTAMP}, 
+      #{sCode,jdbcType=VARCHAR}, #{sName,jdbcType=VARCHAR}, #{hYName,jdbcType=VARCHAR}, 
+      #{hYCode,jdbcType=VARCHAR}, #{qYName,jdbcType=VARCHAR}, #{qYCode,jdbcType=VARCHAR}, 
+      #{sharesRate,jdbcType=VARCHAR}, #{newPrice,jdbcType=VARCHAR}, #{zdf,jdbcType=VARCHAR}, 
+      #{shareHold,jdbcType=VARCHAR}, #{shareSZ,jdbcType=VARCHAR}, #{ltzb,jdbcType=VARCHAR}, 
+      #{zzb,jdbcType=VARCHAR}, #{shareHoldChgOne,jdbcType=VARCHAR}, #{shareSZChgOne,jdbcType=VARCHAR}, 
+      #{shareSZChgRateOne,jdbcType=VARCHAR}, #{ltzbOne,jdbcType=VARCHAR}, #{zzbOne,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.magic.www.permissions.domain.NorthMoneyStockMeta" >
+    insert into collect_north_money_stock
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dateType != null" >
+        date_type,
+      </if>
+      <if test="hdDate != null" >
+        hd_date,
+      </if>
+      <if test="sCode != null" >
+        s_code,
+      </if>
+      <if test="sName != null" >
+        s_name,
+      </if>
+      <if test="hYName != null" >
+        h_y_name,
+      </if>
+      <if test="hYCode != null" >
+        h_y_code,
+      </if>
+      <if test="qYName != null" >
+        q_y_name,
+      </if>
+      <if test="qYCode != null" >
+        q_y_code,
+      </if>
+      <if test="sharesRate != null" >
+        shares_rate,
+      </if>
+      <if test="newPrice != null" >
+        new_price,
+      </if>
+      <if test="zdf != null" >
+        zdf,
+      </if>
+      <if test="shareHold != null" >
+        share_hold,
+      </if>
+      <if test="shareSZ != null" >
+        share_s_z,
+      </if>
+      <if test="ltzb != null" >
+        ltzb,
+      </if>
+      <if test="zzb != null" >
+        zzb,
+      </if>
+      <if test="shareHoldChgOne != null" >
+        share_hold_chg_one,
+      </if>
+      <if test="shareSZChgOne != null" >
+        share_s_z_chg_one,
+      </if>
+      <if test="shareSZChgRateOne != null" >
+        share_s_z_chg_rate_one,
+      </if>
+      <if test="ltzbOne != null" >
+        ltzb_one,
+      </if>
+      <if test="zzbOne != null" >
+        zzb_one,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dateType != null" >
+        #{dateType,jdbcType=VARCHAR},
+      </if>
+      <if test="hdDate != null" >
+        #{hdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sCode != null" >
+        #{sCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sName != null" >
+        #{sName,jdbcType=VARCHAR},
+      </if>
+      <if test="hYName != null" >
+        #{hYName,jdbcType=VARCHAR},
+      </if>
+      <if test="hYCode != null" >
+        #{hYCode,jdbcType=VARCHAR},
+      </if>
+      <if test="qYName != null" >
+        #{qYName,jdbcType=VARCHAR},
+      </if>
+      <if test="qYCode != null" >
+        #{qYCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sharesRate != null" >
+        #{sharesRate,jdbcType=VARCHAR},
+      </if>
+      <if test="newPrice != null" >
+        #{newPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="zdf != null" >
+        #{zdf,jdbcType=VARCHAR},
+      </if>
+      <if test="shareHold != null" >
+        #{shareHold,jdbcType=VARCHAR},
+      </if>
+      <if test="shareSZ != null" >
+        #{shareSZ,jdbcType=VARCHAR},
+      </if>
+      <if test="ltzb != null" >
+        #{ltzb,jdbcType=VARCHAR},
+      </if>
+      <if test="zzb != null" >
+        #{zzb,jdbcType=VARCHAR},
+      </if>
+      <if test="shareHoldChgOne != null" >
+        #{shareHoldChgOne,jdbcType=VARCHAR},
+      </if>
+      <if test="shareSZChgOne != null" >
+        #{shareSZChgOne,jdbcType=VARCHAR},
+      </if>
+      <if test="shareSZChgRateOne != null" >
+        #{shareSZChgRateOne,jdbcType=VARCHAR},
+      </if>
+      <if test="ltzbOne != null" >
+        #{ltzbOne,jdbcType=VARCHAR},
+      </if>
+      <if test="zzbOne != null" >
+        #{zzbOne,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.magic.www.permissions.domain.NorthMoneyStockMeta" >
+    update collect_north_money_stock
+    <set >
+      <if test="dateType != null" >
+        date_type = #{dateType,jdbcType=VARCHAR},
+      </if>
+      <if test="hdDate != null" >
+        hd_date = #{hdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sCode != null" >
+        s_code = #{sCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sName != null" >
+        s_name = #{sName,jdbcType=VARCHAR},
+      </if>
+      <if test="hYName != null" >
+        h_y_name = #{hYName,jdbcType=VARCHAR},
+      </if>
+      <if test="hYCode != null" >
+        h_y_code = #{hYCode,jdbcType=VARCHAR},
+      </if>
+      <if test="qYName != null" >
+        q_y_name = #{qYName,jdbcType=VARCHAR},
+      </if>
+      <if test="qYCode != null" >
+        q_y_code = #{qYCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sharesRate != null" >
+        shares_rate = #{sharesRate,jdbcType=VARCHAR},
+      </if>
+      <if test="newPrice != null" >
+        new_price = #{newPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="zdf != null" >
+        zdf = #{zdf,jdbcType=VARCHAR},
+      </if>
+      <if test="shareHold != null" >
+        share_hold = #{shareHold,jdbcType=VARCHAR},
+      </if>
+      <if test="shareSZ != null" >
+        share_s_z = #{shareSZ,jdbcType=VARCHAR},
+      </if>
+      <if test="ltzb != null" >
+        ltzb = #{ltzb,jdbcType=VARCHAR},
+      </if>
+      <if test="zzb != null" >
+        zzb = #{zzb,jdbcType=VARCHAR},
+      </if>
+      <if test="shareHoldChgOne != null" >
+        share_hold_chg_one = #{shareHoldChgOne,jdbcType=VARCHAR},
+      </if>
+      <if test="shareSZChgOne != null" >
+        share_s_z_chg_one = #{shareSZChgOne,jdbcType=VARCHAR},
+      </if>
+      <if test="shareSZChgRateOne != null" >
+        share_s_z_chg_rate_one = #{shareSZChgRateOne,jdbcType=VARCHAR},
+      </if>
+      <if test="ltzbOne != null" >
+        ltzb_one = #{ltzbOne,jdbcType=VARCHAR},
+      </if>
+      <if test="zzbOne != null" >
+        zzb_one = #{zzbOne,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.magic.www.permissions.domain.NorthMoneyStockMeta" >
+    update collect_north_money_stock
+    set date_type = #{dateType,jdbcType=VARCHAR},
+      hd_date = #{hdDate,jdbcType=TIMESTAMP},
+      s_code = #{sCode,jdbcType=VARCHAR},
+      s_name = #{sName,jdbcType=VARCHAR},
+      h_y_name = #{hYName,jdbcType=VARCHAR},
+      h_y_code = #{hYCode,jdbcType=VARCHAR},
+      q_y_name = #{qYName,jdbcType=VARCHAR},
+      q_y_code = #{qYCode,jdbcType=VARCHAR},
+      shares_rate = #{sharesRate,jdbcType=VARCHAR},
+      new_price = #{newPrice,jdbcType=VARCHAR},
+      zdf = #{zdf,jdbcType=VARCHAR},
+      share_hold = #{shareHold,jdbcType=VARCHAR},
+      share_s_z = #{shareSZ,jdbcType=VARCHAR},
+      ltzb = #{ltzb,jdbcType=VARCHAR},
+      zzb = #{zzb,jdbcType=VARCHAR},
+      share_hold_chg_one = #{shareHoldChgOne,jdbcType=VARCHAR},
+      share_s_z_chg_one = #{shareSZChgOne,jdbcType=VARCHAR},
+      share_s_z_chg_rate_one = #{shareSZChgRateOne,jdbcType=VARCHAR},
+      ltzb_one = #{ltzbOne,jdbcType=VARCHAR},
+      zzb_one = #{zzbOne,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="com.magic.www.permissions.domain.NorthMoneyStockMeta">
+    select
+    <include refid="Base_Column_List" />
+    from collect_north_money_stock
+    where 1 = 1
+    <if test="dateType != null" >
+      and date_type = #{dateType,jdbcType=VARCHAR}
+    </if>
+    <if test="hdDate != null" >
+      and hd_date = #{hdDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="sCode != null" >
+      and s_code = #{sCode,jdbcType=VARCHAR}
+    </if>
+    <if test="sName != null" >
+      and s_name = #{sName,jdbcType=VARCHAR}
+    </if>
+    <if test="hYName != null" >
+      and h_y_name = #{hYName,jdbcType=VARCHAR}
+    </if>
+    <if test="hYCode != null" >
+      and h_y_code = #{hYCode,jdbcType=VARCHAR}
+    </if>
+    <if test="qYName != null" >
+      and q_y_name = #{qYName,jdbcType=VARCHAR}
+    </if>
+    <if test="qYCode != null" >
+      and q_y_code = #{qYCode,jdbcType=VARCHAR}
+    </if>
+    <if test="sharesRate != null" >
+      and shares_rate = #{sharesRate,jdbcType=VARCHAR}
+    </if>
+    <if test="newPrice != null" >
+      and new_price = #{newPrice,jdbcType=VARCHAR}
+    </if>
+    <if test="zdf != null" >
+      and zdf = #{zdf,jdbcType=VARCHAR}
+    </if>
+    <if test="shareHold != null" >
+      and share_hold = #{shareHold,jdbcType=VARCHAR}
+    </if>
+    <if test="shareSZ != null" >
+      and share_s_z = #{shareSZ,jdbcType=VARCHAR}
+    </if>
+    <if test="ltzb != null" >
+      and ltzb = #{ltzb,jdbcType=VARCHAR}
+    </if>
+    <if test="zzb != null" >
+      and zzb = #{zzb,jdbcType=VARCHAR}
+    </if>
+    <if test="shareHoldChgOne != null" >
+      and share_hold_chg_one = #{shareHoldChgOne,jdbcType=VARCHAR}
+    </if>
+    <if test="shareSZChgOne != null" >
+      and share_s_z_chg_one = #{shareSZChgOne,jdbcType=VARCHAR}
+    </if>
+    <if test="shareSZChgRateOne != null" >
+      and share_s_z_chg_rate_one = #{shareSZChgRateOne,jdbcType=VARCHAR}
+    </if>
+    <if test="ltzbOne != null" >
+      and ltzb_one = #{ltzbOne,jdbcType=VARCHAR}
+    </if>
+    <if test="zzbOne != null" >
+      and zzb_one = #{zzbOne,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createTimeStr != null" >
+      and date_format(create_time,'%Y-%m-%d') = #{createTimeStr,jdbcType=TIMESTAMP}
+    </if>
+
+  </select>
+</mapper>

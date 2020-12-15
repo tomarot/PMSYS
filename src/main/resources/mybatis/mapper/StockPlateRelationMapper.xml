@@ -21,6 +21,9 @@
     delete from stock_plate_relation
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteAll">
+    delete from stock_plate_relation
+  </delete>
   <insert id="insert" parameterType="com.magic.www.permissions.domain.StockPlateRelation" >
     insert into stock_plate_relation (id, stock_id, stock_code, 
       plate_id, plate_code)

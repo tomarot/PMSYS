@@ -76,7 +76,7 @@ public class HomeController {
     }
 
     /**
-     * 获取北向资金行业图数据
+     * 获取北向资金概念图数据
      * @param periodType
      * @return
      */

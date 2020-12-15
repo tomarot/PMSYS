@@ -5,6 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="ranking_p" property="rankingP" jdbcType="INTEGER" />
     <result column="ranking_r" property="rankingR" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="gains" property="gains" jdbcType="VARCHAR" />
     <result column="three_days_gains" property="threeDaysGains" jdbcType="VARCHAR" />
@@ -24,7 +25,7 @@
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, ranking_p, ranking_r, name, gains, three_days_gains, higher_speed, lead_stock, 
+    id, ranking_p, ranking_r, type,name, gains, three_days_gains, higher_speed, lead_stock,
     up_down_num, up_down_proportion, change_hand, total_hand, three_days_change_hand, 
     total_price, total_market, current_market, average_income, average_equity, pe_ratio, 
     create_time
@@ -41,14 +42,14 @@
   </delete>
   <insert id="insert" parameterType="com.magic.www.permissions.domain.Plate" >
     insert into plate_data_record (id, ranking_p, ranking_r, 
-      name, gains, three_days_gains, 
+      type,name, gains, three_days_gains,
       higher_speed, lead_stock, up_down_num, 
       up_down_proportion, change_hand, total_hand, 
       three_days_change_hand, total_price, total_market, 
       current_market, average_income, average_equity, 
       pe_ratio, create_time)
     values (#{id,jdbcType=INTEGER}, #{rankingP,jdbcType=INTEGER}, #{rankingR,jdbcType=INTEGER}, 
-      #{name,jdbcType=VARCHAR}, #{gains,jdbcType=VARCHAR}, #{threeDaysGains,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR}, #{gains,jdbcType=VARCHAR}, #{threeDaysGains,jdbcType=VARCHAR},
       #{higherSpeed,jdbcType=VARCHAR}, #{leadStock,jdbcType=VARCHAR}, #{upDownNum,jdbcType=VARCHAR}, 
       #{upDownProportion,jdbcType=VARCHAR}, #{changeHand,jdbcType=VARCHAR}, #{totalHand,jdbcType=VARCHAR}, 
       #{threeDaysChangeHand,jdbcType=VARCHAR}, #{totalPrice,jdbcType=VARCHAR}, #{totalMarket,jdbcType=VARCHAR}, 
@@ -66,6 +67,9 @@
       </if>
       <if test="rankingR != null" >
         ranking_r,
+      </if>
+      <if test="type != null" >
+        type,
       </if>
       <if test="name != null" >
         name,
@@ -129,6 +133,9 @@
       <if test="rankingR != null" >
         #{rankingR,jdbcType=INTEGER},
       </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
@@ -191,6 +198,9 @@
       <if test="rankingR != null" >
         ranking_r = #{rankingR,jdbcType=INTEGER},
       </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
@@ -249,6 +259,7 @@
     update plate_data_record
     set ranking_p = #{rankingP,jdbcType=INTEGER},
       ranking_r = #{rankingR,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       gains = #{gains,jdbcType=VARCHAR},
       three_days_gains = #{threeDaysGains,jdbcType=VARCHAR},

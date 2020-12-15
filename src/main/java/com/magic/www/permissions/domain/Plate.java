@@ -9,6 +9,9 @@ public class Plate {
     private Integer rankingP;
     //倒叙排名
     private Integer rankingR;
+    //类型 0 行业 1 概念 2 地域
+
+    private String type;
     //名称
     private String name;
     //涨幅
@@ -66,6 +69,14 @@ public class Plate {
 
     public void setRankingR(Integer rankingR) {
         this.rankingR = rankingR;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getName() {

@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.magic.www.permissions.mapper.StockDataMetaMapper" >
+  <resultMap id="BaseResultMap" type="com.magic.www.permissions.domain.StockDataMeta" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="current_price" property="currentPrice" jdbcType="VARCHAR" />
+    <result column="gains" property="gains" jdbcType="VARCHAR" />
+    <result column="gains_num" property="gainsNum" jdbcType="VARCHAR" />
+    <result column="total_hand" property="totalHand" jdbcType="VARCHAR" />
+    <result column="total_price" property="totalPrice" jdbcType="VARCHAR" />
+    <result column="amplitude" property="amplitude" jdbcType="VARCHAR" />
+    <result column="highest" property="highest" jdbcType="VARCHAR" />
+    <result column="lowest" property="lowest" jdbcType="VARCHAR" />
+    <result column="start_price" property="startPrice" jdbcType="VARCHAR" />
+    <result column="yesterday_end_price" property="yesterdayEndPrice" jdbcType="VARCHAR" />
+    <result column="than" property="than" jdbcType="VARCHAR" />
+    <result column="change_hand" property="changeHand" jdbcType="VARCHAR" />
+    <result column="pe_ratio" property="peRatio" jdbcType="VARCHAR" />
+    <result column="pb_ratio" property="pbRatio" jdbcType="VARCHAR" />
+    <result column="totalval" property="totalval" jdbcType="VARCHAR" />
+    <result column="current_market" property="currentMarket" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, name, current_price, gains, gains_num, total_hand, total_price, amplitude, 
+    highest, lowest, start_price, yesterday_end_price, than, change_hand, pe_ratio, pb_ratio, 
+    totalval, current_market, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from stock_current_hs_data_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from stock_current_hs_data_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="delete">
+    delete from stock_current_hs_data_record
+  </delete>
+  <insert id="insert" parameterType="com.magic.www.permissions.domain.StockDataMeta" >
+    insert into stock_current_hs_data_record (id, code, name, 
+      current_price, gains, gains_num, 
+      total_hand, total_price, amplitude, 
+      highest, lowest, start_price, 
+      yesterday_end_price, than, change_hand, 
+      pe_ratio, pb_ratio, totalval, 
+      current_market, create_time)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{currentPrice,jdbcType=VARCHAR}, #{gains,jdbcType=VARCHAR}, #{gainsNum,jdbcType=VARCHAR}, 
+      #{totalHand,jdbcType=VARCHAR}, #{totalPrice,jdbcType=VARCHAR}, #{amplitude,jdbcType=VARCHAR}, 
+      #{highest,jdbcType=VARCHAR}, #{lowest,jdbcType=VARCHAR}, #{startPrice,jdbcType=VARCHAR}, 
+      #{yesterdayEndPrice,jdbcType=VARCHAR}, #{than,jdbcType=VARCHAR}, #{changeHand,jdbcType=VARCHAR}, 
+      #{peRatio,jdbcType=VARCHAR}, #{pbRatio,jdbcType=VARCHAR}, #{totalval,jdbcType=VARCHAR}, 
+      #{currentMarket,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.magic.www.permissions.domain.StockDataMeta" >
+    insert into stock_current_hs_data_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="currentPrice != null" >
+        current_price,
+      </if>
+      <if test="gains != null" >
+        gains,
+      </if>
+      <if test="gainsNum != null" >
+        gains_num,
+      </if>
+      <if test="totalHand != null" >
+        total_hand,
+      </if>
+      <if test="totalPrice != null" >
+        total_price,
+      </if>
+      <if test="amplitude != null" >
+        amplitude,
+      </if>
+      <if test="highest != null" >
+        highest,
+      </if>
+      <if test="lowest != null" >
+        lowest,
+      </if>
+      <if test="startPrice != null" >
+        start_price,
+      </if>
+      <if test="yesterdayEndPrice != null" >
+        yesterday_end_price,
+      </if>
+      <if test="than != null" >
+        than,
+      </if>
+      <if test="changeHand != null" >
+        change_hand,
+      </if>
+      <if test="peRatio != null" >
+        pe_ratio,
+      </if>
+      <if test="pbRatio != null" >
+        pb_ratio,
+      </if>
+      <if test="totalval != null" >
+        totalval,
+      </if>
+      <if test="currentMarket != null" >
+        current_market,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="currentPrice != null" >
+        #{currentPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="gains != null" >
+        #{gains,jdbcType=VARCHAR},
+      </if>
+      <if test="gainsNum != null" >
+        #{gainsNum,jdbcType=VARCHAR},
+      </if>
+      <if test="totalHand != null" >
+        #{totalHand,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="amplitude != null" >
+        #{amplitude,jdbcType=VARCHAR},
+      </if>
+      <if test="highest != null" >
+        #{highest,jdbcType=VARCHAR},
+      </if>
+      <if test="lowest != null" >
+        #{lowest,jdbcType=VARCHAR},
+      </if>
+      <if test="startPrice != null" >
+        #{startPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="yesterdayEndPrice != null" >
+        #{yesterdayEndPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="than != null" >
+        #{than,jdbcType=VARCHAR},
+      </if>
+      <if test="changeHand != null" >
+        #{changeHand,jdbcType=VARCHAR},
+      </if>
+      <if test="peRatio != null" >
+        #{peRatio,jdbcType=VARCHAR},
+      </if>
+      <if test="pbRatio != null" >
+        #{pbRatio,jdbcType=VARCHAR},
+      </if>
+      <if test="totalval != null" >
+        #{totalval,jdbcType=VARCHAR},
+      </if>
+      <if test="currentMarket != null" >
+        #{currentMarket,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.magic.www.permissions.domain.StockDataMeta" >
+    update stock_current_hs_data_record
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="currentPrice != null" >
+        current_price = #{currentPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="gains != null" >
+        gains = #{gains,jdbcType=VARCHAR},
+      </if>
+      <if test="gainsNum != null" >
+        gains_num = #{gainsNum,jdbcType=VARCHAR},
+      </if>
+      <if test="totalHand != null" >
+        total_hand = #{totalHand,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null" >
+        total_price = #{totalPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="amplitude != null" >
+        amplitude = #{amplitude,jdbcType=VARCHAR},
+      </if>
+      <if test="highest != null" >
+        highest = #{highest,jdbcType=VARCHAR},
+      </if>
+      <if test="lowest != null" >
+        lowest = #{lowest,jdbcType=VARCHAR},
+      </if>
+      <if test="startPrice != null" >
+        start_price = #{startPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="yesterdayEndPrice != null" >
+        yesterday_end_price = #{yesterdayEndPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="than != null" >
+        than = #{than,jdbcType=VARCHAR},
+      </if>
+      <if test="changeHand != null" >
+        change_hand = #{changeHand,jdbcType=VARCHAR},
+      </if>
+      <if test="peRatio != null" >
+        pe_ratio = #{peRatio,jdbcType=VARCHAR},
+      </if>
+      <if test="pbRatio != null" >
+        pb_ratio = #{pbRatio,jdbcType=VARCHAR},
+      </if>
+      <if test="totalval != null" >
+        totalval = #{totalval,jdbcType=VARCHAR},
+      </if>
+      <if test="currentMarket != null" >
+        current_market = #{currentMarket,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.magic.www.permissions.domain.StockDataMeta" >
+    update stock_current_hs_data_record
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      current_price = #{currentPrice,jdbcType=VARCHAR},
+      gains = #{gains,jdbcType=VARCHAR},
+      gains_num = #{gainsNum,jdbcType=VARCHAR},
+      total_hand = #{totalHand,jdbcType=VARCHAR},
+      total_price = #{totalPrice,jdbcType=VARCHAR},
+      amplitude = #{amplitude,jdbcType=VARCHAR},
+      highest = #{highest,jdbcType=VARCHAR},
+      lowest = #{lowest,jdbcType=VARCHAR},
+      start_price = #{startPrice,jdbcType=VARCHAR},
+      yesterday_end_price = #{yesterdayEndPrice,jdbcType=VARCHAR},
+      than = #{than,jdbcType=VARCHAR},
+      change_hand = #{changeHand,jdbcType=VARCHAR},
+      pe_ratio = #{peRatio,jdbcType=VARCHAR},
+      pb_ratio = #{pbRatio,jdbcType=VARCHAR},
+      totalval = #{totalval,jdbcType=VARCHAR},
+      current_market = #{currentMarket,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -41,5 +41,16 @@ public class NorthMoneyController {
         return resultVo;
     }
 
+    /**
+     * 采集北向资金个股
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/collectNorthMoneyStock")
+    @ResponseBody
+    public ResultVo collectNorthMoneyStock() throws Exception {
+        ResultVo resultVo = collectService.collectNorthMoneyData();
+        return resultVo;
+    }
 
 }

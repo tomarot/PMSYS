@@ -33,7 +33,7 @@ public class CollectPlateTask {
         log.info("板块数据采集任务开始执行：时间["+ DateUtils.date2String(new Date())+"].");
         ResultVo resultVo = null;
         try {
-            resultVo = collectService.collectStockData();
+            resultVo = collectService.collectPlateInfoData();
             if(resultVo.getResult_code()==ResultVo.CODE_SUCCESS){
                 log.info("板块数据信息采集任务完成：时间["+ DateUtils.date2String(new Date())+"].");
             }else{

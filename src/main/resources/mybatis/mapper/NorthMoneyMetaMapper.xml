@@ -44,6 +44,13 @@
     ShareHold_ZC_Chg, ShareHold_ZC_Chg_BK, ShareHold_ZC_Chg_GZ, Max_SZ_Code, Max_SZ_Name, 
     Max_ZB_Code, Max_ZB_Name, Min_SZ_Code, Min_SZ_Name, Min_ZB_Code, Min_ZB_Name
   </sql>
+  <sql id="queryTop_List" >
+    a.id, HYCode,a.type, ORIGINALCODE, ShareHold_JC_Min, ShareHold_ZC_Max, ShareSZ_JC_Min, ShareSZ_ZC_Max,
+    SCode_Min_ZB, SCode_Max_ZB, ShareSZ_BK, ShareSZ_Min, ShareSZ_Max, DateType, HdDate,
+    HYName, Zdf, Count, ShareSZ_GZ, ShareHold_Chg_BK, ShareHold_Chg_GZ, ZC_Count, ShareSZ_ZC,
+    ShareHold_ZC_Chg, ShareHold_ZC_Chg_BK, ShareHold_ZC_Chg_GZ, Max_SZ_Code, Max_SZ_Name,
+    Max_ZB_Code, Max_ZB_Name, Min_SZ_Code, Min_SZ_Name, Min_ZB_Code, Min_ZB_Name
+  </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -550,23 +557,27 @@
   </select>
   <select id="queryInflowsTop" resultMap="BaseResultMap">
     select
-    <include refid="Base_Column_List" />
-    from collect_north_money
+    <include refid="queryTop_List" />
+    from collect_north_money a
+    left join plate_base_info_record b on a.HYName = b.`name`
     where 1 = 1
-    and type = #{type,jdbcType=VARCHAR}
-    and DateType = #{DateType,jdbcType=VARCHAR}
-    and HdDate = #{date,jdbcType=TIMESTAMP}
+    and a.type = #{type,jdbcType=VARCHAR}
+    and a.DateType = #{DateType,jdbcType=VARCHAR}
+    and a.HdDate = #{date,jdbcType=TIMESTAMP}
+    and b.available = '1'
     order by (ShareSZ_ZC+0) DESC
     LIMIT 0,#{topNum,jdbcType=INTEGER}
   </select>
   <select id="queryOutOfTop" resultMap="BaseResultMap">
     select
-    <include refid="Base_Column_List" />
-    from collect_north_money
+    <include refid="queryTop_List" />
+    from collect_north_money a
+    left join plate_base_info_record b on a.HYName = b.`name`
     where 1 = 1
-    and type = #{type,jdbcType=VARCHAR}
+    and a.type = #{type,jdbcType=VARCHAR}
     and DateType = #{DateType,jdbcType=VARCHAR}
     and HdDate = #{date,jdbcType=TIMESTAMP}
+    and b.available = '1'
     order by (ShareSZ_ZC+0) ASC
     LIMIT 0,#{topNum,jdbcType=INTEGER}
   </select>

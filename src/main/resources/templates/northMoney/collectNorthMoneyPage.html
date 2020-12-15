@@ -7,8 +7,12 @@
 </head>
 <body>
 <div style="margin: 100px;">
-    <label>点击按钮采集北向资金</label>
-    <button id="collectBtn" class="layui-btn" style="margin-left: 50px;">采集北向资金</button>
+    <label>点击按钮采集北向资金板块</label>
+    <button id="collectBtn" class="layui-btn" style="margin-left: 50px;">采集北向资金板块</button>
+    <br>
+    <br>
+    <label>点击按钮采集北向资金个股</label>
+    <button id="collectStockBtn" class="layui-btn" style="margin-left: 50px;">采集北向资金个股</button>
 </div>
 <script type="text/javascript" src="/PMSYS/library/jquery/jquery-3.1.1.min.js"></script>
 <script src="/PMSYS/library/layui/layui.js"></script>
@@ -31,6 +35,31 @@
                     type : "POST",
                     dataType:"json",
                     url : baseUrl + "/northMoney/collectNorthMoney/",
+                    data : {},
+                    success : function(result) {
+                        if(result.result_code == 200){
+                            alert(result.result_msg);
+                            layer.close(layerIndex);
+                        }
+                        // console.log(result);
+                    },
+                    error : function(e){
+                    }
+                });
+            });
+            $("#collectStockBtn").click(function(){
+                var layerIndex = layer.open({
+                    title: '提示',
+                    area: ['400px', '200px'],
+                    type:1,
+                    closeBtn: 0,
+                    content: '<div style="text-align: center;line-height: 135px;"><div style="display: inline-block;">正在采集数据...</div> <i class="layui-icon layui-icon-loading layui-anim  layui-anim-rotate layui-anim-loop" style="font-size: 20px;color: #1E9FFF;"></i></div>'
+                });
+
+                $.ajax({
+                    type : "POST",
+                    dataType:"json",
+                    url : baseUrl + "/northMoney/collectNorthMoneyStock/",
                     data : {},
                     success : function(result) {
                         if(result.result_code == 200){

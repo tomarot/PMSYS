@@ -508,7 +508,13 @@
       and price = #{price,jdbcType=VARCHAR}
     </if>
     <if test="gains != null" >
-      and gains = #{gains,jdbcType=VARCHAR}
+      and gains+0 = #{gains,jdbcType=VARCHAR}
+    </if>
+    <if test="maxGains != null" >
+      and gains+0 <![CDATA[<=]]> #{maxGains,jdbcType=TIMESTAMP}
+    </if>
+    <if test="minGains != null" >
+      and gains+0 <![CDATA[>=]]> #{minGains,jdbcType=TIMESTAMP}
     </if>
     <if test="gainsval != null" >
       and gainsval = #{gainsval,jdbcType=VARCHAR}
@@ -523,7 +529,7 @@
       and buy_price = #{buyPrice,jdbcType=VARCHAR}
     </if>
     <if test="sellPrice != null" >
-      and sell_price = #{sellPrice,jdbcType=VARCHAR}
+      and trim(sell_price) = #{sellPrice,jdbcType=VARCHAR}
     </if>
     <if test="higherSpeed != null" >
       and higher_speed = #{higherSpeed,jdbcType=VARCHAR}
@@ -686,5 +692,11 @@
     <if test="pageState != 0">
       LIMIT #{offset,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER};
     </if>
+  </select>
+  <select id="queryDateList" resultType="Date">
+    select
+    t.create_time
+    from stock_hs_data_record t
+    group by t.create_time
   </select>
 </mapper>

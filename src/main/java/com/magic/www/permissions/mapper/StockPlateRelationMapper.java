@@ -18,6 +18,8 @@ public interface StockPlateRelationMapper {
 
     int updateByPrimaryKey(StockPlateRelation record);
 
+    int deleteAll();
+
     /**
      * 查询股票与板块关联关系列表
      * @param record

@@ -33,4 +33,9 @@ public class StockServiceImpl implements StockService {
         Stock stock = stockList.get(0);
         return stock.getCreateTime();
     }
+
+    @Override
+    public List<Date> queryDateList() {
+        return stockMapper.queryDateList();
+    }
 }

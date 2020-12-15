@@ -1,6 +1,7 @@
 package com.magic.www.permissions.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,4 +17,10 @@ public interface StockService {
      * @return
      */
     public Date queryLatestDate();
+
+    /**
+     * 获取数据时间列表
+     * @return
+     */
+    public List<Date> queryDateList();
 }

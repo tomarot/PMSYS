@@ -135,14 +135,11 @@ public class PlateServiceImpl implements PlateService{
     public ResultVo CorrelationPlatePlateRelationData() {
         log.info("行业板块与概念板块创建关联关系服务开始......");
         ResultVo resultVo = new ResultVo();
+        //清空板块与板块的关联关系
+        platePlateRelationMapper.deleteAll();
 
         //缓存已创建的板块与板块的关联关系
         Map<String,Object> PlatePlateRelationCacheMap = new HashMap<String,Object>();
-        PlatePlateRelation queryPlatePlateRelation = new PlatePlateRelation();
-        List<PlatePlateRelation> platePlateRelationList = platePlateRelationMapper.querySelective(queryPlatePlateRelation);
-        for(PlatePlateRelation relation : platePlateRelationList){
-            PlatePlateRelationCacheMap.put(relation.getmPlateCode()+"_"+relation.getvPlateCode(),relation);
-        }
 
         //获取全部股票数据
         StockBaseInfo queryStockBaseInfo = new StockBaseInfo();

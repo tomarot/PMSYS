@@ -94,4 +94,10 @@ public interface StockMapper {
      * @return
      */
     List<Map<String,Object>> queryGainsCount(@Param("startDate")String startDate,@Param("endDate")String endDate,@Param("pageState")String pageState,@Param("offset")int offset,@Param("pageSize")int pageSize);
+
+    /**
+     * 获取数据日期列表
+     * @return
+     */
+    List<Date> queryDateList();
 }

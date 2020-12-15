@@ -1,5 +1,6 @@
 window.config = {
-    ip:"http://localhost",
+    ip:"http://192.168.31.132",
+    // ip:"http://47.91.226.248",
     port:":8082",
     systemNmae:"/PMSYS"
 };

@@ -22,6 +22,9 @@
     delete from plate_plate_relation
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteAll">
+    delete from plate_plate_relation
+  </delete>
   <insert id="insert" parameterType="com.magic.www.permissions.domain.PlatePlateRelation" >
     insert into plate_plate_relation (id, m_plate_id, m_plate_code, 
       v_plate_id, v_plate_code, create_time

@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.magic.www.permissions.mapper.CollectPlateRankingMapper" >
+  <resultMap id="BaseResultMap" type="com.magic.www.permissions.domain.CollectPlateRanking" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="data_type" property="dataType" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="f1" property="f1" jdbcType="VARCHAR" />
+    <result column="f2" property="f2" jdbcType="VARCHAR" />
+    <result column="f3" property="f3" jdbcType="VARCHAR" />
+    <result column="f4" property="f4" jdbcType="VARCHAR" />
+    <result column="f5" property="f5" jdbcType="VARCHAR" />
+    <result column="f6" property="f6" jdbcType="VARCHAR" />
+    <result column="f7" property="f7" jdbcType="VARCHAR" />
+    <result column="f8" property="f8" jdbcType="VARCHAR" />
+    <result column="f9" property="f9" jdbcType="VARCHAR" />
+    <result column="f10" property="f10" jdbcType="VARCHAR" />
+    <result column="f11" property="f11" jdbcType="VARCHAR" />
+    <result column="f12" property="f12" jdbcType="VARCHAR" />
+    <result column="f13" property="f13" jdbcType="VARCHAR" />
+    <result column="f14" property="f14" jdbcType="VARCHAR" />
+    <result column="f15" property="f15" jdbcType="VARCHAR" />
+    <result column="f16" property="f16" jdbcType="VARCHAR" />
+    <result column="f17" property="f17" jdbcType="VARCHAR" />
+    <result column="f18" property="f18" jdbcType="VARCHAR" />
+    <result column="f20" property="f20" jdbcType="VARCHAR" />
+    <result column="f21" property="f21" jdbcType="VARCHAR" />
+    <result column="f22" property="f22" jdbcType="VARCHAR" />
+    <result column="f23" property="f23" jdbcType="VARCHAR" />
+    <result column="f24" property="f24" jdbcType="VARCHAR" />
+    <result column="f25" property="f25" jdbcType="VARCHAR" />
+    <result column="f26" property="f26" jdbcType="VARCHAR" />
+    <result column="f33" property="f33" jdbcType="VARCHAR" />
+    <result column="f62" property="f62" jdbcType="VARCHAR" />
+    <result column="f104" property="f104" jdbcType="VARCHAR" />
+    <result column="f105" property="f105" jdbcType="VARCHAR" />
+    <result column="f107" property="f107" jdbcType="VARCHAR" />
+    <result column="f115" property="f115" jdbcType="VARCHAR" />
+    <result column="f124" property="f124" jdbcType="VARCHAR" />
+    <result column="f128" property="f128" jdbcType="VARCHAR" />
+    <result column="f140" property="f140" jdbcType="VARCHAR" />
+    <result column="f141" property="f141" jdbcType="VARCHAR" />
+    <result column="f136" property="f136" jdbcType="VARCHAR" />
+    <result column="f152" property="f152" jdbcType="VARCHAR" />
+    <result column="f207" property="f207" jdbcType="VARCHAR" />
+    <result column="f208" property="f208" jdbcType="VARCHAR" />
+    <result column="f209" property="f209" jdbcType="VARCHAR" />
+    <result column="f222" property="f222" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, data_type, create_time, f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, 
+    f14, f15, f16, f17, f18, f20, f21, f22, f23, f24, f25, f26, f33, f62, f104, f105, 
+    f107, f115, f124, f128, f140, f141, f136, f152, f207, f208, f209, f222
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from collect_plate_ranking
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from collect_plate_ranking
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.magic.www.permissions.domain.CollectPlateRanking" >
+    insert into collect_plate_ranking (id, data_type, create_time, 
+      f1, f2, f3, f4, 
+      f5, f6, f7, f8, 
+      f9, f10, f11, f12, 
+      f13, f14, f15, f16, 
+      f17, f18, f20, f21, 
+      f22, f23, f24, f25, 
+      f26, f33, f62, f104, 
+      f105, f107, f115, f124, 
+      f128, f140, f141, f136, 
+      f152, f207, f208, f209, 
+      f222)
+    values (#{id,jdbcType=INTEGER}, #{dataType,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{f1,jdbcType=VARCHAR}, #{f2,jdbcType=VARCHAR}, #{f3,jdbcType=VARCHAR}, #{f4,jdbcType=VARCHAR}, 
+      #{f5,jdbcType=VARCHAR}, #{f6,jdbcType=VARCHAR}, #{f7,jdbcType=VARCHAR}, #{f8,jdbcType=VARCHAR}, 
+      #{f9,jdbcType=VARCHAR}, #{f10,jdbcType=VARCHAR}, #{f11,jdbcType=VARCHAR}, #{f12,jdbcType=VARCHAR}, 
+      #{f13,jdbcType=VARCHAR}, #{f14,jdbcType=VARCHAR}, #{f15,jdbcType=VARCHAR}, #{f16,jdbcType=VARCHAR}, 
+      #{f17,jdbcType=VARCHAR}, #{f18,jdbcType=VARCHAR}, #{f20,jdbcType=VARCHAR}, #{f21,jdbcType=VARCHAR}, 
+      #{f22,jdbcType=VARCHAR}, #{f23,jdbcType=VARCHAR}, #{f24,jdbcType=VARCHAR}, #{f25,jdbcType=VARCHAR}, 
+      #{f26,jdbcType=VARCHAR}, #{f33,jdbcType=VARCHAR}, #{f62,jdbcType=VARCHAR}, #{f104,jdbcType=VARCHAR}, 
+      #{f105,jdbcType=VARCHAR}, #{f107,jdbcType=VARCHAR}, #{f115,jdbcType=VARCHAR}, #{f124,jdbcType=VARCHAR}, 
+      #{f128,jdbcType=VARCHAR}, #{f140,jdbcType=VARCHAR}, #{f141,jdbcType=VARCHAR}, #{f136,jdbcType=VARCHAR}, 
+      #{f152,jdbcType=VARCHAR}, #{f207,jdbcType=VARCHAR}, #{f208,jdbcType=VARCHAR}, #{f209,jdbcType=VARCHAR}, 
+      #{f222,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.magic.www.permissions.domain.CollectPlateRanking" >
+    insert into collect_plate_ranking
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dataType != null" >
+        data_type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="f1 != null" >
+        f1,
+      </if>
+      <if test="f2 != null" >
+        f2,
+      </if>
+      <if test="f3 != null" >
+        f3,
+      </if>
+      <if test="f4 != null" >
+        f4,
+      </if>
+      <if test="f5 != null" >
+        f5,
+      </if>
+      <if test="f6 != null" >
+        f6,
+      </if>
+      <if test="f7 != null" >
+        f7,
+      </if>
+      <if test="f8 != null" >
+        f8,
+      </if>
+      <if test="f9 != null" >
+        f9,
+      </if>
+      <if test="f10 != null" >
+        f10,
+      </if>
+      <if test="f11 != null" >
+        f11,
+      </if>
+      <if test="f12 != null" >
+        f12,
+      </if>
+      <if test="f13 != null" >
+        f13,
+      </if>
+      <if test="f14 != null" >
+        f14,
+      </if>
+      <if test="f15 != null" >
+        f15,
+      </if>
+      <if test="f16 != null" >
+        f16,
+      </if>
+      <if test="f17 != null" >
+        f17,
+      </if>
+      <if test="f18 != null" >
+        f18,
+      </if>
+      <if test="f20 != null" >
+        f20,
+      </if>
+      <if test="f21 != null" >
+        f21,
+      </if>
+      <if test="f22 != null" >
+        f22,
+      </if>
+      <if test="f23 != null" >
+        f23,
+      </if>
+      <if test="f24 != null" >
+        f24,
+      </if>
+      <if test="f25 != null" >
+        f25,
+      </if>
+      <if test="f26 != null" >
+        f26,
+      </if>
+      <if test="f33 != null" >
+        f33,
+      </if>
+      <if test="f62 != null" >
+        f62,
+      </if>
+      <if test="f104 != null" >
+        f104,
+      </if>
+      <if test="f105 != null" >
+        f105,
+      </if>
+      <if test="f107 != null" >
+        f107,
+      </if>
+      <if test="f115 != null" >
+        f115,
+      </if>
+      <if test="f124 != null" >
+        f124,
+      </if>
+      <if test="f128 != null" >
+        f128,
+      </if>
+      <if test="f140 != null" >
+        f140,
+      </if>
+      <if test="f141 != null" >
+        f141,
+      </if>
+      <if test="f136 != null" >
+        f136,
+      </if>
+      <if test="f152 != null" >
+        f152,
+      </if>
+      <if test="f207 != null" >
+        f207,
+      </if>
+      <if test="f208 != null" >
+        f208,
+      </if>
+      <if test="f209 != null" >
+        f209,
+      </if>
+      <if test="f222 != null" >
+        f222,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dataType != null" >
+        #{dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f1 != null" >
+        #{f1,jdbcType=VARCHAR},
+      </if>
+      <if test="f2 != null" >
+        #{f2,jdbcType=VARCHAR},
+      </if>
+      <if test="f3 != null" >
+        #{f3,jdbcType=VARCHAR},
+      </if>
+      <if test="f4 != null" >
+        #{f4,jdbcType=VARCHAR},
+      </if>
+      <if test="f5 != null" >
+        #{f5,jdbcType=VARCHAR},
+      </if>
+      <if test="f6 != null" >
+        #{f6,jdbcType=VARCHAR},
+      </if>
+      <if test="f7 != null" >
+        #{f7,jdbcType=VARCHAR},
+      </if>
+      <if test="f8 != null" >
+        #{f8,jdbcType=VARCHAR},
+      </if>
+      <if test="f9 != null" >
+        #{f9,jdbcType=VARCHAR},
+      </if>
+      <if test="f10 != null" >
+        #{f10,jdbcType=VARCHAR},
+      </if>
+      <if test="f11 != null" >
+        #{f11,jdbcType=VARCHAR},
+      </if>
+      <if test="f12 != null" >
+        #{f12,jdbcType=VARCHAR},
+      </if>
+      <if test="f13 != null" >
+        #{f13,jdbcType=VARCHAR},
+      </if>
+      <if test="f14 != null" >
+        #{f14,jdbcType=VARCHAR},
+      </if>
+      <if test="f15 != null" >
+        #{f15,jdbcType=VARCHAR},
+      </if>
+      <if test="f16 != null" >
+        #{f16,jdbcType=VARCHAR},
+      </if>
+      <if test="f17 != null" >
+        #{f17,jdbcType=VARCHAR},
+      </if>
+      <if test="f18 != null" >
+        #{f18,jdbcType=VARCHAR},
+      </if>
+      <if test="f20 != null" >
+        #{f20,jdbcType=VARCHAR},
+      </if>
+      <if test="f21 != null" >
+        #{f21,jdbcType=VARCHAR},
+      </if>
+      <if test="f22 != null" >
+        #{f22,jdbcType=VARCHAR},
+      </if>
+      <if test="f23 != null" >
+        #{f23,jdbcType=VARCHAR},
+      </if>
+      <if test="f24 != null" >
+        #{f24,jdbcType=VARCHAR},
+      </if>
+      <if test="f25 != null" >
+        #{f25,jdbcType=VARCHAR},
+      </if>
+      <if test="f26 != null" >
+        #{f26,jdbcType=VARCHAR},
+      </if>
+      <if test="f33 != null" >
+        #{f33,jdbcType=VARCHAR},
+      </if>
+      <if test="f62 != null" >
+        #{f62,jdbcType=VARCHAR},
+      </if>
+      <if test="f104 != null" >
+        #{f104,jdbcType=VARCHAR},
+      </if>
+      <if test="f105 != null" >
+        #{f105,jdbcType=VARCHAR},
+      </if>
+      <if test="f107 != null" >
+        #{f107,jdbcType=VARCHAR},
+      </if>
+      <if test="f115 != null" >
+        #{f115,jdbcType=VARCHAR},
+      </if>
+      <if test="f124 != null" >
+        #{f124,jdbcType=VARCHAR},
+      </if>
+      <if test="f128 != null" >
+        #{f128,jdbcType=VARCHAR},
+      </if>
+      <if test="f140 != null" >
+        #{f140,jdbcType=VARCHAR},
+      </if>
+      <if test="f141 != null" >
+        #{f141,jdbcType=VARCHAR},
+      </if>
+      <if test="f136 != null" >
+        #{f136,jdbcType=VARCHAR},
+      </if>
+      <if test="f152 != null" >
+        #{f152,jdbcType=VARCHAR},
+      </if>
+      <if test="f207 != null" >
+        #{f207,jdbcType=VARCHAR},
+      </if>
+      <if test="f208 != null" >
+        #{f208,jdbcType=VARCHAR},
+      </if>
+      <if test="f209 != null" >
+        #{f209,jdbcType=VARCHAR},
+      </if>
+      <if test="f222 != null" >
+        #{f222,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.magic.www.permissions.domain.CollectPlateRanking" >
+    update collect_plate_ranking
+    <set >
+      <if test="dataType != null" >
+        data_type = #{dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="f1 != null" >
+        f1 = #{f1,jdbcType=VARCHAR},
+      </if>
+      <if test="f2 != null" >
+        f2 = #{f2,jdbcType=VARCHAR},
+      </if>
+      <if test="f3 != null" >
+        f3 = #{f3,jdbcType=VARCHAR},
+      </if>
+      <if test="f4 != null" >
+        f4 = #{f4,jdbcType=VARCHAR},
+      </if>
+      <if test="f5 != null" >
+        f5 = #{f5,jdbcType=VARCHAR},
+      </if>
+      <if test="f6 != null" >
+        f6 = #{f6,jdbcType=VARCHAR},
+      </if>
+      <if test="f7 != null" >
+        f7 = #{f7,jdbcType=VARCHAR},
+      </if>
+      <if test="f8 != null" >
+        f8 = #{f8,jdbcType=VARCHAR},
+      </if>
+      <if test="f9 != null" >
+        f9 = #{f9,jdbcType=VARCHAR},
+      </if>
+      <if test="f10 != null" >
+        f10 = #{f10,jdbcType=VARCHAR},
+      </if>
+      <if test="f11 != null" >
+        f11 = #{f11,jdbcType=VARCHAR},
+      </if>
+      <if test="f12 != null" >
+        f12 = #{f12,jdbcType=VARCHAR},
+      </if>
+      <if test="f13 != null" >
+        f13 = #{f13,jdbcType=VARCHAR},
+      </if>
+      <if test="f14 != null" >
+        f14 = #{f14,jdbcType=VARCHAR},
+      </if>
+      <if test="f15 != null" >
+        f15 = #{f15,jdbcType=VARCHAR},
+      </if>
+      <if test="f16 != null" >
+        f16 = #{f16,jdbcType=VARCHAR},
+      </if>
+      <if test="f17 != null" >
+        f17 = #{f17,jdbcType=VARCHAR},
+      </if>
+      <if test="f18 != null" >
+        f18 = #{f18,jdbcType=VARCHAR},
+      </if>
+      <if test="f20 != null" >
+        f20 = #{f20,jdbcType=VARCHAR},
+      </if>
+      <if test="f21 != null" >
+        f21 = #{f21,jdbcType=VARCHAR},
+      </if>
+      <if test="f22 != null" >
+        f22 = #{f22,jdbcType=VARCHAR},
+      </if>
+      <if test="f23 != null" >
+        f23 = #{f23,jdbcType=VARCHAR},
+      </if>
+      <if test="f24 != null" >
+        f24 = #{f24,jdbcType=VARCHAR},
+      </if>
+      <if test="f25 != null" >
+        f25 = #{f25,jdbcType=VARCHAR},
+      </if>
+      <if test="f26 != null" >
+        f26 = #{f26,jdbcType=VARCHAR},
+      </if>
+      <if test="f33 != null" >
+        f33 = #{f33,jdbcType=VARCHAR},
+      </if>
+      <if test="f62 != null" >
+        f62 = #{f62,jdbcType=VARCHAR},
+      </if>
+      <if test="f104 != null" >
+        f104 = #{f104,jdbcType=VARCHAR},
+      </if>
+      <if test="f105 != null" >
+        f105 = #{f105,jdbcType=VARCHAR},
+      </if>
+      <if test="f107 != null" >
+        f107 = #{f107,jdbcType=VARCHAR},
+      </if>
+      <if test="f115 != null" >
+        f115 = #{f115,jdbcType=VARCHAR},
+      </if>
+      <if test="f124 != null" >
+        f124 = #{f124,jdbcType=VARCHAR},
+      </if>
+      <if test="f128 != null" >
+        f128 = #{f128,jdbcType=VARCHAR},
+      </if>
+      <if test="f140 != null" >
+        f140 = #{f140,jdbcType=VARCHAR},
+      </if>
+      <if test="f141 != null" >
+        f141 = #{f141,jdbcType=VARCHAR},
+      </if>
+      <if test="f136 != null" >
+        f136 = #{f136,jdbcType=VARCHAR},
+      </if>
+      <if test="f152 != null" >
+        f152 = #{f152,jdbcType=VARCHAR},
+      </if>
+      <if test="f207 != null" >
+        f207 = #{f207,jdbcType=VARCHAR},
+      </if>
+      <if test="f208 != null" >
+        f208 = #{f208,jdbcType=VARCHAR},
+      </if>
+      <if test="f209 != null" >
+        f209 = #{f209,jdbcType=VARCHAR},
+      </if>
+      <if test="f222 != null" >
+        f222 = #{f222,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.magic.www.permissions.domain.CollectPlateRanking" >
+    update collect_plate_ranking
+    set data_type = #{dataType,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      f1 = #{f1,jdbcType=VARCHAR},
+      f2 = #{f2,jdbcType=VARCHAR},
+      f3 = #{f3,jdbcType=VARCHAR},
+      f4 = #{f4,jdbcType=VARCHAR},
+      f5 = #{f5,jdbcType=VARCHAR},
+      f6 = #{f6,jdbcType=VARCHAR},
+      f7 = #{f7,jdbcType=VARCHAR},
+      f8 = #{f8,jdbcType=VARCHAR},
+      f9 = #{f9,jdbcType=VARCHAR},
+      f10 = #{f10,jdbcType=VARCHAR},
+      f11 = #{f11,jdbcType=VARCHAR},
+      f12 = #{f12,jdbcType=VARCHAR},
+      f13 = #{f13,jdbcType=VARCHAR},
+      f14 = #{f14,jdbcType=VARCHAR},
+      f15 = #{f15,jdbcType=VARCHAR},
+      f16 = #{f16,jdbcType=VARCHAR},
+      f17 = #{f17,jdbcType=VARCHAR},
+      f18 = #{f18,jdbcType=VARCHAR},
+      f20 = #{f20,jdbcType=VARCHAR},
+      f21 = #{f21,jdbcType=VARCHAR},
+      f22 = #{f22,jdbcType=VARCHAR},
+      f23 = #{f23,jdbcType=VARCHAR},
+      f24 = #{f24,jdbcType=VARCHAR},
+      f25 = #{f25,jdbcType=VARCHAR},
+      f26 = #{f26,jdbcType=VARCHAR},
+      f33 = #{f33,jdbcType=VARCHAR},
+      f62 = #{f62,jdbcType=VARCHAR},
+      f104 = #{f104,jdbcType=VARCHAR},
+      f105 = #{f105,jdbcType=VARCHAR},
+      f107 = #{f107,jdbcType=VARCHAR},
+      f115 = #{f115,jdbcType=VARCHAR},
+      f124 = #{f124,jdbcType=VARCHAR},
+      f128 = #{f128,jdbcType=VARCHAR},
+      f140 = #{f140,jdbcType=VARCHAR},
+      f141 = #{f141,jdbcType=VARCHAR},
+      f136 = #{f136,jdbcType=VARCHAR},
+      f152 = #{f152,jdbcType=VARCHAR},
+      f207 = #{f207,jdbcType=VARCHAR},
+      f208 = #{f208,jdbcType=VARCHAR},
+      f209 = #{f209,jdbcType=VARCHAR},
+      f222 = #{f222,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="querySelective" resultMap="BaseResultMap" parameterType="com.magic.www.permissions.domain.CollectPlateRanking">
+    select
+    <include refid="Base_Column_List" />
+    from collect_plate_ranking
+    where 1 = 1
+    <if test="dataType != null" >
+      and data_type = #{dataType,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createTimeStr != null" >
+      and date_format(create_time,'%Y-%m-%d') = #{createTimeStr,jdbcType=TIMESTAMP}
+    </if>
+    <if test="f1 != null" >
+      and f1 = #{f1,jdbcType=VARCHAR},
+    </if>
+    <if test="f2 != null" >
+      and f2 = #{f2,jdbcType=VARCHAR}
+    </if>
+    <if test="f3 != null" >
+      and f3 = #{f3,jdbcType=VARCHAR}
+    </if>
+    <if test="f4 != null" >
+      and f4 = #{f4,jdbcType=VARCHAR}
+    </if>
+    <if test="f5 != null" >
+      and f5 = #{f5,jdbcType=VARCHAR}
+    </if>
+    <if test="f6 != null" >
+      and f6 = #{f6,jdbcType=VARCHAR}
+    </if>
+    <if test="f7 != null" >
+      and f7 = #{f7,jdbcType=VARCHAR}
+    </if>
+    <if test="f8 != null" >
+      and f8 = #{f8,jdbcType=VARCHAR}
+    </if>
+    <if test="f9 != null" >
+      and f9 = #{f9,jdbcType=VARCHAR}
+    </if>
+    <if test="f10 != null" >
+      and f10 = #{f10,jdbcType=VARCHAR}
+    </if>
+    <if test="f11 != null" >
+      and f11 = #{f11,jdbcType=VARCHAR}
+    </if>
+    <if test="f12 != null" >
+      and f12 = #{f12,jdbcType=VARCHAR}
+    </if>
+    <if test="f13 != null" >
+      and f13 = #{f13,jdbcType=VARCHAR}
+    </if>
+    <if test="f14 != null" >
+      and f14 = #{f14,jdbcType=VARCHAR}
+    </if>
+    <if test="f15 != null" >
+      and f15 = #{f15,jdbcType=VARCHAR}
+    </if>
+    <if test="f16 != null" >
+      and f16 = #{f16,jdbcType=VARCHAR}
+    </if>
+    <if test="f17 != null" >
+      and f17 = #{f17,jdbcType=VARCHAR}
+    </if>
+    <if test="f18 != null" >
+      and f18 = #{f18,jdbcType=VARCHAR}
+    </if>
+    <if test="f20 != null" >
+      and f20 = #{f20,jdbcType=VARCHAR}
+    </if>
+    <if test="f21 != null" >
+      and f21 = #{f21,jdbcType=VARCHAR}
+    </if>
+    <if test="f22 != null" >
+      and  f22 = #{f22,jdbcType=VARCHAR}
+    </if>
+    <if test="f23 != null" >
+      and  f23 = #{f23,jdbcType=VARCHAR}
+    </if>
+    <if test="f24 != null" >
+      and  f24 = #{f24,jdbcType=VARCHAR}
+    </if>
+    <if test="f25 != null" >
+      and f25 = #{f25,jdbcType=VARCHAR}
+    </if>
+    <if test="f26 != null" >
+      and f26 = #{f26,jdbcType=VARCHAR}
+    </if>
+    <if test="f33 != null" >
+      and f33 = #{f33,jdbcType=VARCHAR}
+    </if>
+    <if test="f62 != null" >
+      and  f62 = #{f62,jdbcType=VARCHAR}
+    </if>
+    <if test="f104 != null" >
+      and  f104 = #{f104,jdbcType=VARCHAR}
+    </if>
+    <if test="f105 != null" >
+      and f105 = #{f105,jdbcType=VARCHAR}
+    </if>
+    <if test="f107 != null" >
+      and f107 = #{f107,jdbcType=VARCHAR}
+    </if>
+    <if test="f115 != null" >
+      and  f115 = #{f115,jdbcType=VARCHAR}
+    </if>
+    <if test="f124 != null" >
+      and  f124 = #{f124,jdbcType=VARCHAR}
+    </if>
+    <if test="f128 != null" >
+      and  f128 = #{f128,jdbcType=VARCHAR}
+    </if>
+    <if test="f140 != null" >
+      and f140 = #{f140,jdbcType=VARCHAR}
+    </if>
+    <if test="f141 != null" >
+      and f141 = #{f141,jdbcType=VARCHAR}
+    </if>
+    <if test="f136 != null" >
+      and f136 = #{f136,jdbcType=VARCHAR}
+    </if>
+    <if test="f152 != null" >
+      and f152 = #{f152,jdbcType=VARCHAR}
+    </if>
+    <if test="f207 != null" >
+      and  f207 = #{f207,jdbcType=VARCHAR}
+    </if>
+    <if test="f208 != null" >
+      and f208 = #{f208,jdbcType=VARCHAR}
+    </if>
+    <if test="f209 != null" >
+      and f209 = #{f209,jdbcType=VARCHAR}
+    </if>
+    <if test="f222 != null" >
+      and f222 = #{f222,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

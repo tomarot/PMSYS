@@ -17,6 +17,14 @@ public class QueryParameter extends PageBase{
     //结束时间
     public Date endDate;
 
+    //日期
+    public String createTimeStr;
+
+    //最大涨幅
+    public String maxGains;
+    //最小涨幅
+    public String minGains;
+
     public Date getStartDate() {
         return startDate;
     }
@@ -31,5 +39,29 @@ public class QueryParameter extends PageBase{
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public String getMaxGains() {
+        return maxGains;
+    }
+
+    public void setMaxGains(String maxGains) {
+        this.maxGains = maxGains;
+    }
+
+    public String getMinGains() {
+        return minGains;
+    }
+
+    public void setMinGains(String minGains) {
+        this.minGains = minGains;
+    }
+
+    public String getCreateTimeStr() {
+        return createTimeStr;
+    }
+
+    public void setCreateTimeStr(String createTimeStr) {
+        this.createTimeStr = createTimeStr;
     }
 }

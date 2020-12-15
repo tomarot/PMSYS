@@ -41,11 +41,24 @@ public class Dictionary {
         public static String PERIOD_TYPE_1N = "y";//1年
     }
     //板块基本信息
+    public static class Dictionary_StockBase{
+        //数据周期
+        public static String PERIOD_TYPE_1R = "1";//1日
+        public static String PERIOD_TYPE_3R = "3";//3日
+        public static String PERIOD_TYPE_5R = "5";//5日
+        public static String PERIOD_TYPE_10R = "10";//10日
+    }
+    //板块基本信息
     public static class Dictionary_PlateBase{
         //类型
         public static String TYPE_HY = "0";//0 行业
         public static String TYPE_GN = "1";//1 概念
         public static String TYPE_DY = "2";//2 地域
+
+        //数据周期
+        public static String PERIOD_TYPE_1R = "1";//1日
+        public static String PERIOD_TYPE_5R = "5";//5日
+        public static String PERIOD_TYPE_10R = "10";//10日
 
         //可用状态
         public static String AVAILABLE_N = "0";//0 不可用

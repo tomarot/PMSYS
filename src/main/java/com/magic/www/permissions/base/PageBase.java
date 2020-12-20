@@ -29,6 +29,8 @@ public class PageBase {
 
     public void setPageState(int pageState) {
         this.pageState = pageState;
+        setPageSize(1);
+        setPageNum(1);
     }
 
     public int getPageSize() {

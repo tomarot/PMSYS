@@ -23,4 +23,6 @@ public interface CollectStockMoneyRankingMapper {
      * @return
      */
     List<CollectStockMoneyRanking> querySelective(CollectStockMoneyRanking collectStockMoneyRanking);
+
+    CollectStockMoneyRanking queryLastData();
 }

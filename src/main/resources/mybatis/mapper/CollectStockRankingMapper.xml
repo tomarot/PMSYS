@@ -335,5 +335,15 @@
     <if test="createTimeStr != null" >
       and date_format(create_time,'%Y-%m-%d') = #{createTimeStr,jdbcType=TIMESTAMP}
     </if>
+    <if test="pageState != 0">
+      LIMIT #{offset,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="queryLastData" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from collect_stock_ranking
+    order by create_time desc
+    LIMIT 0,1
   </select>
 </mapper>

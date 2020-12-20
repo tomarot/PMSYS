@@ -1,5 +1,6 @@
 package com.magic.www.permissions.collect.impl;
 
+import com.magic.www.permissions.base.PageBase;
 import com.magic.www.permissions.base.ResultVo;
 import com.magic.www.permissions.collect.CollectService;
 import com.magic.www.permissions.collect.Collector;
@@ -7,6 +8,7 @@ import com.magic.www.permissions.collect.DataResolver;
 import com.magic.www.permissions.common.Dictionary;
 import com.magic.www.permissions.domain.*;
 import com.magic.www.permissions.mapper.*;
+import com.magic.www.permissions.parameterExpand.QueryParameter;
 import com.magic.www.permissions.utils.DateUtils;
 import com.magic.www.permissions.utils.StockUtils;
 import org.slf4j.Logger;
@@ -89,12 +91,54 @@ public class CollectServiceImpl implements CollectService {
         }
         return false;
     }
+
+    @Override
+    public boolean valid_plateRanking(List<CollectPlateRanking> collectPlateRankingList) {
+        CollectPlateRanking lastData = collectPlateRankingMapper.queryLastData();
+        CollectPlateRanking plateRanking = new CollectPlateRanking();
+        plateRanking.setCreateTimeStr(DateUtils.date2String(lastData.getCreateTime()));
+        plateRanking.setDataType(Dictionary.Dictionary_PlateBase.TYPE_HY);
+        plateRanking.setPageState(PageBase.PAGE_STATE_ENABLE);
+        plateRanking.setPageSize(10);
+        List<CollectPlateRanking> resultList = collectPlateRankingMapper.querySelective(plateRanking);
+        String oldStr = "";
+        String newStr = "";
+        for(int i=0;i<10;i++){
+            newStr += collectPlateRankingList.get(i).getF2();
+            oldStr += resultList.get(i).getF2();
+        }
+        if(newStr.equals(oldStr)){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean valid_stockRanking(Date date) {
         CollectStockRanking stockRanking = new CollectStockRanking();
         stockRanking.setCreateTimeStr(DateUtils.date2String(date));
         List<CollectStockRanking> resultList = collectStockRankingMapper.querySelective(stockRanking);
         if(resultList.size() > 0){
+            return true;
+        }
+        return false;
+
+    }
+    @Override
+    public boolean valid_stockRanking(List<CollectStockRanking> collectStockRankingList) {
+        CollectStockRanking lastData = collectStockRankingMapper.queryLastData();
+        CollectStockRanking stockRanking = new CollectStockRanking();
+        stockRanking.setCreateTimeStr(DateUtils.date2String(lastData.getCreateTime()));
+        stockRanking.setPageState(PageBase.PAGE_STATE_ENABLE);
+        stockRanking.setPageSize(10);
+        List<CollectStockRanking> resultList = collectStockRankingMapper.querySelective(stockRanking);
+        String oldStr = "";
+        String newStr = "";
+        for(int i=0;i<10;i++){
+            newStr += collectStockRankingList.get(i).getCurrentPrice();
+            oldStr += resultList.get(i).getCurrentPrice();
+        }
+        if(newStr.equals(oldStr)){
             return true;
         }
         return false;
@@ -111,6 +155,26 @@ public class CollectServiceImpl implements CollectService {
         return false;
     }
 
+    @Override
+    public boolean valid_stockMoneyRanking(List<CollectStockMoneyRanking> collectStockMoneyRankingList) {
+        CollectStockMoneyRanking lastData = collectStockMoneyRankingMapper.queryLastData();
+        CollectStockMoneyRanking stockMoneyRanking = new CollectStockMoneyRanking();
+        stockMoneyRanking.setCreateTimeStr(DateUtils.date2String(lastData.getCreateTime()));
+        stockMoneyRanking.setPageState(PageBase.PAGE_STATE_ENABLE);
+        stockMoneyRanking.setPageSize(10);
+        List<CollectStockMoneyRanking> resultList = collectStockMoneyRankingMapper.querySelective(stockMoneyRanking);
+        String oldStr = "";
+        String newStr = "";
+        for(int i=0;i<10;i++){
+            newStr += collectStockMoneyRankingList.get(i).getMainNetInflow();
+            oldStr += resultList.get(i).getMainNetInflow();
+        }
+        if(newStr.equals(oldStr)){
+            return true;
+        }
+        return false;
+    }
+
 
     @Override
     public boolean valid_plateMoneyRanking(Date date) {
@@ -118,6 +182,26 @@ public class CollectServiceImpl implements CollectService {
         plateMoneyRanking.setCreateTimeStr(DateUtils.date2String(date));
         List<CollectPlateMoneyRanking> resultList = collectPlateMoneyRankingMapper.querySelective(plateMoneyRanking);
         if(resultList.size() > 0){
+            return true;
+        }
+        return false;
+    }
+    @Override
+    public boolean valid_plateMoneyRanking(List<CollectPlateMoneyRanking> collectPlateRankingList) {
+        CollectPlateMoneyRanking lastData = collectPlateMoneyRankingMapper.queryLastData();
+        CollectPlateMoneyRanking plateMoneyRanking = new CollectPlateMoneyRanking();
+        plateMoneyRanking.setCreateTimeStr(DateUtils.date2String(lastData.getCreateTime()));
+        plateMoneyRanking.setType(Dictionary.Dictionary_PlateBase.TYPE_HY);
+        plateMoneyRanking.setPageState(PageBase.PAGE_STATE_ENABLE);
+        plateMoneyRanking.setPageSize(10);
+        List<CollectPlateMoneyRanking> resultList = collectPlateMoneyRankingMapper.querySelective(plateMoneyRanking);
+        String oldStr = "";
+        String newStr = "";
+        for(int i=0;i<10;i++){
+            newStr += collectPlateRankingList.get(i).getZdf();
+            oldStr += resultList.get(i).getZdf();
+        }
+        if(newStr.equals(oldStr)){
             return true;
         }
         return false;
@@ -498,7 +582,7 @@ public class CollectServiceImpl implements CollectService {
         //检验数据是否已经采集完成
         CollectPlateRanking data = resultHyList.get(0);
         //验证数据是否已存在
-        if(valid_plateRanking(data.getCreateTime())){
+        if(valid_plateRanking(resultHyList.subList(0,10))){
             log.info("提示："+DateUtils.date2String(data.getCreateTime())+"数据已存在,终止采集任务！");
             resultVo.setResult_msg("提示："+DateUtils.date2String(data.getCreateTime())+"数据已存在,终止采集任务！");
             return resultVo;
@@ -514,6 +598,7 @@ public class CollectServiceImpl implements CollectService {
         log.debug("采集URL：["+Collector.PLATE_RANKING_GN_URL+"]");
         String rgn = collector.doCollect(Collector.PLATE_RANKING_GN_URL);
         log.debug("解析结果：["+rgn+"]");
+
         List<CollectPlateRanking> resultGnList = dataResolver.resolverPlateRanking(rgn,Dictionary.Dictionary_PlateBase.TYPE_GN,CollectPlateRanking.class);
         for(CollectPlateRanking collectPlateRanking:resultGnList){
             collectPlateRanking.setDataType(Dictionary.Dictionary_PlateBase.TYPE_GN);
@@ -556,7 +641,8 @@ public class CollectServiceImpl implements CollectService {
         //检验数据是否已经采集完成
         CollectPlateMoneyRanking dataHy1 = resultHyList.get(0);
         //验证数据是否已存在
-        if(valid_plateMoneyRanking(dataHy1.getCreateTime())){
+//        if(valid_plateMoneyRanking(dataHy1.getCreateTime())){
+        if(valid_plateMoneyRanking(resultHyList.subList(0,10))){
             log.info("提示："+DateUtils.date2String(dataHy1.getCreateTime())+"数据已存在,终止采集任务！");
             resultVo.setResult_msg("提示："+DateUtils.date2String(dataHy1.getCreateTime())+"数据已存在,终止采集任务！");
             return resultVo;
@@ -687,7 +773,8 @@ public class CollectServiceImpl implements CollectService {
         //验证数据是否已采集
         CollectStockRanking ranking = resultList1.get(0);
         //验证数据是否已存在
-        if(valid_stockRanking(ranking.getCreateTime())){
+//        if(valid_stockRanking(ranking.getCreateTime())){
+        if(valid_stockRanking(resultList1.subList(0,10))){
             log.info("提示："+DateUtils.date2String(ranking.getCreateTime())+"数据已存在,终止采集任务！");
             resultVo.setResult_msg("提示："+DateUtils.date2String(ranking.getCreateTime())+"数据已存在,终止采集任务！");
             return resultVo;
@@ -720,7 +807,7 @@ public class CollectServiceImpl implements CollectService {
         //检验数据是否已经采集完成
         CollectStockMoneyRanking date1 = result1List.get(0);
         //验证数据是否已存在
-        if(valid_stockMoneyRanking(date1.getCreateTime())){
+        if(valid_stockMoneyRanking(result1List.subList(0,10))){
             log.info("提示："+DateUtils.date2String(date1.getCreateTime())+"数据已存在,终止采集任务！");
             resultVo.setResult_msg("提示："+DateUtils.date2String(date1.getCreateTime())+"数据已存在,终止采集任务！");
             return resultVo;

@@ -1,6 +1,7 @@
 package com.magic.www.permissions.mapper;
 
 import com.magic.www.permissions.domain.CollectPlateMoneyRanking;
+import com.magic.www.permissions.domain.CollectPlateRanking;
 
 import java.util.List;
 
@@ -23,4 +24,10 @@ public interface CollectPlateMoneyRankingMapper {
      * @return
      */
     List<CollectPlateMoneyRanking> querySelective(CollectPlateMoneyRanking collectPlateMoneyRanking);
+
+    /**
+     * 获取最后一条数据
+     * @return
+     */
+    CollectPlateMoneyRanking queryLastData();
 }

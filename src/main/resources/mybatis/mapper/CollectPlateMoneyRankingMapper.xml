@@ -265,62 +265,71 @@
     from collect_plate_money_ranking
     where 1 = 1
     <if test="type != null" >
-      type = #{type,jdbcType=VARCHAR},
+      and type = #{type,jdbcType=VARCHAR}
     </if>
     <if test="dateType != null" >
-      date_type = #{dateType,jdbcType=VARCHAR},
+      and date_type = #{dateType,jdbcType=VARCHAR}
     </if>
     <if test="code != null" >
-      code = #{code,jdbcType=VARCHAR},
+      and code = #{code,jdbcType=VARCHAR}
     </if>
     <if test="name != null" >
-      name = #{name,jdbcType=VARCHAR},
+      and name = #{name,jdbcType=VARCHAR}
     </if>
     <if test="zdf != null" >
-      zdf = #{zdf,jdbcType=VARCHAR},
+      and zdf = #{zdf,jdbcType=VARCHAR}
     </if>
     <if test="mainNetInflow != null" >
-      main_net_inflow = #{mainNetInflow,jdbcType=VARCHAR},
+      and main_net_inflow = #{mainNetInflow,jdbcType=VARCHAR}
     </if>
     <if test="mainNetProportion != null" >
-      main_net_proportion = #{mainNetProportion,jdbcType=VARCHAR},
+      and main_net_proportion = #{mainNetProportion,jdbcType=VARCHAR}
     </if>
     <if test="veryLargeSingleNet != null" >
-      very_large_single_net = #{veryLargeSingleNet,jdbcType=VARCHAR},
+      and very_large_single_net = #{veryLargeSingleNet,jdbcType=VARCHAR}
     </if>
     <if test="veryLargeSingleProportion != null" >
-      very_large_single_proportion = #{veryLargeSingleProportion,jdbcType=VARCHAR},
+      and very_large_single_proportion = #{veryLargeSingleProportion,jdbcType=VARCHAR}
     </if>
     <if test="largeSingleNet != null" >
-      large_single_net = #{largeSingleNet,jdbcType=VARCHAR},
+      and large_single_net = #{largeSingleNet,jdbcType=VARCHAR}
     </if>
     <if test="largeSingleProportion != null" >
-      large_single_proportion = #{largeSingleProportion,jdbcType=VARCHAR},
+      and large_single_proportion = #{largeSingleProportion,jdbcType=VARCHAR}
     </if>
     <if test="singleNet != null" >
-      single_net = #{singleNet,jdbcType=VARCHAR},
+      and single_net = #{singleNet,jdbcType=VARCHAR}
     </if>
     <if test="singleNetProportion != null" >
-      single_net_proportion = #{singleNetProportion,jdbcType=VARCHAR},
+      and single_net_proportion = #{singleNetProportion,jdbcType=VARCHAR}
     </if>
     <if test="smallSingleNet != null" >
-      small_single_net = #{smallSingleNet,jdbcType=VARCHAR},
+      and small_single_net = #{smallSingleNet,jdbcType=VARCHAR}
     </if>
     <if test="smallSingleProportion != null" >
-      small_single_proportion = #{smallSingleProportion,jdbcType=VARCHAR},
+      and small_single_proportion = #{smallSingleProportion,jdbcType=VARCHAR}
     </if>
     <if test="inflowStockCode != null" >
-      inflow_stock_code = #{inflowStockCode,jdbcType=VARCHAR},
+      and inflow_stock_code = #{inflowStockCode,jdbcType=VARCHAR}
     </if>
     <if test="inflowStockName != null" >
-      inflow_stock_name = #{inflowStockName,jdbcType=VARCHAR},
+      and inflow_stock_name = #{inflowStockName,jdbcType=VARCHAR}
     </if>
     <if test="createTime != null" >
-      create_time = #{createTime,jdbcType=TIMESTAMP},
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
     </if>
     <if test="createTimeStr != null" >
       and date_format(create_time,'%Y-%m-%d') = #{createTimeStr,jdbcType=TIMESTAMP}
     </if>
-
+    <if test="pageState != 0">
+      LIMIT #{offset,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="queryLastData" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from collect_plate_money_ranking
+    order by create_time desc
+    LIMIT 0,1
   </select>
 </mapper>

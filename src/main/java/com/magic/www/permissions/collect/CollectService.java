@@ -1,8 +1,13 @@
 package com.magic.www.permissions.collect;
 
 import com.magic.www.permissions.base.ResultVo;
+import com.magic.www.permissions.domain.CollectPlateMoneyRanking;
+import com.magic.www.permissions.domain.CollectPlateRanking;
+import com.magic.www.permissions.domain.CollectStockMoneyRanking;
+import com.magic.www.permissions.domain.CollectStockRanking;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -35,11 +40,25 @@ public interface CollectService {
     public boolean valid_plateRanking(Date date);
 
     /**
+     * 验证采集的数据是否为最新的数据
+     * @param collectPlateRanking
+     * @return
+     */
+    public boolean valid_plateRanking(List<CollectPlateRanking> collectPlateRanking);
+
+    /**
      * 验证个股排行数据是否已经采集
      * @param date
      * @return
      */
     public boolean valid_stockRanking(Date date);
+
+    /**
+     * 验证采集的数据是否为最新的数据
+     * @param collectStockRankingList
+     * @return
+     */
+    public boolean valid_stockRanking(List<CollectStockRanking> collectStockRankingList);
 
     /**
      * 验证个股资金排行数据是否已经采集
@@ -49,11 +68,25 @@ public interface CollectService {
     public boolean valid_stockMoneyRanking(Date date);
 
     /**
+     * 验证采集的数据是否为最新的数据
+     * @param collectStockMoneyRankingList
+     * @return
+     */
+    public boolean valid_stockMoneyRanking(List<CollectStockMoneyRanking> collectStockMoneyRankingList);
+
+    /**
      *验证板块资金排行数据是否已经采集
      * @param date
      * @return
      */
     public boolean valid_plateMoneyRanking(Date date);
+
+    /**
+     * 验证采集的数据是否为最新的数据
+     * @param collectPlateRankingList
+     * @return
+     */
+    public boolean valid_plateMoneyRanking(List<CollectPlateMoneyRanking> collectPlateRankingList);
 
     /**
      * 采集北向资金板块数据

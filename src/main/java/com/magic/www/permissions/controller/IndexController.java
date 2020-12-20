@@ -68,8 +68,15 @@ public class IndexController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else if("7".equals(type)){//板块排行
-            collectService.collectPlateRankingData();
+        }else if("7".equals(type)){
+            //板块排行
+//            collectService.collectPlateRankingData();
+            //采集板块资金排行数据
+//            collectService.collectPlateMoneyRankingData();
+            //采集个股排行数据
+//            collectService.collectStockRankingData();
+            //采集个股资金排行数据
+            collectService.collectStockMoneyRankingData();
         }
         return resultVo;
     }

@@ -12,6 +12,18 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public class QueryParameter extends PageBase{
+
+    //排序功能状态 禁用
+    public static int ORDER_STATE_DISABLE = 0;
+    //排序功能状态 启用
+    public static int ORDER_STATE_ENABLE = 1;
+
+    //排序类型 升序
+    public static String ORDER_ASC = "ASC";
+    //排序类型 降序
+    public static String ORDER_DESC = "DESC";
+
+
     //开始时间
     public Date startDate;
     //结束时间
@@ -24,6 +36,13 @@ public class QueryParameter extends PageBase{
     public String maxGains;
     //最小涨幅
     public String minGains;
+
+    //排序状态
+    public int orderState;
+    //排序字段
+    public String orderStr;
+    //排序类型
+    public String orderType;
 
     public Date getStartDate() {
         return startDate;
@@ -63,5 +82,29 @@ public class QueryParameter extends PageBase{
 
     public void setCreateTimeStr(String createTimeStr) {
         this.createTimeStr = createTimeStr;
+    }
+
+    public int getOrderState() {
+        return orderState;
+    }
+
+    public void setOrderState(int orderState) {
+        this.orderState = orderState;
+    }
+
+    public String getOrderStr() {
+        return orderStr;
+    }
+
+    public void setOrderStr(String orderStr) {
+        this.orderStr = orderStr;
+    }
+
+    public String getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(String orderType) {
+        this.orderType = orderType;
     }
 }

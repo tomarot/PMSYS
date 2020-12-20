@@ -23,4 +23,10 @@ public interface CollectPlateRankingMapper {
      * @return
      */
     List<CollectPlateRanking> querySelective(CollectPlateRanking collectPlateRanking);
+
+    /**
+     * 获取最后一条数据
+     * @return
+     */
+    CollectPlateRanking queryLastData();
 }

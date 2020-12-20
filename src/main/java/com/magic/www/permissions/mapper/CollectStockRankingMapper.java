@@ -18,4 +18,6 @@ public interface CollectStockRankingMapper {
     int updateByPrimaryKey(CollectStockRanking record);
 
     List<CollectStockRanking> querySelective(CollectStockRanking collectStockRanking);
+
+    CollectStockRanking queryLastData();
 }
